@@ -1,9 +1,9 @@
-import { createAction, mapType, status } from '../../../utils/reduxHelper';
+import { createAction } from '../../../utils/reduxHelper';
 
 export const types = {
-    GET_LIST_PRODUCT: mapType('GET_LIST_PRODUCT', status.start),
-    GET_LIST_PRODUCT_SUCCESS: mapType('GET_LIST_PRODUCT_SUCCESS', status.success),
-    GET_LIST_PRODUCT_FAIL: mapType('GET_LIST_PRODUCT_FAIL', status.failure)
+    GET_LIST_PRODUCT: 'GET_LIST_PRODUCT',
+    GET_LIST_PRODUCT_SUCCESS: 'GET_LIST_PRODUCT_SUCCESS',
+    GET_LIST_PRODUCT_FAIL: 'GET_LIST_PRODUCT_FAIL',
 }
 
 export const actions = {

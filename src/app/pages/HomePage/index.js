@@ -9,14 +9,14 @@ import { connect } from 'react-redux'
 import { selectors, actions } from './services'
 
 class HomePage extends Component {
-    mouseOverHome = () => {
-        return (
-            <div>
-                HAHA
-            </div>
-        )
+
+
+    componentDidMount() {
+        this.props.getListProduct()
     }
     render() {
+        const { listProduct } = this.props;
+        console.log('####', listProduct)
         return (
             <div className='homepage'>
                 <div className='navigator'>
@@ -31,8 +31,8 @@ class HomePage extends Component {
                     </div>
                     <div className='bottomNavigator'>
                         <div className='listMenu'>
-                            <div className='itemMenu' onClick={this.mouseOverHome()}>
-                                <img src={icons.menuIcon} id='icon' />
+                            <div className='itemMenu' >
+                                <img src={icons.menuIcon} id='icon' alt='menuIcon' />
                                 <div className='menuText'>
                                     Danh mục sản phẩm
                                 </div>

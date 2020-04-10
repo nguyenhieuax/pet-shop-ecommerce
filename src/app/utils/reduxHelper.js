@@ -1,4 +1,3 @@
-import Immutable from "immutable";
 
 const mapType = (type, status) => `${status.valuePrefix}${type}`;
 

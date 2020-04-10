@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'http://localhost:8080/'
+const baseURL = 'https://reactnative.dev'
 
 export const fetch = (method, path, params) => {
     if (!params) {
@@ -9,11 +9,13 @@ export const fetch = (method, path, params) => {
     let config = {
         'Content-Type': 'application/json',
     }
-    axios.get(baseURL + path, config)
-        .then(response => {
-            return {
-                ...response
-            }
-        })
-        .catch(error => console.log(error))
+    return new Promise((resolve, reject) => {
+        axios.get(baseURL + '/movies.json', config)
+            .then(response => {
+                resolve(response.data)
+            })
+            .catch(error => {
+                reject(error);
+            })
+    })
 }
