@@ -2,7 +2,7 @@ import { fetch } from '../../../services/api'
 
 
 const getListProduct = () => {
-    return fetch('get', '/movies.json')
+    return fetch('get', '/getListProduct')
 }
 
 

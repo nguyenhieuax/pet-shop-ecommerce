@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux-immutable'
 
 import home from '../pages/HomePage/services/reducer';
-
+import productDetail from '../pages/ProductDetail/services/reducer'
 const reducers = {
-    home
+    home,
+    productDetail
 }
 
 const reducer = combineReducers(reducers)

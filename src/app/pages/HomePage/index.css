@@ -1,127 +1,21 @@
-.navigator {
-    
+.hero__item{
+    background-image: url('/img/hero/baner.png');
 
-    background-color: #FFF;
-    /* background-color: aquamarine; */
+}
+.logo-4pet{
+    font-size: 40px;
+    font-weight: 500;
+    color: black;
+}
+.categories {
+    height: 270px;
+}
+.categories__item {
+    background-image: url('/img/categories/cat-1.jpg');
+
 }
 
-.topNavigator{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+.featured__item__pic {
+    background-image: url('/img/dog1.jpg');
+
 }
-
-.bottomNavigator{
-    display: flex;
-    flex:1;
-    flex-direction: row;
-    justify-content: space-around;
-    
-}
-
-.listMenu{
-    flex:0.2;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-
-.containerLogo{
-   flex: 0.2;
-   display: flex;
-   
-   justify-content: center;
-   align-items: center;
-}
-
-.containerInput{
-    flex:0.5;
-}
-
-#searchBar{
-    width: 100%;
-    padding-top:10px;
-    padding-bottom: 10px    ;
-}
-
-#logo{
-    max-width: 80%;
-    display: block;
-    
-}
-
-.containerDropMenu{
-    flex: 0.7;
-}
-
-#home{
-    
-    font-weight: bold;
-    
-}
-
-.itemMenu{
-    display: flex;
-    
-    flex-direction: row;
-    align-items: center;
-}
-
-.menuText{
-    padding-left: 10px;
-}
-
-.itemMenu li {
-    font-weight: bold;
-    cursor: pointer;
-    align-items: center;
-}
-
-.itemMenu li:hover {
-    color:#CE7852;
-    cursor: pointer
-}
-
-
-
-
-.homeMenu{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-.containerRightMenu{
-    flex: 0.5;
-    display: flex;
-    /* justify-content: space-around; */
-    justify-content: center;
-    /* padding-right: 20; */
-    
-}
-.containerRightMenu img{
-    padding-right: 20px;
-}
-#icon {
-    width: 23px;
-    height: 23px;
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.swipe{
-    display: flex;
-    flex:1;
-    justify-content: flex-end;
-    /* background-color: red; */
-    /* justify-content: center; */
-}
-
-#slider1{
-    display: block;
-}
-
-

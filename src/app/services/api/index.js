@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const baseURL = 'https://reactnative.dev'
+// const baseURL = 'https://reactnative.dev'
+const baseURL = 'https://5e9310d9c7393c0016de4492.mockapi.io/'
+
 
 export const fetch = (method, path, params) => {
     console.log(method)
@@ -22,7 +24,8 @@ export const fetch = (method, path, params) => {
         axios({
             method: method,
             url: baseURL + path,
-            config: config
+            config: config,
+            params: params
         })
             .then(response => {
                 resolve(response.data)
