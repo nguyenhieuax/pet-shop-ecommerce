@@ -194,12 +194,12 @@ class HomePage extends Component {
             <div className="row">
               <div className="col-lg-6 col-md-6 col-sm-6">
                 <div className="banner__pic">
-                  <img src="img/fish1.png" alt />
+                  <img alt = "fish_pet" src="img/fish1.png" alt />
                 </div>
               </div>
               <div className="col-lg-6 col-md-6 col-sm-6">
                 <div className="banner__pic">
-                  <img src="img/mouse_1.png" alt />
+                  <img alt = "mouse_pet" src="img/mouse_1.png" alt />
                 </div>
               </div>
             </div>
@@ -217,7 +217,7 @@ class HomePage extends Component {
                     <div className="latest-prdouct__slider__item">
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-1.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-1.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -226,7 +226,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-2.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-2.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -235,7 +235,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-3.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-3.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -246,7 +246,7 @@ class HomePage extends Component {
                     <div className="latest-prdouct__slider__item">
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-1.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-1.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -255,7 +255,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-2.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-2.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -264,7 +264,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-3.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-3.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -282,7 +282,7 @@ class HomePage extends Component {
                     <div className="latest-prdouct__slider__item">
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-1.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-1.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -291,7 +291,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-2.jpg" alt />
+                          <img  alt = "latest-product"src="img/latest-product/lp-2.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -300,7 +300,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-3.jpg" alt />
+                          <img  alt = "latest-product" src="img/latest-product/lp-3.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -311,7 +311,7 @@ class HomePage extends Component {
                     <div className="latest-prdouct__slider__item">
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-1.jpg" alt />
+                          <img  alt = "latest-product"src="img/latest-product/lp-1.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -320,7 +320,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-2.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-2.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -329,7 +329,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-3.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-3.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -347,7 +347,7 @@ class HomePage extends Component {
                     <div className="latest-prdouct__slider__item">
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-1.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-1.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -356,7 +356,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-2.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-2.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -365,7 +365,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-3.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-3.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -376,7 +376,7 @@ class HomePage extends Component {
                     <div className="latest-prdouct__slider__item">
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-1.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-1.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -385,7 +385,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-2.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-2.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -394,7 +394,7 @@ class HomePage extends Component {
                       </a>
                       <a href="#" className="latest-product__item">
                         <div className="latest-product__item__pic">
-                          <img src="img/latest-product/lp-3.jpg" alt />
+                          <img alt = "latest-product" src="img/latest-product/lp-3.jpg" alt />
                         </div>
                         <div className="latest-product__item__text">
                           <h6>Crab Pool Security</h6>
@@ -423,7 +423,7 @@ class HomePage extends Component {
               <div className="col-lg-4 col-md-4 col-sm-6">
                 <div className="blog__item">
                   <div className="blog__item__pic">
-                    <img src="img/blog/1crop.jpg" alt />
+                    <img alt = "crop-product" src="img/blog/1crop.jpg"  />
                   </div>
                   <div className="blog__item__text">
                     <ul>
@@ -449,7 +449,7 @@ class HomePage extends Component {
               <div className="col-lg-4 col-md-4 col-sm-6">
                 <div className="blog__item">
                   <div className="blog__item__pic">
-                    <img src="img/blog/4crop.jpg" alt />
+                    <img  alt = "crop-item" src="img/blog/4crop.jpg"  />
                   </div>
                   <div className="blog__item__text">
                     <ul>
@@ -473,7 +473,7 @@ class HomePage extends Component {
               <div className="col-lg-4 col-md-4 col-sm-6">
                 <div className="blog__item">
                   <div className="blog__item__pic">
-                    <img src="img/blog/3crop.jpg" alt />
+                    <img alt = "crop-item" src="img/blog/3crop.jpg"  />
                   </div>
                   <div className="blog__item__text">
                     <ul>
@@ -506,7 +506,7 @@ class HomePage extends Component {
                 <div className="footer__about">
                   <div className="footer__about__logo">
                     <Link to="/">
-                      <img src="img/logo.png" alt />
+                      <img alt = "logo-allforpet" src="img/logo.png"  />
                     </Link>
                   </div>
                   <ul>

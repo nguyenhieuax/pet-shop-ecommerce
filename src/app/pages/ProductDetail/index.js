@@ -126,29 +126,29 @@ function ProductDetail(props) {
                     <img
                       className="product__details__pic__item--large"
                       src="img/product/details/product-details-1.jpg"
-                      alt=""
+                      alt="product__details"
                     />
                   </div>
                   <div className="product__details__pic__slider owl-carousel">
                     <img
                       data-imgbigurl="img/product/details/product-details-2.jpg"
                       src="img/product/details/thumb-1.jpg"
-                      alt=""
+                      alt="product__details"
                     />
                     <img
                       data-imgbigurl="img/product/details/product-details-3.jpg"
                       src="img/product/details/thumb-2.jpg"
-                      alt=""
+                      alt="product__details"
                     />
                     <img
                       data-imgbigurl="img/product/details/product-details-5.jpg"
                       src="img/product/details/thumb-3.jpg"
-                      alt=""
+                      alt="product__details"
                     />
                     <img
                       data-imgbigurl="img/product/details/product-details-4.jpg"
                       src="img/product/details/thumb-4.jpg"
-                      alt=""
+                      alt="product__details"
                     />
                   </div>
                 </div>
@@ -507,7 +507,7 @@ function ProductDetail(props) {
                 <div className="footer__about">
                   <div className="footer__about__logo">
                     <a href="./index.html">
-                      <img src="img/logo.png" alt="" />
+                      <img  src="img/logo.png" alt="logo-allforpet" />
                     </a>
                   </div>
                   <ul>
@@ -606,7 +606,7 @@ function ProductDetail(props) {
                     </p>
                   </div>
                   <div className="footer__copyright__payment">
-                    <img src="img/payment-item.png" alt="" />
+                    <img src="img/payment-item.png" alt="payment-item" />
                   </div>
                 </div>
               </div>
