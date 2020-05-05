@@ -1,4 +1,4 @@
-import { fetch } from '../../../services/api'
+import { fetch } from '../../services/api'
 
 
 const getListProduct = () => {

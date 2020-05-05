@@ -16,7 +16,7 @@ export default (state = initialState, { type, payload }) => {
     }
 }
 
-const select = state => key => state.get('home').toJS()[key];
+const select = state => key => state.get('_reducer').toJS()[key];
 
 export const selectors = {
     getListProduct: state => select(state)('listProduct'),

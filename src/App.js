@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 import HomePage from "../src/app/pages/HomePage";
 import ProductDetail from '../src/app/pages/ProductDetail'
+import Shop from './app/pages/Shop'
 import { Switch, Route } from 'react-router-dom'
 
 class App extends Component {
@@ -23,7 +24,9 @@ class App extends Component {
     return (
       <>
         <Route exact path="/" component={HomePage} />        
-        {/* <Route path="/product-detail" component={ProductDetail} />         */}
+        <Route path="/product-detail" component={ProductDetail} />
+        <Route path="/shop" component={Shop} />
+        
       </>
 
       // <HomePage />

@@ -1,0 +1,13 @@
+.breadcrumb-section-set-bg {
+    background-image: url('/img/breadcrumb.jpg');
+    display: flex;
+	align-items: center;
+    padding: 45px 0 40px;
+    background-size: cover
+}
+
+.breadcrumb-section {
+	display: flex;
+	align-items: center;
+	padding: 45px 0 40px;
+}

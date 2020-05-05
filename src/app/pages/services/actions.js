@@ -1,4 +1,4 @@
-import { createAction } from '../../../utils/reduxHelper';
+import { createAction } from '../../utils/reduxHelper';
 
 export const types = {
     GET_LIST_PRODUCT: 'GET_LIST_PRODUCT',
