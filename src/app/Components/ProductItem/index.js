@@ -25,7 +25,7 @@ export const ProductItem = (props) => {
   return (
     <Route >
     <div
-      className="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"
+      className="col-lg-2 col-md-4 col-sm-6 mix oranges fresh-meat"
       onClick={onClickItem}
       // }
     >

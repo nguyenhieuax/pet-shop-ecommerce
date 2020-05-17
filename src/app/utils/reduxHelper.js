@@ -29,8 +29,32 @@ const status = {
     }
 };
 
+const createLoadingSelector = state => {
+    return (reducerName: String, actionName: String) => {
+      try {
+        return state.get("ui").toJS()[reducerName][actionName].isLoading;
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  };
+  
+  const createErrorSelector = state => (
+    reducerName: String,
+    actionName: String
+  ) => {
+    try {
+      return state.get("ui").toJS()[reducerName][actionName].error;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+
 export {
     status,
     mapType,
-    createAction
+    createAction,
+    createLoadingSelector,
+    createErrorSelector
 }

@@ -6,20 +6,39 @@ import { Switch, Route, Link } from "react-router-dom";
 import { selectors, actions } from "../services";
 
 import { TopBar, ProductItem, CategoriesBar } from "../../Components";
+import { act } from "react-dom/test-utils";
 class HomePage extends Component {
   componentDidMount() {
     this.props.getListProduct();
+    // this.props.getTopProduct();
+
     console.log('homepage props ====', this.props);
   }
 
+  renderProductItem = (item, history) => {
+    return (
+      <ProductItem
+       url= {`${item.url}`}
+       name={item.name}
+       price={item.price}
+       id = {item.id}
+       history = {history}
+       key = {item.id}
+      />
 
+    
+    )
+  }
 
   render() {
     const { listProduct, history } = this.props;
+    const dogProduct = listProduct && listProduct.length ? listProduct[2].listProducts : [];
+    console.log('dog product =========================>', dogProduct);
+
     return (
       <>
         <TopBar />
-        <CategoriesBar />
+        <CategoriesBar/>
         
         {/* Hero Section End */}
         {/* Categories Section Begin */}
@@ -31,9 +50,9 @@ class HomePage extends Component {
             <div className="row">
               <div className="col-lg-12">
                 <div className="section-title">
-                  <h2>Featured Product</h2>
+                  <h2>Sản phẩm nổi bật</h2>
                 </div>
-                <div className="featured__controls">
+                {/* <div className="featured__controls">
                   <ul>
                     <li className="active" data-filter="*">
                       All
@@ -43,7 +62,7 @@ class HomePage extends Component {
                     <li data-filter=".vegetables">Birds</li>
                     <li data-filter=".fastfood">Fishs</li>
                   </ul>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="row featured__filter">
@@ -96,247 +115,95 @@ class HomePage extends Component {
 
 
               />
+             
+            </div>
+          </div>
+        </section>
+
+        <section className="featured spad">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="section-title">
+                  <h2>Sản phẩm cho chó</h2>
+                </div>
+                {/* <div className="featured__controls">
+                  <ul>
+                    <li className="active" data-filter="*">
+                      All
+                    </li>
+                    <li data-filter=".oranges">Dogs</li>
+                    <li data-filter=".fresh-meat">Cats</li>
+                    <li data-filter=".vegetables">Birds</li>
+                    <li data-filter=".fastfood">Fishs</li>
+                  </ul>
+                </div> */}
+              </div>
+            </div>
+            <div className="row featured__filter">
+             {dogProduct.length ? dogProduct.map((item, index) =>console.log('index', index)) : null}
+            
+            </div>
+          </div>
+        </section>
+
+        <section className="featured spad">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="section-title">
+                  <h2>Sản phẩm cho mèo</h2>
+                </div>
+                {/* <div className="featured__controls">
+                  <ul>
+                    <li className="active" data-filter="*">
+                      All
+                    </li>
+                    <li data-filter=".oranges">Dogs</li>
+                    <li data-filter=".fresh-meat">Cats</li>
+                    <li data-filter=".vegetables">Birds</li>
+                    <li data-filter=".fastfood">Fishs</li>
+                  </ul>
+                </div> */}
+              </div>
+            </div>
+            <div className="row featured__filter">
               <ProductItem
                 url="/img/dog1.jpg"
+                name="Chỗ ngủ cho chó"
+                price="100$"
+                id = "234"
+                history = {history}
+              />
+              <ProductItem
+                url="/img/dogFood/1.jpg"
+                name="Chỗ ngủ cho chó"
+                price="100$"
+                id = "456"
+                history = {history}
+
+              />
+              <ProductItem
+                url="/img/dogFood/2.png"
                 name="Chỗ ngủ cho chó"
                 price="100$"
                 id = "678"
                 history = {history}
 
-
               />
               <ProductItem
-                url="/img/dog1.jpg"
+                url="/img/dogFood/3.png"
                 name="Chỗ ngủ cho chó"
                 price="100$"
                 id = "678"
                 history = {history}
 
               />
+            
             </div>
           </div>
         </section>
-        {/* Featured Section End */}
-        {/* Banner Begin */}
-        {/* <div className="banner">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-6 col-md-6 col-sm-6">
-                <div className="banner__pic">
-                  <img alt = "fish_pet" src="img/fish1.png"  />
-                </div>
-              </div>
-              <div className="col-lg-6 col-md-6 col-sm-6">
-                <div className="banner__pic">
-                  <img alt = "mouse_pet" src="img/mouse_1.png"  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        {/* Banner End */}
-        {/* Latest Product Section Begin */}
-        <section className="latest-product spad">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-4 col-md-6">
-                <div className="latest-product__text">
-                  <h4>Latest Products</h4>
-                  <div className="latest-product__slider owl-carousel">
-                    <div className="latest-prdouct__slider__item">
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-1.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-2.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-3.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                    </div>
-                    <div className="latest-prdouct__slider__item">
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-1.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-2.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-3.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6">
-                <div className="latest-product__text">
-                  <h4>Top Rated Products</h4>
-                  <div className="latest-product__slider owl-carousel">
-                    <div className="latest-prdouct__slider__item">
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-1.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img  alt = "latest-product"src="img/latest-product/lp-2.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img  alt = "latest-product" src="img/latest-product/lp-3.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                    </div>
-                    <div className="latest-prdouct__slider__item">
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img  alt = "latest-product"src="img/latest-product/lp-1.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-2.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-3.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6">
-                <div className="latest-product__text">
-                  <h4>Review Products</h4>
-                  <div className="latest-product__slider owl-carousel">
-                    <div className="latest-prdouct__slider__item">
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-1.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-2.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-3.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                    </div>
-                    <div className="latest-prdouct__slider__item">
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-1.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-2.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                      <a href="#" className="latest-product__item">
-                        <div className="latest-product__item__pic">
-                          <img alt = "latest-product" src="img/latest-product/lp-3.jpg"  />
-                        </div>
-                        <div className="latest-product__item__text">
-                          <h6>Crab Pool Security</h6>
-                          <span>$30.00</span>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+       
         {/* Latest Product Section End */}
         {/* Blog Section Begin */}
         <section className="from-blog spad">
@@ -532,6 +399,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getListProduct: () => dispatch(actions.getListProduct()),
+  getTopProduct: () => dispatch(actions.getTopProduct())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

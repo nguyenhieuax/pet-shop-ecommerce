@@ -5,7 +5,12 @@ const getListProduct = () => {
     return fetch('GET', '')
 }
 
+const getTopProduct = () => {
+    return fetch('get', '/topProduct')
+}
+
 
 export default {
-    getListProduct
+    getListProduct,
+    getTopProduct
 }

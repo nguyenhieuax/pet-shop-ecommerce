@@ -35,7 +35,7 @@ export const TopBar = () => {
                     </a>
                   </div>
                   <div className="header__top__right__language">
-                    <img src="img/language.png" alt />
+                    <img src="img/language.png" alt = 'true' />
                     <div>English</div>
                     <span className="arrow_carrot-down" />
                     <ul>
@@ -62,7 +62,7 @@ export const TopBar = () => {
             <div className="col-lg-3">
               <div className="header__logo">
                 <Link to="/">
-                  <img className="logo_img" src="img/logo.png" alt />
+                  <img className="logo_img" src="img/logo.png" alt = 'true' />
                 </Link>
               </div>
             </div>

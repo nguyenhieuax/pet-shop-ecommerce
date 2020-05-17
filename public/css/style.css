@@ -141,7 +141,7 @@ ol {
 }
 
 .spad {
-	padding-top: 100px;
+	padding-top: 50px;
 	padding-bottom: 100px;
 }
 
@@ -812,7 +812,7 @@ ol {
 -----------------------*/
 
 .featured {
-	padding-top: 80px;
+	/* padding-top: 80px; */
 	padding-bottom: 40px;
 }
 
