@@ -107,7 +107,7 @@ export const TopBar = () => {
                     </ul>
                   </li>
                   <li>
-                    <a href="#">Mèo</a>
+                  <Link to="/shop">Mèo</Link>
                     <ul className="header__menu__dropdown">
                       <li>
                         <Link to="/product-detail">Thức ăn cho mèo</Link>

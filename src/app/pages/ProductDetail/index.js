@@ -3,7 +3,9 @@ import React, { Component, useEffect } from "react";
 import { connect } from "react-redux";
 import { selectors, actions } from "../services";
 import "./index.css";
-import { TopBar  } from '../../Components'
+import { TopBar, CategoriesBar  } from '../../Components';
+import { Switch, Route, Link } from "react-router-dom";
+
 function ProductDetail(props) {
   useEffect(() => {
     // props.getProductDetail();
@@ -19,6 +21,7 @@ function ProductDetail(props) {
         {/* Header Section Begin */}
         <TopBar />
         {/* Header Section End */}
+        {/* <CategoriesBar /> */}
         {/* Hero Section Begin */}
         <section className="hero hero-normal">
           <div className="container">

@@ -1,7 +1,9 @@
 import axios from 'axios'
 
 // const baseURL = 'https://reactnative.dev'
-const baseURL = 'https://5e9310d9c7393c0016de4492.mockapi.io/'
+// const baseURL = 'https://5e9310d9c7393c0016de4492.mockapi.io/'
+const baseURL = 'https://all4petbackend.herokuapp.com/'
+// const baseURL = 'https://all4petbackend.herokuapp.com/product/bird?type=food&page=1'
 
 
 export const fetch = (method, path, params) => {
@@ -11,21 +13,16 @@ export const fetch = (method, path, params) => {
         params = {}
     }
     let config = {
-        'Content-Type': 'application/json',
+      'content-type': 'application/x-www-form-urlencoded'
     }
+
     return new Promise((resolve, reject) => {
-        // axios.method(baseURL + '/movies.json', config)
-        //     .then(response => {
-        //         resolve(response.data)
-        //     })
-        //     .catch(error => {
-        //         reject(error);
-        //     })
+
         axios({
             method: method,
             url: baseURL + path,
-            config: config,
-            params: params
+            headers: config,
+            params: params,
         })
             .then(response => {
                 resolve(response.data)
