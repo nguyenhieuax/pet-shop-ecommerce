@@ -2,9 +2,19 @@ import { TopBar } from './TopBar';
 import { ProductItem } from './ProductItem';
 import { CategoriesBar } from './CategoriesBar';
 import { SaleItem } from './SaleItem';
+import { Loader } from './Loader';
+import { CategoriesItem } from './CategoriesItem';
+import { LeftBarItem } from './LeftBarItem';
+import { LoginModal } from './LoginModal';
+import { Footer } from './Footer';
 export {
     TopBar,
     ProductItem,
     CategoriesBar,
-    SaleItem
+    SaleItem,
+    Loader,
+    CategoriesItem,
+    LeftBarItem,
+    LoginModal,
+    Footer
 };

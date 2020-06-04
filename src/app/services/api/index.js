@@ -25,9 +25,11 @@ export const fetch = (method, path, params) => {
             params: params,
         })
             .then(response => {
+                console.log('data in axios =====================================', response);
                 resolve(response.data)
             })
             .catch(error => {
+                console.log('error --------------', error);
                 reject(error)
             })
     })

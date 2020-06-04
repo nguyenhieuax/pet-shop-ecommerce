@@ -2,8 +2,10 @@ import heart from './heart.png';
 import search from './search.png'
 import cart from './shopping-cart.png'
 import user from './user.png';
-import menuIcon from './menuIcon.png'
-import start from './start.png'
+import menuIcon from './menuIcon.png';
+import start from './start.png';
+import loading from './loading.gif';
+import addToCart from './addToCart.png'
 
 const icons = {
     heart,
@@ -11,7 +13,9 @@ const icons = {
     cart,
     user,
     menuIcon,
-    start
+    start,
+    loading,
+    addToCart
 }
 
 export { icons }

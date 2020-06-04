@@ -10,42 +10,19 @@ export const CategoriesBar = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="col-lg-3">
-                  <div className="hero__categories">
-                    <div className="hero__categories__all">
-                      <i className="fa fa-bars" />
-                      <span>Danh mục </span>
-                    </div>
-                    {/* <ul>
-                      <li>
-                        <Link to="/shop">Shop cho chó</Link>
-                      </li>
-                      <li>
-                        <Link to="/shop">Shop cho mèo</Link>
-                      </li>
-                      <li>
-                        <Link to="/shop">Shop cho chim</Link>
-                      </li>
-                      <li>
-                        <Link to="/shop">Shop cho cá</Link>
-                      </li>
-                      <li>
-                        <a href="#">Small Animal</a>
-                        <Link to="/shop">Các động vật khác</Link>
-                      </li>
-                      <li>
-                        <Link to="/shop">Blog thú cưng</Link>
-                      </li>
-                    </ul> */}
-                </div>
+                  {/* <div className="hero__categories">
+                   <div style = {{fontSize: 20, fontWeight: 'bold', textAlign: 'center', color: '#7fad39'}}>Tất cả cho thú cưng</div>
+                  
+                </div> */}
               </div>
               <div className="hero__search col-lg-9">
                 <div className="hero__search__form">
-                  <form action="#">
-                    <div className="hero__search__categories">
+                  <form style = {{borderColor: 'red'}} action="#">
+                    {/* <div className="hero__search__categories">
                       All Categories
                       <span className="arrow_carrot-down" />
-                    </div>
-                    <input type="text" placeholder="What do yo u need?" />
+                    </div> */}
+                    <input type="text" placeholder="Bạn cần mua gì cho bé hôm nay?" />
                     <button type="submit" className="site-btn">
                       SEARCH
                     </button>

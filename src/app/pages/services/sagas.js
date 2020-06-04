@@ -47,6 +47,7 @@ const watcher = function* () {
             if (res) {
                 yield put(actions[`${name}Success`](res));
                 onSuccess(res);
+                console.log('res data ==========================', res)
                 console.log('success saga')
             } else {
                 yield put(actions[`${name}Fail`]());

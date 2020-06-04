@@ -1,105 +1,75 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect, useState } from "react";
 
 import { connect } from "react-redux";
 import { selectors, actions } from "../services";
 import "./index.css";
-import { TopBar, CategoriesBar  } from '../../Components';
+import { TopBar, CategoriesBar,  Loader, Footer } from '../../Components';
 import { Switch, Route, Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
+import { FormatNumber } from '../../utils/formatNumber'
+import Carousel from 'react-bootstrap/Carousel';
+import { icons } from '../../assets/icons/index';
+
 
 function ProductDetail(props) {
+  const dispatch = useDispatch()
+  const [productId, setProductId] = useState(props.location.state);
+  // const selectors = useSelector()
+
+  let success = () => {
+    console.log('success call api -------------- ')
+  }
+
   useEffect(() => {
+    console.log(' props product details  ===', props)
     // props.getProductDetail();
+    if (productId) {
+      dispatch(actions.getProductDetail(productId, success))
+    }
+
   }, []);
 
-  // let item = !!props.productDetail ? props.productDetail[4] : {};
+  const productDetails = useSelector(state => selectors.getProductDetail(state)) || {};
 
-  // console.log("product detail@@@", item);
+  const onBuy = () => {
+    props.history.push({pathname:'/cart', state:  123});
+  }
+
+  const onAddToCart = () => {
+    dispatch(actions.addToCart(productId, () => {
+      console.log('call acction show cart ================')
+      // dispatch(actions.showCart());
+    }))
+  }
+
+  const onShowCart = () => {
+      dispatch(actions.showCart());
+
+  }
+
+  // const onAddToCart = () => {
+  //   fetch('https://all4petbackend.herokuapp.com/cart/showCart').then(res => console.log('rss', res)).then(err => console.log(err))
+  // }
+
+  const listCart = useSelector(state => selectors.showCart(state)) || {};
+
+  console.assert('list cartt ============================>', listCart);
+
   return (
     <>
-     
-        {/* Humberger End */}
-        {/* Header Section Begin */}
-        <TopBar />
-        {/* Header Section End */}
-        {/* <CategoriesBar /> */}
-        {/* Hero Section Begin */}
-        <section className="hero hero-normal">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-3">
-                <div className="hero__categories">
-                  <div className="hero__categories__all">
-                    <i className="fa fa-bars" />
-                    <span>All departments</span>
-                  </div>
-                  <ul>
-                    <li>
-                      <a href="#">Fresh Meat</a>
-                    </li>
-                    <li>
-                      <a href="#">Vegetables</a>
-                    </li>
-                    <li>
-                      <a href="#">Fruit &amp; Nut Gifts</a>
-                    </li>
-                    <li>
-                      <a href="#">Fresh Berries</a>
-                    </li>
-                    <li>
-                      <a href="#">Ocean Foods</a>
-                    </li>
-                    <li>
-                      <a href="#">Butter &amp; Eggs</a>
-                    </li>
-                    <li>
-                      <a href="#">Fastfood</a>
-                    </li>
-                    <li>
-                      <a href="#">Fresh Onion</a>
-                    </li>
-                    <li>
-                      <a href="#">Papayaya &amp; Crisps</a>
-                    </li>
-                    <li>
-                      <a href="#">Oatmeal</a>
-                    </li>
-                    <li>
-                      <a href="#">Fresh Bananas</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-lg-9">
-                <div className="hero__search">
-                  <div className="hero__search__form">
-                    <form action="#">
-                      <div className="hero__search__categories">
-                        All Categories
-                        <span className="arrow_carrot-down" />
-                      </div>
-                      <input type="text" placeholder="What do yo u need?" />
-                      <button type="submit" className="site-btn">
-                        SEARCH
-                      </button>
-                    </form>
-                  </div>
-                  <div className="hero__search__phone">
-                    <div className="hero__search__phone__icon">
-                      <i className="fa fa-phone" />
-                    </div>
-                    <div className="hero__search__phone__text">
-                      <h5>+65 11.188.888</h5>
-                      <span>support 24/7 time</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Hero Section End */}
-        {/* Breadcrumb Section Begin */}
-        <section
+
+
+      {/* Humberger End */}
+      {/* Header Section Begin */}
+      <TopBar history = {props.history} />
+
+      {/* Header Section End */}
+      {/* <CategoriesBar /> */}
+      {/* Hero Section Begin */}
+
+      {/* Hero Section End */}
+      {/* Breadcrumb Section Begin */}
+      {/* <section
           className="breadcrumb-section-set-bg"
           data-setbg="img/breadcrumb.jpg"
         >
@@ -117,9 +87,10 @@ function ProductDetail(props) {
               </div>
             </div>
           </div>
-        </section>
-        {/* Breadcrumb Section End */}
-        {/* Product Details Section Begin */}
+        </section> */}
+      {/* Breadcrumb Section End */}
+      {/* Product Details Section Begin */}
+      {productDetails ? <>
         <section className="product-details spad">
           <div className="container">
             <div className="row">
@@ -128,37 +99,43 @@ function ProductDetail(props) {
                   <div className="product__details__pic__item">
                     <img
                       className="product__details__pic__item--large"
-                      src="img/product/details/product-details-1.jpg"
+                      src={`${productDetails.url}`}
                       alt="product__details"
                     />
                   </div>
-                  <div className="product__details__pic__slider owl-carousel">
-                    <img
-                      data-imgbigurl="img/product/details/product-details-2.jpg"
-                      src="img/product/details/thumb-1.jpg"
-                      alt="product__details"
-                    />
-                    <img
-                      data-imgbigurl="img/product/details/product-details-3.jpg"
-                      src="img/product/details/thumb-2.jpg"
-                      alt="product__details"
-                    />
-                    <img
-                      data-imgbigurl="img/product/details/product-details-5.jpg"
-                      src="img/product/details/thumb-3.jpg"
-                      alt="product__details"
-                    />
-                    <img
-                      data-imgbigurl="img/product/details/product-details-4.jpg"
-                      src="img/product/details/thumb-4.jpg"
-                      alt="product__details"
-                    />
+                  <div>
+
                   </div>
+                  
+
+                  {/* <div className="product__details__pic__slider owl-carousel"> */}
+                  {/* <img
+                    data-imgbigurl="img/product/details/product-details-2.jpg"
+                    src="img/product/details/thumb-1.jpg"
+                    alt="product__details"
+                  />
+                  <img
+                    data-imgbigurl="img/product/details/product-details-3.jpg"
+                    src="img/product/details/thumb-2.jpg"
+                    alt="product__details"
+                  />
+                  <img
+                    data-imgbigurl="img/product/details/product-details-5.jpg"
+                    src="img/product/details/thumb-3.jpg"
+                    alt="product__details"
+                  />
+                  <img
+                    data-imgbigurl="img/product/details/product-details-4.jpg"
+                    src="img/product/details/thumb-4.jpg"
+                    alt="product__details"
+                  /> */}
+
+                  {/* </div> */}
                 </div>
               </div>
               <div className="col-lg-6 col-md-6">
                 <div className="product__details__text">
-                  <h3>Vetgetable’s Package</h3>
+                  <h3>{productDetails.name}</h3>
                   <div className="product__details__rating">
                     <i className="fa fa-star" />
                     <i className="fa fa-star" />
@@ -167,13 +144,9 @@ function ProductDetail(props) {
                     <i className="fa fa-star-half-o" />
                     <span>(18 reviews)</span>
                   </div>
-                  <div className="product__details__price">$50.00</div>
+                  <div className="product__details__price">{FormatNumber(productDetails.price)}</div>
                   <p>
-                    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                    Vestibulum ac diam sit amet quam vehicula elementum sed sit
-                    amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit
-                    amet quam vehicula elementum sed sit amet dui. Proin eget
-                    tortor risus.
+                    {productDetails.description}
                   </p>
                   <div className="product__details__quantity">
                     <div className="quantity">
@@ -182,18 +155,21 @@ function ProductDetail(props) {
                       </div>
                     </div>
                   </div>
-                  <a href="#" className="primary-btn">
-                    ADD TO CARD
+                  <Link onClick = {onBuy} className="primary-btn">
+                    Mua ngay
+                  </Link>
+                  <a onClick = {onAddToCart} href="#" className="heart-icon">
+                    <img style = {{height: 40, width: 40}} src = {icons.addToCart} />
                   </a>
-                  <a href="#" className="heart-icon">
-                    <span className="icon_heart_alt" />
+                  <a onClick = {onShowCart} href="#" className="heart-icon">
+                    <img style = {{height: 40, width: 40}} src = {icons.addToCart} />
                   </a>
                   <ul>
                     <li>
                       <b>Availability</b> <span>In Stock</span>
                     </li>
                     <li>
-                      <b>Shipping</b>{" "}
+                      <b>Shipping</b>
                       <span>
                         01 day shipping. <samp>Free pickup today</samp>
                       </span>
@@ -503,129 +479,19 @@ function ProductDetail(props) {
         </section>
         {/* Related Product Section End */}
         {/* Footer Section Begin */}
-        <footer className="footer spad">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="footer__about">
-                  <div className="footer__about__logo">
-                    <a href="./index.html">
-                      <img  src="img/logo.png" alt="logo-allforpet" />
-                    </a>
-                  </div>
-                  <ul>
-                    <li>Address: 60-49 Road 11378 New York</li>
-                    <li>Phone: +65 11.188.888</li>
-                    <li>Email: hello@colorlib.com</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                <div className="footer__widget">
-                  <h6>Useful Links</h6>
-                  <ul>
-                    <li>
-                      <a href="#">About Us</a>
-                    </li>
-                    <li>
-                      <a href="#">About Our Shop</a>
-                    </li>
-                    <li>
-                      <a href="#">Secure Shopping</a>
-                    </li>
-                    <li>
-                      <a href="#">Delivery infomation</a>
-                    </li>
-                    <li>
-                      <a href="#">Privacy Policy</a>
-                    </li>
-                    <li>
-                      <a href="#">Our Sitemap</a>
-                    </li>
-                  </ul>
-                  <ul>
-                    <li>
-                      <a href="#">Who We Are</a>
-                    </li>
-                    <li>
-                      <a href="#">Our Services</a>
-                    </li>
-                    <li>
-                      <a href="#">Projects</a>
-                    </li>
-                    <li>
-                      <a href="#">Contact</a>
-                    </li>
-                    <li>
-                      <a href="#">Innovation</a>
-                    </li>
-                    <li>
-                      <a href="#">Testimonials</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-12">
-                <div className="footer__widget">
-                  <h6>Join Our Newsletter Now</h6>
-                  <p>
-                    Get E-mail updates about our latest shop and special offers.
-                  </p>
-                  <form action="#">
-                    <input type="text" placeholder="Enter your mail" />
-                    <button type="submit" className="site-btn">
-                      Subscribe
-                    </button>
-                  </form>
-                  <div className="footer__widget__social">
-                    <a href="#">
-                      <i className="fa fa-facebook" />
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-instagram" />
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-twitter" />
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-pinterest" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="footer__copyright">
-                  <div className="footer__copyright__text">
-                    <p>
-                      {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
-                      Copyright © All rights reserved | This template is made
-                      with <i className="fa fa-heart" aria-hidden="true" /> by{" "}
-                      <a href="https://colorlib.com" target="_blank">
-                        Colorlib
-                      </a>
-                      {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
-                    </p>
-                  </div>
-                  <div className="footer__copyright__payment">
-                    <img src="img/payment-item.png" alt="payment-item" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer />
+      </> : <> <Loader /></>}
+
     </>
   );
 }
 
-const mapStateToProps = (state) => ({
-  // productDetail: selectors.getProductDetail(state),
-});
+// const mapStateToProps = (state) => ({
+//   // productDetail: selectors.getProductDetail(state),
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  // getProductDetail: () => dispatch(actions.getProductDetail()),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   // getProductDetail: () => dispatch(actions.getProductDetail()),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);
+export default ProductDetail;

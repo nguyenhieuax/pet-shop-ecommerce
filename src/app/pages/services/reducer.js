@@ -12,9 +12,12 @@ export default (state = initialState, { type, payload }) => {
     const len = type.length;
       if (type.startsWith('@@FETCH_SUCCESS/') && type.substring(len - 7, len) === 'Success') {
         const name = type.substring(16, len - 7)
+        console.log('name action===', name);
         const newState = state.merge({ [name]: payload });
         return newState;
       }
+
+      console.log('state ========',state)
 
   return state;
 };

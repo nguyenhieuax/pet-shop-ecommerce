@@ -1,9 +1,45 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "./index.css";
-export const TopBar = () => {
+import { Switch, Route, Link } from "react-router-dom";
+import { icons } from '../../assets/icons'
+import { LoginModal } from "../LoginModal";
+export const TopBar = (props) => {
+  const [modalShow, setModalShow] = React.useState(false);
+
+  const onClickLabelDog = () => {
+    props.history.push({ pathname: "/dog-shop", state: { name: 'dog', type: 0 } });
+
+  }
+  const onClickLabelCat = () => {
+    props.history.push({ pathname: "/cat-shop", state: { name: 'cat', type: 0 } });
+
+  }
+
+  const onClickSubLabelDog = (type) => {
+    console.log('type on topbar ==========', type)
+    props.history.push({ pathname: "/dog-shop", state: { name: 'dog', type: type } });
+
+  }
+  const onClickSubLabelCat = (type) => {
+    console.log('type on topbar ==========', type)
+    props.history.push({ pathname: "/dog-shop", state: { name: 'cat', type: type } });
+
+  }
+
+  const onClickLabelFish = () => {
+    props.history.push({ pathname: "/fish-shop", state: { name: 'fish', type: 0 } });
+  }
+  const onClickLabelHamster = () => {
+    props.history.push({ pathname: "/hamster-shop", state: { name: 'hamster', type: 0 } });
+  }
+  const onClickLabelBird = () => {
+    props.history.push({ pathname: "/bird-shop", state: { name: 'bird', type: 0 } });
+  }
+
+
   return (
     <>
+
       <header className="header">
         <div className="header__top">
           <div className="container">
@@ -14,7 +50,7 @@ export const TopBar = () => {
                     <li>
                       <i className="fa fa-envelope" /> all4pet@xyz.com
                     </li>
-                    <li>Free Shipping for all Order of $99</li>
+                    <li>Miễn phí giao hàng cho đơn hàng trên 500,000vnđ</li>
                   </ul>
                 </div>
               </div>
@@ -34,8 +70,8 @@ export const TopBar = () => {
                       <i className="fa fa-pinterest-p" />
                     </a>
                   </div>
-                  <div className="header__top__right__language">
-                    <img src="img/language.png" alt = 'true' />
+                  {/* <div className="header__top__right__language">
+                    <img src="img/language.png" alt='true' />
                     <div>English</div>
                     <span className="arrow_carrot-down" />
                     <ul>
@@ -46,9 +82,12 @@ export const TopBar = () => {
                         <a href="#">Tiếng Việt</a>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                   <div className="header__top__right__auth">
-                    <a href="#">
+                    <a 
+                    // onClick={() => setModalShow(true)} 
+                    
+                    href="https://all4petbackend.herokuapp.com/login">
                       <i className="fa fa-user" /> Đăng nhập
                     </a>
                   </div>
@@ -62,14 +101,14 @@ export const TopBar = () => {
             <div className="col-lg-3">
               <div className="header__logo">
                 <Link to="/">
-                  <img className="logo_img" src="img/logo.png" alt = 'true' />
+                  <img className="logo_img" src="img/logo.png" alt='true' />
                 </Link>
               </div>
             </div>
             <div className="col-lg-6">
               <nav className="header__menu">
                 <ul>
-                  <li className="active">
+                  <li>
                     <Link to="/">Nhãn Hiệu</Link>
                     <ul className="header__menu__dropdown">
                       <li>
@@ -86,64 +125,61 @@ export const TopBar = () => {
                       </li>
                     </ul>
                   </li>
-                  <li>
-                    <Link to="/shop">Chó</Link>
+                  <li >
+                    <div onClick={onClickLabelDog}>
+                      <Link to="/dog-shop" >Chó </Link>
+                    </div>
                     <ul className="header__menu__dropdown">
-                      <li>
-                        <Link to="/product-detail">Thức ăn cho chó</Link>
+                      <li onClick={() => onClickSubLabelDog('food')}>
+                        <Link to="/dog-shop">Thức ăn</Link>
                       </li>
-                      <li>
-                        <Link to="/product-detail">Mỹ phẩm và làm đẹp</Link>
+                      <li onClick={() => onClickSubLabelDog('accessory')}>
+                        <Link to="/dog-shop">Đồ chơi phụ kiện</Link>
                       </li>
-                      <li>
-                        <Link to="/product-detail">Dụng cụ vệ sinh</Link>
+                      <li onClick={() => onClickSubLabelDog('clothing')}>
+                        <Link to="/dog-shop">Quần áo trang sức</Link>
                       </li>
-                      <li>
-                        <Link to="/product-detail">Đồ chơi phụ kiện</Link>
-                      </li>
-                      <li>
-                        <Link to="/product-detail">Y tế và thuốc</Link>
+                      <li onClick={() => onClickSubLabelDog('cage')}>
+                        <Link to="/dog-shop">Chuồng, dụng cụ vệ sinh</Link>
                       </li>
                     </ul>
                   </li>
                   <li>
-                  <Link to="/shop">Mèo</Link>
+                    <div onClick={onClickLabelCat}>
+                      <Link to="/cat-shop">Mèo</Link>
+
+                    </div>
                     <ul className="header__menu__dropdown">
-                      <li>
-                        <Link to="/product-detail">Thức ăn cho mèo</Link>
+                      <li onClick={() => onClickSubLabelCat('food')}>
+                        <Link to="/cat-shop">Thức ăn</Link>
                       </li>
-                      <li>
-                        <Link to="/product-detail">Mỹ phẩm và làm đẹp</Link>
+                      <li onClick={() => onClickSubLabelCat('accessory')}>
+                        <Link to="cat-shop">Đồ chơi phụ kiện</Link>
                       </li>
-                      <li>
-                        <Link to="/product-detail">Dụng cụ vệ sinh</Link>
+                      <li onClick={() => onClickSubLabelCat('clothing')}>
+                        <Link to="/cat-shop">Quần áo trang sức</Link>
                       </li>
-                      <li>
-                        <Link to="/product-detail">Đồ chơi phụ kiện</Link>
-                      </li>
-                      <li>
-                        <Link to="/product-detail">Y tế và thuốc</Link>
+                      <li onClick={() => onClickSubLabelCat('cage')}>
+                        <Link to="/cat-shop">Chuồng, dụng cụ vệ sinh</Link>
                       </li>
                     </ul>
                   </li>
-                  <li>
+                  <li >
                     <a href="./blog.html">Blog</a>
                   </li>
                   <li>
                     <Link to="/product-detail">Vật nuôi khác</Link>
                     <ul className="header__menu__dropdown">
-                      <li>
-                        <Link to="/product-detail">Chim</Link>
+                      <li onClick={onClickLabelBird} >
+                        <Link to="/bird-shop">Chim</Link>
                       </li>
-                      <li>
-                        <a href="./shoping-cart.html">Hamster </a>
+                      <li onClick={onClickLabelHamster}>
+                        <Link to="/hamster-shop">Hamster</Link>
                       </li>
-                      <li>
-                        <a href="./checkout.html">Cá cảnh</a>
+                      <li onClick={onClickLabelFish}>
+                        <Link to="/fish-shop">Cá cảnh</Link>
                       </li>
-                      <li>
-                        <a href="./blog-details.html">Bạn thân</a>
-                      </li>
+
                     </ul>
                   </li>
                 </ul>
@@ -154,18 +190,18 @@ export const TopBar = () => {
                 <ul>
                   <li>
                     <a href="#">
-                      <i className="fa fa-heart" /> <span>1</span>
+                      <img style={{ height: 30, width: 30 }} src={icons.heart}></img> <span>3</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
-                      <i className="fa fa-shopping-bag" /> <span>3</span>
-                    </a>
+                    <Link to='/cart' >
+                      <img style={{ height: 30, width: 30 }} src={icons.cart}></img> <span>3</span>
+                    </Link>
                   </li>
                 </ul>
-                <div className="header__cart__price">
+                {/* <div className="header__cart__price">
                   item: <span>$150.00</span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -173,7 +209,12 @@ export const TopBar = () => {
             <i className="fa fa-bars" />
           </div>
         </div>
+
       </header>
+      <LoginModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </>
   );
 };

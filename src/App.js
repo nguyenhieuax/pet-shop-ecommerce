@@ -3,9 +3,15 @@ import React, { Component } from "react";
 import "./App.css";
 import HomePage from "../src/app/pages/HomePage";
 import ProductDetail from '../src/app/pages/ProductDetail'
-import Shop from './app/pages/Shop'
+import DogShop from './app/pages/DogShop'
 import { Switch, Route } from 'react-router-dom'
-
+import  ScrollToTop  from '../src/app/utils/scrollToTop';
+import Cart from './app/pages/Cart';
+import CatShop from "./app/pages/CatShop";
+import FishShop from "./app/pages/FishShop";
+import BirdShop from "./app/pages/BirdShop";
+import HamsterShop from "./app/pages/HamsterShop";
+import CheckOut from './app/pages/CheckOut';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,10 +29,18 @@ class App extends Component {
   render() {
     return (
       <>
+      <ScrollToTop>
         <Route exact path="/" component={HomePage} />        
-        <Route path="/product-detail" component={ProductDetail} />
-        <Route path="/shop" component={Shop} />
-        
+        <Route path="/product-detail" render = {(props) => <ProductDetail {...props} />} />
+        <Route path="/dog-shop" component={DogShop} />
+        <Route path="/cat-shop" component={CatShop} />
+        <Route path="/fish-shop" component={FishShop} />
+        <Route path="/bird-shop" component={BirdShop} />
+        <Route path="/hamster-shop" component={HamsterShop} />
+        <Route path="/check-out" component={CheckOut} />
+
+        <Route path="/cart" component={Cart} />
+        </ScrollToTop>
       </>
 
       // <HomePage />
