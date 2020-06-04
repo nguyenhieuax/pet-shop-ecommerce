@@ -12,6 +12,8 @@ import FishShop from "./app/pages/FishShop";
 import BirdShop from "./app/pages/BirdShop";
 import HamsterShop from "./app/pages/HamsterShop";
 import CheckOut from './app/pages/CheckOut';
+import Blog from './app/pages/Blog'
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -38,6 +40,8 @@ class App extends Component {
         <Route path="/bird-shop" component={BirdShop} />
         <Route path="/hamster-shop" component={HamsterShop} />
         <Route path="/check-out" component={CheckOut} />
+        <Route path="/blog" component={Blog} />
+        
 
         <Route path="/cart" component={Cart} />
         </ScrollToTop>

@@ -35,6 +35,9 @@ export const TopBar = (props) => {
   const onClickLabelBird = () => {
     props.history.push({ pathname: "/bird-shop", state: { name: 'bird', type: 0 } });
   }
+  const onClickLabelBlog = () => {
+    props.history.push({ pathname: "/blog", state: { name: 'bird', type: 0 } });
+  }
 
 
   return (
@@ -164,8 +167,8 @@ export const TopBar = (props) => {
                       </li>
                     </ul>
                   </li>
-                  <li >
-                    <a href="./blog.html">Blog</a>
+                  <li onClick={onClickLabelBlog}  >
+                  <Link to="/bird-shop">Blog</Link>
                   </li>
                   <li>
                     <Link to="/product-detail">Vật nuôi khác</Link>
