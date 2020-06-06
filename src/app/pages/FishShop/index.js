@@ -167,7 +167,7 @@ const FishShop = (props) => {
                     <div className="col-lg-4 col-md-4">
                       <div className="filter__found">
                         <h6>
-                        Tìm thấy <span> {listData.length } </span> sản phẩm
+                        Tìm thấy <span> {listData.length} </span> sản phẩm
                         </h6>
                       </div>
                     </div>

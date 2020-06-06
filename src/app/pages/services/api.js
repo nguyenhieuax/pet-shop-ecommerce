@@ -15,7 +15,7 @@ const getProductDetail = (params) => {
 
 const addToCart = (params) => {
     console.log('paramse add to cart ========', params)
-    return fetch('get', `cart/add?product=${params}`)
+    return fetch('post', `cart/add?product=${params}`)
 }
 
 const showCart = () => {

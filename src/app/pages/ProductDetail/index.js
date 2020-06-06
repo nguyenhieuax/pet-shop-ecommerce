@@ -161,7 +161,9 @@ function ProductDetail(props) {
                   <a onClick = {onAddToCart} href="#" className="heart-icon">
                     <img style = {{height: 40, width: 40}} src = {icons.addToCart} />
                   </a>
-                  <a onClick = {onShowCart} href="#" className="heart-icon">
+                  <a
+                  //  onClick = {onShowCart}
+                   href="https://all4petbackend.herokuapp.com/cart/showCart" className="heart-icon">
                     <img style = {{height: 40, width: 40}} src = {icons.addToCart} />
                   </a>
                   <ul>
