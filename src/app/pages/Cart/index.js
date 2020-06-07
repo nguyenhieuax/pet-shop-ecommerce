@@ -1,106 +1,104 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TopBar, CategoriesBar, CategoriesItem, Loader, Footer } from '../../Components';
 import { Switch, Route, Link } from "react-router-dom";
-
+import { FormatNumber } from '../../utils/formatNumber'
+import { icons } from "../../assets/icons";
 
 const Cart = (props) => {
+    const listValue = JSON.parse(localStorage.getItem('myValueInLocalStorage1')) || [];
+
+    const [listItem, setListItem] = useState(listValue);
+    console.log('list cart item -------------------', listItem)
+
+    const onRemoveCartItem = async (id) => {
+        let itemIndex = await listItem.findIndex(item => item.id === id);
+        let tempArr = [...listItem];
+        tempArr.splice(itemIndex, 1);
+        localStorage.setItem('myValueInLocalStorage1', JSON.stringify(tempArr));
+        setListItem(tempArr);
+    }
+    
+
+    console.log('list item storage ======================', listItem);
+    const renderCartItem = (item) => {
+        return (
+            <tr>
+                <td className="shoping__cart__item">
+                    <img style={{ height: 100, width: 100 }} src={item.url} alt="" />
+                    <h5 style={{ width: '70%' }}>{item.name}</h5>
+                </td>
+                <td className="shoping__cart__price">
+                    {FormatNumber(item.price)}
+                </td>
+                <td className="shoping__cart__quantity">
+                    <div className="quantity">
+                        <div className="pro-qty">
+                            <input type="text" defaultValue={1} />
+                        </div>
+                    </div>
+                </td>
+                <td className="shoping__cart__total">
+                    {FormatNumber(item.price)}
+                </td>
+                <td className="shoping__cart__item__close">
+                    <span onClick={() => onRemoveCartItem(item.id)} className="icon_close" />
+                </td>
+            </tr>
+        )
+    }
+
+    const emptyCart = () => {
+        return (
+            <>
+                <div style = {{marginTop: 50, marginBottom: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+                   
+                    <img style = {{}} src = {icons.emptyCart}></img>
+                    {/* <h5 style = {{textAlign: 'center', marginTop: 20}}>
+                        Không có sản phẩm nào trong giỏ hàng của bạn
+                    </h5> */}
+                </div>
+            </>
+        )
+    }
+
+    const renderCart = () => {
+        return (
+            <div className="shoping__cart__table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th className="shoping__product">Sản phẩm</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th />
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {listItem.map(item => renderCartItem(item))}
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
+
     return (
         <>
-        <TopBar history = {props.history} />
-        <CategoriesItem />
+            <TopBar history={props.history} />
+            <CategoriesItem />
             <section className="shoping-cart spad">
                 <div className="container">
-                    <div className="row">
+                    <div iv className="row">
                         <div className="col-lg-12">
-                            <div className="shoping__cart__table">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th className="shoping__product">Sản phẩm</th>
-                                            <th>Đơn giá</th>
-                                            <th>Số lượng</th>
-                                            <th>Thành tiền</th>
-                                            <th />
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td className="shoping__cart__item">
-                                                <img src="img/cart/cart-1.jpg" alt="" />
-                                                <h5>Vegetable’s Package</h5>
-                                            </td>
-                                            <td className="shoping__cart__price">
-                                                $55.00
-                </td>
-                                            <td className="shoping__cart__quantity">
-                                                <div className="quantity">
-                                                    <div className="pro-qty">
-                                                        <input type="text" defaultValue={1} />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="shoping__cart__total">
-                                                $110.00
-                </td>
-                                            <td className="shoping__cart__item__close">
-                                                <span className="icon_close" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="shoping__cart__item">
-                                                <img src="img/cart/cart-2.jpg" alt="" />
-                                                <h5>Fresh Garden Vegetable</h5>
-                                            </td>
-                                            <td className="shoping__cart__price">
-                                                $39.00
-                </td>
-                                            <td className="shoping__cart__quantity">
-                                                <div className="quantity">
-                                                    <div className="pro-qty">
-                                                        <input type="text" defaultValue={1} />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="shoping__cart__total">
-                                                $39.99
-                </td>
-                                            <td className="shoping__cart__item__close">
-                                                <span className="icon_close" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="shoping__cart__item">
-                                                <img src="img/cart/cart-3.jpg" alt="" />
-                                                <h5>Organic Bananas</h5>
-                                            </td>
-                                            <td className="shoping__cart__price">
-                                                $69.00
-                </td>
-                                            <td className="shoping__cart__quantity">
-                                                <div className="quantity">
-                                                    <div className="pro-qty">
-                                                        <input type="text" defaultValue={1} />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="shoping__cart__total">
-                                                $69.99
-                </td>
-                                            <td className="shoping__cart__item__close">
-                                                <span className="icon_close" />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            {listItem.length === 0 ? emptyCart() : renderCart()}
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="shoping__cart__btns">
-                                <a href="#" className="primary-btn cart-btn">TIẾP TỤC MUA SẮM</a>
+                                <Link className="primary-btn cart-btn" to ="/">TIẾP TỤC MUA SẮM</Link>
                                 <a href="#" className="primary-btn cart-btn cart-btn-right"><span className="icon_loading" />
-            Cập nhật giỏ hàng</a>
+                                Cập nhật giỏ hàng</a>
                             </div>
                         </div>
                         <div className="col-lg-6">
@@ -123,7 +121,7 @@ const Cart = (props) => {
                                     <li>Thanh toán <span>10000000</span></li>
                                 </ul>
                                 <div className="primary-btn">
-                                    <Link to ='/check-out' >THANH TOÁN</Link>
+                                    <Link to='/check-out' >THANH TOÁN</Link>
                                 </div>
                             </div>
                         </div>

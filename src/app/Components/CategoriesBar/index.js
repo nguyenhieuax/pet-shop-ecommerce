@@ -10,14 +10,14 @@ export const CategoriesBar = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="col-lg-3">
-                  {/* <div className="hero__categories">
-                   <div style = {{fontSize: 20, fontWeight: 'bold', textAlign: 'center', color: '#7fad39'}}>Tất cả cho thú cưng</div>
-                  
-                </div> */}
+                <div className="hero__categories__all">
+                  <i className="fa fa-bars" />
+                  <span>Danh mục</span>
+                </div>
               </div>
               <div className="hero__search col-lg-9">
                 <div className="hero__search__form">
-                  <form style = {{borderColor: 'red'}} action="#">
+                  <form style={{ borderColor: 'red' }} action="#">
                     {/* <div className="hero__search__categories">
                       All Categories
                       <span className="arrow_carrot-down" />

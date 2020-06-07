@@ -50,9 +50,9 @@ export const ProductItem = (props) => {
                 </a>
               </li> */}
               <li>
-                <a href="#">
+                <button onClick = {props.onAddToCart} href="#">
                   <i style = {{fontSize: 25}} className="fa fa-cart-plus" />
-                </a>
+                </button>
               </li>
             </ul>
           </div>

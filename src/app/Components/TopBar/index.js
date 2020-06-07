@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 import { Switch, Route, Link } from "react-router-dom";
 import { icons } from '../../assets/icons'
 import { LoginModal } from "../LoginModal";
+import { useDispatch, useSelector } from "react-redux";
+import { selectors, actions } from "../../pages/services";
+
+
 export const TopBar = (props) => {
-  const [modalShow, setModalShow] = React.useState(false);
 
   const onClickLabelDog = () => {
     props.history.push({ pathname: "/dog-shop", state: { name: 'dog', type: 0 } });
@@ -39,7 +42,11 @@ export const TopBar = (props) => {
     props.history.push({ pathname: "/blog", state: { name: 'bird', type: 0 } });
   }
 
+  const dispatch = useDispatch();
 
+
+  const listValue = JSON.parse(localStorage.getItem('myValueInLocalStorage1')) || [];
+ 
   return (
     <>
 
@@ -87,12 +94,9 @@ export const TopBar = (props) => {
                     </ul>
                   </div> */}
                   <div className="header__top__right__auth">
-                    <a 
-                    // onClick={() => setModalShow(true)} 
-                    
-                    href="https://all4petbackend.herokuapp.com/login">
+                    <Link to="/login">
                       <i className="fa fa-user" /> Đăng nhập
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -104,7 +108,7 @@ export const TopBar = (props) => {
             <div className="col-lg-3">
               <div className="header__logo">
                 <Link to="/">
-                  <img className="logo_img" src="img/logo.png" alt='true' />
+                  <img style={{ height: 80 }} className="logo_img" src="img/logo.png" alt='true' />
                 </Link>
               </div>
             </div>
@@ -168,7 +172,7 @@ export const TopBar = (props) => {
                     </ul>
                   </li>
                   <li onClick={onClickLabelBlog}  >
-                  <Link to="/bird-shop">Blog</Link>
+                    <Link to="/bird-shop">Blog</Link>
                   </li>
                   <li>
                     <Link to="/product-detail">Vật nuôi khác</Link>
@@ -198,7 +202,7 @@ export const TopBar = (props) => {
                   </li>
                   <li>
                     <Link to='/cart' >
-                      <img style={{ height: 30, width: 30 }} src={icons.cart}></img> <span>3</span>
+                      <img style={{ height: 30, width: 30 }} src={icons.cart}></img> <span>{listValue.length}</span>
                     </Link>
                   </li>
                 </ul>
@@ -214,10 +218,7 @@ export const TopBar = (props) => {
         </div>
 
       </header>
-      <LoginModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+
     </>
   );
 };

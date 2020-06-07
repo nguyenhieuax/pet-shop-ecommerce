@@ -35,21 +35,21 @@ function ProductDetail(props) {
     props.history.push({pathname:'/cart', state:  123});
   }
 
+  const listValue = JSON.parse( localStorage.getItem('myValueInLocalStorage1')) || [] ;
+
+  const [listStorageItem, setListStorageItem] = useState(listValue);
+
   const onAddToCart = () => {
-    dispatch(actions.addToCart(productId, () => {
-      console.log('call acction show cart ================')
-      // dispatch(actions.showCart());
-    }))
+    console.log('product detail ------------', productDetails)
+
+    if(productDetails.url) {
+      console.log('listStorageitem  =========', listStorageItem);
+      let _listStorageItem = listStorageItem.concat(productDetails);
+      localStorage.setItem('myValueInLocalStorage1', JSON.stringify(_listStorageItem));
+      setListStorageItem(_listStorageItem);
+    }
   }
 
-  const onShowCart = () => {
-      dispatch(actions.showCart());
-
-  }
-
-  // const onAddToCart = () => {
-  //   fetch('https://all4petbackend.herokuapp.com/cart/showCart').then(res => console.log('rss', res)).then(err => console.log(err))
-  // }
 
   const listCart = useSelector(state => selectors.showCart(state)) || {};
 
@@ -158,14 +158,10 @@ function ProductDetail(props) {
                   <Link onClick = {onBuy} className="primary-btn">
                     Mua ngay
                   </Link>
-                  <a onClick = {onAddToCart} href="#" className="heart-icon">
+                  <button onClick = {onAddToCart} href="#" className="heart-icon">
                     <img style = {{height: 40, width: 40}} src = {icons.addToCart} />
-                  </a>
-                  <a
-                  //  onClick = {onShowCart}
-                   href="https://all4petbackend.herokuapp.com/cart/showCart" className="heart-icon">
-                    <img style = {{height: 40, width: 40}} src = {icons.addToCart} />
-                  </a>
+                  </button>
+                 
                   <ul>
                     <li>
                       <b>Availability</b> <span>In Stock</span>

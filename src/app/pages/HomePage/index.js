@@ -17,7 +17,7 @@ class HomePage extends Component {
   componentDidMount() {
     this.props.getListProduct();
     this.props.getTopProduct();
-    this.props.showCart({});
+    // this.props.showCart({});
 
     console.log('homepage props ====', this.props);
 

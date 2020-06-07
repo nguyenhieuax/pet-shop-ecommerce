@@ -13,6 +13,7 @@ import BirdShop from "./app/pages/BirdShop";
 import HamsterShop from "./app/pages/HamsterShop";
 import CheckOut from './app/pages/CheckOut';
 import Blog from './app/pages/Blog'
+import { LoginModal } from "./app/Components";
 
 class App extends Component {
   constructor(props) {
@@ -44,6 +45,8 @@ class App extends Component {
         
 
         <Route path="/cart" component={Cart} />
+        <Route path="/login" component={LoginModal} />
+        
         </ScrollToTop>
       </>
 
