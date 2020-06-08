@@ -870,6 +870,7 @@ ol {
 }
 
 .featured__item__pic__hover {
+	display: block;
 	position: absolute;
 	left: 0;
 	bottom: -50px;
@@ -890,19 +891,21 @@ ol {
 
 .featured__item__pic__hover li:last-child {
 	margin-right: 0;
+
 }
 
-.featured__item__pic__hover li:hover a {
+.featured__item__pic__hover li:hover button {
 	background: #7fad39;
 	border-color: #7fad39;
+	z-index: 1000;
 }
 
-.featured__item__pic__hover li:hover a i {
+.featured__item__pic__hover li:hover button i {
 	color: #ffffff;
 	transform: rotate(360deg);
 }
 
-.featured__item__pic__hover li a {
+.featured__item__pic__hover li button {
 	font-size: 16px;
 	color: #1c1c1c;
 	/* color: 'green'; */
@@ -921,7 +924,7 @@ ol {
 	transition: all, 0.5s;
 }
 
-.featured__item__pic__hover li a i {
+.featured__item__pic__hover li button i {
 	position: relative;
 	transform: rotate(0);
 	-webkit-transition: all, 0.3s;

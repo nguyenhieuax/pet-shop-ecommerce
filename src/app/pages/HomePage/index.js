@@ -10,7 +10,10 @@ class HomePage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { width: 0, height: 0 };
+    this.state = {
+       width: 0,
+       height: 0,
+       listStorageItem: JSON.parse(localStorage.getItem('myValueInLocalStorage1')) || [] };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
@@ -28,6 +31,14 @@ class HomePage extends Component {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   };
 
+  addToCart = (item) => {
+    const { listStorageItem } = this.state;
+    console.log('onclick button add to cart ---------------')
+    let _listStorageItem = listStorageItem.concat(item);
+    localStorage.setItem('myValueInLocalStorage1', JSON.stringify(_listStorageItem));
+    this.setState({ listStorageItem: _listStorageItem});
+  }
+
   renderProductItem = (item) => {
     const { history } = this.props;
     return (
@@ -38,6 +49,7 @@ class HomePage extends Component {
         id={item.id}
         history={history}
         key={`${item.id}`}
+        addToCart={() =>this.addToCart(item)}
       />
     )
   }

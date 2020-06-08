@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import {
   Switch,
@@ -20,17 +20,22 @@ export const ProductItem = (props) => {
   };
   // let history = useHistory()
   const onClickItem = (data) => {
-    console.log('props in product detail', data)
+    console.log('onclick background 0000', data)
 
-    props.history.push({ pathname: "/product-detail", state: data.id});
+    props.history.push({ pathname: "/product-detail", state: data.id });
 
   };
+
+  // const listValue = JSON.parse(localStorage.getItem('myValueInLocalStorage1')) || [];
+
+  // const [listItemStorage, setListItemStorage] = useState(listValue)
+
+ 
 
   return (
     <Route >
       <div
-        className= { props.size ? props.size : "col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"}
-        onClick={() => onClickItem(props)}
+        className={props.size ? props.size : "col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"}
       // }
       >
         <div className="featured__item">
@@ -38,6 +43,10 @@ export const ProductItem = (props) => {
             className="featured__item__pic set-bg"
             style={setBackGround(props.url)}
           >
+            <div onClick={() => onClickItem(props)}
+              style={{ position: 'absolute', height: '75%', width: '100%' }}>
+
+            </div>
             <ul className="featured__item__pic__hover">
               {/* <li>
                 <a href="#">
@@ -50,17 +59,17 @@ export const ProductItem = (props) => {
                 </a>
               </li> */}
               <li>
-                <button onClick = {props.onAddToCart} href="#">
-                  <i style = {{fontSize: 25}} className="fa fa-cart-plus" />
+                <button style={{ zIndex: 10 }} onClick={props.addToCart} href="#">
+                  <i style={{ fontSize: 25 }} className="fa fa-cart-plus" />
                 </button>
               </li>
             </ul>
           </div>
           <div className="featured__item__text">
-            <h6 style = {{fontSize: 14, height: 45}}>
+            <h6 style={{ fontSize: 14, height: 45 }}>
               <a href="#">{props.name}</a>
             </h6>
-            <h5 style = {{color: 'red'}}>{`${FormatNumber(props.price)}đ`}</h5>
+            <h5 style={{ color: 'red' }}>{`${FormatNumber(props.price)}đ`}</h5>
           </div>
         </div>
       </div>
