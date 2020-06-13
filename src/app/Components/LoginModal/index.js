@@ -46,7 +46,9 @@
 
 import React from 'react';
 import { images } from '../../assets/images/';
-import { TopBar } from '../TopBar'
+import { TopBar } from '../TopBar';
+import { Footer } from '../Footer';
+
 
 export const LoginModal = (props) => {
   return (
@@ -99,6 +101,7 @@ export const LoginModal = (props) => {
         </div>
       </div>
     </div>
+    <Footer />
     </>
 
   )

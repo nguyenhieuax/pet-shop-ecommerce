@@ -5,7 +5,7 @@ import { icons } from '../../assets/icons'
 import { LoginModal } from "../LoginModal";
 import { useDispatch, useSelector } from "react-redux";
 import { selectors, actions } from "../../pages/services";
-
+import { Navbar } from 'react-bootstrap';
 
 export const TopBar = (props) => {
 
@@ -48,8 +48,6 @@ export const TopBar = (props) => {
   const listValue = JSON.parse(localStorage.getItem('myValueInLocalStorage1')) || [];
  
   return (
-    <>
-
       <header className="header">
         <div className="header__top">
           <div className="container">
@@ -218,7 +216,5 @@ export const TopBar = (props) => {
         </div>
 
       </header>
-
-    </>
-  );
+    );
 };

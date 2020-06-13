@@ -3454,6 +3454,9 @@ ol {
 		text-align: center;
 		padding: 10px 15px 10px;
 	}
+	.shoping__checkout span {
+		color: white;
+	}
 	.map .map-inside {
 		-webkit-transform: translateX(-125px);
 		-ms-transform: translateX(-125px);

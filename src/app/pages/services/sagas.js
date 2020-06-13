@@ -43,7 +43,7 @@ const watcher = function* () {
     for (let name in api) {
         yield takeLatest(types[name], function* ({ payload, onSuccess, onError }) {
             const res = yield call(api[name], payload || {});
-
+            console.log('res =======saga --------', res)
             if (res) {
                 yield put(actions[`${name}Success`](res));
                 onSuccess(res);

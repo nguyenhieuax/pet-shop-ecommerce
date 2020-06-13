@@ -25,9 +25,9 @@ export default (state = initialState, { type, payload }) => {
 const select = state => key => state.get('_reducer').toJS()[key];
 const SELECTORS = {
   getError: (state, actionName: String) =>
-    createErrorSelector(state)('internationalTransfer', actionName),
+    createErrorSelector(state)('_reducer', actionName),
   getLoading: (state, actionName: String) =>
-    createLoadingSelector(state)('internationalTransfer', actionName)
+    createLoadingSelector(state)('_reducer', actionName)
 };
 for (let name in api) {
   SELECTORS[name] = state => select(state)(name);

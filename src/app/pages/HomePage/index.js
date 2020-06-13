@@ -5,15 +5,16 @@ import { connect } from "react-redux";
 import { Switch, Route, Link } from "react-router-dom";
 import { selectors, actions } from "../services";
 import useWindowDimensions from '../../utils/useWindowDimensions'
-import { TopBar, ProductItem, CategoriesBar, Loader, Footer } from "../../Components";
+import { TopBar, ProductItem, CategoriesItem, Loader, Footer } from "../../Components";
 class HomePage extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-       width: 0,
-       height: 0,
-       listStorageItem: JSON.parse(localStorage.getItem('myValueInLocalStorage1')) || [] };
+      width: 0,
+      height: 0,
+      listStorageItem: JSON.parse(localStorage.getItem('myValueInLocalStorage1')) || []
+    };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
@@ -36,7 +37,7 @@ class HomePage extends Component {
     console.log('onclick button add to cart ---------------')
     let _listStorageItem = listStorageItem.concat(item);
     localStorage.setItem('myValueInLocalStorage1', JSON.stringify(_listStorageItem));
-    this.setState({ listStorageItem: _listStorageItem});
+    this.setState({ listStorageItem: _listStorageItem });
   }
 
   renderProductItem = (item) => {
@@ -49,7 +50,7 @@ class HomePage extends Component {
         id={item.id}
         history={history}
         key={`${item.id}`}
-        addToCart={() =>this.addToCart(item)}
+        addToCart={() => this.addToCart(item)}
       />
     )
   }
@@ -67,13 +68,34 @@ class HomePage extends Component {
       <> {
         listProduct && listProduct.length ? <>   <TopBar history={history}
         />
-          <CategoriesBar />
+          <CategoriesItem />
 
           {/* Hero Section End */}
           {/* Categories Section Begin */}
 
           {/* Categories Section End */}
           {/* Featured Section Begin */}
+          <div className="container">
+
+            <div className="col-lg-12">
+
+              <div
+                className="hero__item set-bg col-lg-12"
+                style={{ backgroundImage: "url:(img/hero/banner.jpg)" }}
+              >
+                <div className="hero__text">
+                  <span>A PET FAVORITE PLACE</span>
+                  <h2>
+                    Welcome to Our Pet Supply Shop <br />
+                  </h2>
+                  <p>Free Pickup and Delivery Available</p>
+                  <a href="#" className="primary-btn">
+                    SHOP NOW
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
           <section className="featured spad">
             <div className="container">
               <div className="row">
@@ -96,7 +118,7 @@ class HomePage extends Component {
               </div>
               <div className="row featured__filter">
                 {topProductDog.map(item => this.renderProductItem(item))}
-                />
+                
               </div>
             </div>
           </section>

@@ -31,6 +31,10 @@ const getProductByNameAndType = ({name, type}) => {
     return fetch('get', `product/${name}?type=${type}&page=1`)
 }
 
+const confirmCheckOut = (params) => {
+    return fetch('post', 'confirmCheckout', params)
+}
+
 export default {
     getListProduct,
     getTopProduct,
@@ -38,5 +42,6 @@ export default {
     addToCart,
     showCart,
     getProductByName,
-    getProductByNameAndType
+    getProductByNameAndType,
+    confirmCheckOut
 }

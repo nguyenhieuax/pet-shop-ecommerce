@@ -13,6 +13,7 @@ import BirdShop from "./app/pages/BirdShop";
 import HamsterShop from "./app/pages/HamsterShop";
 import CheckOut from './app/pages/CheckOut';
 import Blog from './app/pages/Blog'
+import CheckoutSuccess from './app/pages/CheckOut/success'
 import { LoginModal } from "./app/Components";
 
 class App extends Component {
@@ -42,6 +43,7 @@ class App extends Component {
         <Route path="/hamster-shop" component={HamsterShop} />
         <Route path="/check-out" component={CheckOut} />
         <Route path="/blog" component={Blog} />
+        <Route path = '/checkoutSuccess' component = {CheckoutSuccess} />
         
 
         <Route path="/cart" component={Cart} />

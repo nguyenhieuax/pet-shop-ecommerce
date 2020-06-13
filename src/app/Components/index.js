@@ -7,6 +7,7 @@ import { CategoriesItem } from './CategoriesItem';
 import { LeftBarItem } from './LeftBarItem';
 import { LoginModal } from './LoginModal';
 import { Footer } from './Footer';
+import NotFoundPage from './NotFoundPage'
 export {
     TopBar,
     ProductItem,
@@ -16,5 +17,6 @@ export {
     CategoriesItem,
     LeftBarItem,
     LoginModal,
-    Footer
+    Footer,
+    NotFoundPage
 };
