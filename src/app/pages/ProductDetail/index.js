@@ -35,25 +35,36 @@ function ProductDetail(props) {
     props.history.push({pathname:'/cart', state:  123});
   }
 
-  const listValue = JSON.parse( localStorage.getItem('myValueInLocalStorage1')) || [] ;
+  const listValue = JSON.parse( localStorage.getItem('ValueInLocalStorage3')) || [] ;
 
   const [listStorageItem, setListStorageItem] = useState(listValue);
 
   const onAddToCart = () => {
     console.log('product detail ------------', productDetails)
+    let buyItem = {
+      productDetails,
+      quantity
+    };
 
     if(productDetails.url) {
-      console.log('listStorageitem  =========', listStorageItem);
-      let _listStorageItem = listStorageItem.concat(productDetails);
-      localStorage.setItem('myValueInLocalStorage1', JSON.stringify(_listStorageItem));
+      let mergeListStorage = listStorageItem.map(product => product.productDetails.id === productDetails.id ?  {
+        productDetails: product.productDetails,
+        quantity: product.quantity+= Number(quantity)
+      } : product) || [];
+
+      let itemExist  = listStorageItem.find(product=> product.productDetails.id === productDetails.id) || null;
+
+      let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
+      localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
       setListStorageItem(_listStorageItem);
     }
   }
 
 
-  const listCart = useSelector(state => selectors.showCart(state)) || {};
 
-  console.assert('list cartt ============================>', listCart);
+  const [quantity, setQuantity] = useState(1);
+
+  console.assert('list cartt ============================>', quantity);
 
   return (
     <>
@@ -63,33 +74,7 @@ function ProductDetail(props) {
       {/* Header Section Begin */}
       <TopBar history = {props.history} />
 
-      {/* Header Section End */}
-      {/* <CategoriesBar /> */}
-      {/* Hero Section Begin */}
 
-      {/* Hero Section End */}
-      {/* Breadcrumb Section Begin */}
-      {/* <section
-          className="breadcrumb-section-set-bg"
-          data-setbg="img/breadcrumb.jpg"
-        >
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12 text-center">
-                <div className="breadcrumb__text">
-                  <h2>Vegetable’s Package</h2>
-                  <div className="breadcrumb__option">
-                    <a href="./index.html">Home</a>
-                    <a href="./index.html">Vegetables</a>
-                    <span>Vegetable’s Package</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
-      {/* Breadcrumb Section End */}
-      {/* Product Details Section Begin */}
       {productDetails ? <>
         <section className="product-details spad">
           <div className="container">
@@ -151,7 +136,7 @@ function ProductDetail(props) {
                   <div className="product__details__quantity">
                     <div className="quantity">
                       <div className="pro-qty">
-                        <input type="text" defaultValue={1} />
+                        <input value = {quantity} onChange= {e => setQuantity(e.target.value)} />
                       </div>
                     </div>
                   </div>

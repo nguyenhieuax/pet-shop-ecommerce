@@ -26,7 +26,7 @@ export const ProductItem = (props) => {
 
   };
 
-  // const listValue = JSON.parse(localStorage.getItem('myValueInLocalStorage1')) || [];
+  // const listValue = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
 
   // const [listItemStorage, setListItemStorage] = useState(listValue)
 

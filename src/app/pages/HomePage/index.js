@@ -13,7 +13,7 @@ class HomePage extends Component {
     this.state = {
       width: 0,
       height: 0,
-      listStorageItem: JSON.parse(localStorage.getItem('myValueInLocalStorage1')) || []
+      listStorageItem: JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || []
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
@@ -35,8 +35,18 @@ class HomePage extends Component {
   addToCart = (item) => {
     const { listStorageItem } = this.state;
     console.log('onclick button add to cart ---------------')
-    let _listStorageItem = listStorageItem.concat(item);
-    localStorage.setItem('myValueInLocalStorage1', JSON.stringify(_listStorageItem));
+    let buyItem = { productDetails: item, quantity: 1 }
+
+    let mergeListStorage = listStorageItem.map(product => product.productDetails.id === item.id ?  {
+      productDetails: product.productDetails,
+      quantity: product.quantity+=1
+    } : product) || [];
+
+    let itemExist  = listStorageItem.find(product=> product.productDetails.id === item.id) || null;
+
+    let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
+    console.log('storage item =================', _listStorageItem)
+    localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
     this.setState({ listStorageItem: _listStorageItem });
   }
 
@@ -118,7 +128,7 @@ class HomePage extends Component {
               </div>
               <div className="row featured__filter">
                 {topProductDog.map(item => this.renderProductItem(item))}
-                
+
               </div>
             </div>
           </section>

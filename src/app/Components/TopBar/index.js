@@ -45,7 +45,7 @@ export const TopBar = (props) => {
   const dispatch = useDispatch();
 
 
-  const listValue = JSON.parse(localStorage.getItem('myValueInLocalStorage1')) || [];
+  const listValue = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
  
   return (
       <header className="header">

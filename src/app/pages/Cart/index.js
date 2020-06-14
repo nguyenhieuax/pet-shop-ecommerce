@@ -5,17 +5,19 @@ import { FormatNumber } from '../../utils/formatNumber'
 import { icons } from "../../assets/icons";
 
 const Cart = (props) => {
-    const listValue = JSON.parse(localStorage.getItem('myValueInLocalStorage1')) || [];
+    const listValue = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
 
+    console.log('list value in storage =================', listValue);
     const [listItem, setListItem] = useState(listValue);
 
     const [totalAmount, setTotalAmount] = useState(0);
+    const [payAmount, setPayAmount] = useState(0)
 
     const onRemoveCartItem = async (id) => {
         let itemIndex = await listItem.findIndex(item => item.id === id);
         let tempArr = [...listItem];
         tempArr.splice(itemIndex, 1);
-        localStorage.setItem('myValueInLocalStorage1', JSON.stringify(tempArr));
+        localStorage.setItem('ValueInLocalStorage3', JSON.stringify(tempArr));
         setListItem(tempArr);
     }
 
@@ -25,15 +27,16 @@ const Cart = (props) => {
 
     const getTotalAmount = () => {
         let total = 0;
-        listItem.forEach(item => {
-            total += item.price;
+        let pay = 0;
+        listItem && listItem.forEach(item => {
+            total += item.productDetails.price*item.quantity;
         });
-        console.log('total amount ========', total);
+        console.log('total amount ========', total, pay);
         setTotalAmount(total);
     }
 
     console.log('list item storage ======================', listItem);
-    const renderCartItem = (item) => {
+    const renderCartItem = (item, quantity) => {
         return (
             <tr>
                 <td className="shoping__cart__item">
@@ -46,12 +49,12 @@ const Cart = (props) => {
                 <td className="shoping__cart__quantity">
                     <div className="quantity">
                         <div className="pro-qty">
-                            <input type="text" defaultValue={1} />
+                            <input type="text" defaultValue={quantity}  disabled = {true}/>
                         </div>
                     </div>
                 </td>
                 <td className="shoping__cart__total">
-                    {FormatNumber(item.price)}
+                    {FormatNumber(item.price*quantity)}
                 </td>
                 <td className="shoping__cart__item__close">
                     <span onClick={() => onRemoveCartItem(item.id)} className="icon_close" />
@@ -88,7 +91,7 @@ const Cart = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {listItem.map(item => renderCartItem(item))}
+                        {listItem.length && listItem.map(item => renderCartItem(item.productDetails, item.quantity))}
                     </tbody>
                 </table>
             </div>
@@ -137,7 +140,13 @@ const Cart = (props) => {
                                                 <li>Thanh toán <span>{FormatNumber(totalAmount)}</span></li>
                                             </ul>
                                             <div className="primary-btn checkout_btn">
-                                                <Link className="" to='/check-out' >
+                                                <Link className=""
+                                                to={{
+                                                    pathname: "/check-out",
+                                                    // search: "?sort=name",
+                                                    // hash: "#the-hash",
+                                                    state: { totalAmount: totalAmount }
+                                                  }} >
                                                     <span style={{ color: '#ffffff' }}>
                                                         THANH TOÁN
                                         </span>

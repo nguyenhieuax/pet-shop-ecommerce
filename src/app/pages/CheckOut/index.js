@@ -1,55 +1,79 @@
-import React, { Component } from 'react'
-import { TopBar, CategoriesBar, CategoriesItem, Loader, Footer } from '../../Components';
+import React, { useState } from 'react'
+import { TopBar, CategoriesBar, CategoriesItem, Loader, Footer, Input } from '../../Components';
 import { useDispatch } from 'react-redux';
 import { actions, selectors } from '../services';
 
-import axios from 'axios'
-
 const CheckOut = (props) => {
+    const [lastName, setLastName] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [address, setAddress] = useState('')
+    const [town, setTown] = useState('')
+    const [phoneNum, setPhoneNum] = useState('')
+    const [note, setNote] = useState('')
+    const [email, setEmail] = useState('')
+
     const dispatch = useDispatch();
 
     const confirmCheckOut = () => {
 
+        let totalAmount = props.location.state ? props.location.state.totalAmount : 0 ;
+        const listValue = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
+
         let params = {
-            "address": "QUAN 12 TPHCM",
+            "address": address,
             "paymentMethod": "PAYPAL",
-            "receiver": "customer",
-            "note": "No note",
-            "email": "anonymous@gmail.com",
-            "phoneNumber": "123456789",
-            "totalMoney": "100000",
+            "receiver": lastName + ' '+ firstName,
+            "note": note,
+            "email": email,
+            "phoneNumber": phoneNum,
+            "totalMoney": String(totalAmount),
             "status": "1",
-            "listItems": [{
-                "productEntity": {
-                    "id": 22,
-                    "name": "sanpham3",
-                    "amount": 10,
-                    "url": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234558/Chinook-On-White-03.jpg",
-                    "url2": null,
-                    "url3": null,
-                    "price": 100000.0,
-                    "promotion": 10,
-                    "type": "clothing",
-                    "description": "It is good for your pet",
-                    "brand": "Royal Canin",
-                    "numOfPurchase": 10,
-                    "color": null,
-                    "size": null
-                },
-                "quantity": 2
-            }]
+            "listItems":listValue
 
         };
+
+        // let params = {
+        //     "address": "QUAN 12 TPHCM",        
+        //     "paymentMethod": "PAYPAL",
+        //     "receiver": "customer",
+        //     "note" : "No note",
+        //     "email": "anonymous@gmail.com",
+        //     "phoneNumber": "123456789",
+        //     "totalMoney": "100000",
+        //     "status": "1",
+        //      "listItems": [{
+        //             "productEntity":{
+        //                     "id": 22,
+        //                      "name": "sanpham3",
+        //                      "amount": 10,
+        //                      "url": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234558/Chinook-On-White-03.jpg",
+        //                      "url2": null,
+        //                      "url3": null,
+        //                      "price": 100000.0,
+        //                      "promotion": 10,
+        //                      "type": "clothing",
+        //                     "description": "It is good for your pet",
+        //                     "brand": "Royal Canin",
+        //                     "numOfPurchase": 10,
+        //                     "color":null,
+        //                     "size":null
+        //             },
+        //             "quantity":2
+        //     }]
+    
+    // } 
        
-          
+          console.log('params confirm checkout ', params)
           dispatch(actions.confirmCheckOut(params, () => {
               console.log('confirm checkout successsssssss---------');
-              localStorage.removeItem('myValueInLocalStorage1');
+              localStorage.removeItem('ValueInLocalStorage3');
               
               props.history.push({pathname: '/checkoutSuccess', state: 'checkoutSuccess'})
           }))
 
     }
+
+   
 
 
 
@@ -74,13 +98,13 @@ const CheckOut = (props) => {
                                         <div className="col-lg-6">
                                             <div className="checkout__input">
                                                 <p>Họ<span>*</span></p>
-                                                <input type="text" />
+                                                <input type="text" value = {lastName} onChange = { e => setLastName(e.target.value)} />
                                             </div>
                                         </div>
                                         <div className="col-lg-6">
                                             <div className="checkout__input">
                                                 <p>Tên<span>*</span></p>
-                                                <input type="text" />
+                                                <input type="text" value = {firstName} onChange = { e => setFirstName(e.target.value)} />
                                             </div>
                                         </div>
                                     </div>
@@ -90,24 +114,24 @@ const CheckOut = (props) => {
                                     </div> */}
                                     <div className="checkout__input">
                                         <p>Địa chỉ<span>*</span></p>
-                                        <input type="text" placeholder="Số nhà/ đường" className="checkout__input__add" />
+                                        <input type="text" value = {address} onChange = { e => setAddress(e.target.value)} placeholder="Số nhà/ đường" className="checkout__input__add" />
                                     </div>
                                     <div className="checkout__input">
                                         <p>Thành phố<span>*</span></p>
-                                        <input type="text" />
+                                        <input type="text" value = {town} onChange = { e => setTown(e.target.value)} placeholder="Thành phố" className="checkout__input__add" />
                                     </div>
 
                                     <div className="row">
                                         <div className="col-lg-6">
                                             <div className="checkout__input">
                                                 <p>Số điện thoại<span>*</span></p>
-                                                <input type="text" />
+                                                <input type="text" value = {phoneNum} onChange = { e => setPhoneNum(e.target.value)} />
                                             </div>
                                         </div>
                                         <div className="col-lg-6">
                                             <div className="checkout__input">
                                                 <p>Email<span>*</span></p>
-                                                <input type="text" />
+                                                <input type="text" value = {email} onChange = { e => setEmail(e.target.value)} />
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +157,7 @@ const CheckOut = (props) => {
                                     </div> */}
                                     <div className="checkout__input">
                                         <p>Ghi chú<span>*</span></p>
-                                        <input type="text" placeholder="Ghi chú " />
+                                        <input type="text" value = {note} onChange = { e => setNote(e.target.value)} placeholder="Ghi chú " />
                                     </div>
                                 </div>
                                 <div className="col-lg-4 col-md-6">

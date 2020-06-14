@@ -5,7 +5,10 @@ import { Navbar } from 'react-bootstrap';
 
 export const CategoriesBar = () => {
   return (
-    <Navbar sticky = "top">
+    <Navbar style = {{
+     boxShadow: "1px 3px 1px #9E9E9E"
+
+    }} sticky = "top">
 
     {/* <div>
       <section className="hero"> */}
