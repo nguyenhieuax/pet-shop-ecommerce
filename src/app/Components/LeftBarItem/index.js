@@ -17,19 +17,19 @@ export const LeftBarItem = (props) => {
             <h4>Danh mục</h4>
             <ul>
               <li onClick={() => props.onClickType(0)}>
-                <div style={{ fontSize: 16 }} >Tất cả sản phẩm </div>
+                <div style={{ fontSize: 16, cursor: 'pointer' }} >Tất cả sản phẩm </div>
               </li>
               <li onClick={() => props.onClickType('food')}>
-                <div style={{ fontSize: 16 }} >Thức ăn </div>
+                <div style={{ fontSize: 16, cursor: 'pointer' }} >Thức ăn </div>
               </li>
               <li onClick={() => props.onClickType('accessory')}>
-                <div style={{ fontSize: 16 }} >Đồ chơi phụ kiện </div>
+                <div style={{ fontSize: 16, cursor: 'pointer' }} >Đồ chơi phụ kiện </div>
               </li>
               <li onClick={() => props.onClickType('clothing')}>
-                <div style={{ fontSize: 16 }} >Quần áo trang sức  </div>
+                <div style={{ fontSize: 16, cursor: 'pointer' }} >Quần áo trang sức  </div>
               </li>
               <li onClick={() => props.onClickType('cage')}>
-                <div style={{ fontSize: 16 }} >Chuồng, dụng cụ vệ sinh </div>
+                <div style={{ fontSize: 16, cursor: 'pointer' }} >Chuồng, dụng cụ vệ sinh </div>
               </li>
 
             </ul>
@@ -38,59 +38,59 @@ export const LeftBarItem = (props) => {
             <h4>Khoảng giá</h4>
             <div className="price-range-wrap">
               <form>
-                
+
                 <div>
-                    <input
+                  <input
                     name="isGoing"
                     type="checkbox"
                     // checked={this.state.isGoing}
-                    checked = {checkBox1}
-                    onChange={() =>setcheckBox1(!checkBox1)}
-                     />
-                     <label style = {{fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal'}}>Dưới 50 ngàn</label>
+                    checked={checkBox1}
+                    onChange={() => setcheckBox1(!checkBox1)}
+                  />
+                  <label style={{ fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal' }}>Dưới 50 ngàn</label>
                 </div>
                 <div>
-                    <input
+                  <input
                     name="isGoing"
                     type="checkbox"
                     // checked={this.state.isGoing}
-                    checked = {checkBox2}
-                    onChange={() =>setcheckBox2(!checkBox2)}
-                     />
-                     <label style = {{fontSize: 16, marginLeft: 10, marginBottom: 5,  fontWeight: 'normal'}}>50 ngàn - 100 ngàn</label>
+                    checked={checkBox2}
+                    onChange={() => setcheckBox2(!checkBox2)}
+                  />
+                  <label style={{ fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal' }}>50 ngàn - 100 ngàn</label>
                 </div>
                 <div>
-                    <input
+                  <input
                     name="isGoing"
                     type="checkbox"
                     // checked={this.state.isGoing}
-                    checked = {checkBox3}
-                    onChange={() =>setcheckBox3(!checkBox3)}
-                     />
-                     <label style = {{fontSize: 16, marginLeft: 10, marginBottom: 5,  fontWeight: 'normal'}}>100 ngàn - 200 ngàn</label>
+                    checked={checkBox3}
+                    onChange={() => setcheckBox3(!checkBox3)}
+                  />
+                  <label style={{ fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal' }}>100 ngàn - 200 ngàn</label>
                 </div>
                 <div>
-                    <input
+                  <input
                     name="isGoing"
                     type="checkbox"
                     // checked={this.state.isGoing}
-                    checked = {checkBox4}
-                    onChange={() =>setcheckBox4(!checkBox4)}
-                     />
-                     <label style = {{fontSize: 16, marginLeft: 10, marginBottom: 5,  fontWeight: 'normal'}}>200 ngàn - 500 ngàn</label>
+                    checked={checkBox4}
+                    onChange={() => setcheckBox4(!checkBox4)}
+                  />
+                  <label style={{ fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal' }}>200 ngàn - 500 ngàn</label>
                 </div>
                 <div>
-                    <input
+                  <input
                     name="isGoing"
                     type="checkbox"
                     // checked={this.state.isGoing}
-                    checked = {checkBox5}
-                    onChange={() =>setcheckBox5(!checkBox5)}
-                     />
-                     <label style = {{fontSize: 16, marginLeft: 10, marginBottom: 5,  fontWeight: 'normal'}}>Trên 500 ngàn</label>
+                    checked={checkBox5}
+                    onChange={() => setcheckBox5(!checkBox5)}
+                  />
+                  <label style={{ fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal' }}>Trên 500 ngàn</label>
                 </div>
-               
-         
+
+
               </form>
             </div>
           </div>
@@ -98,66 +98,66 @@ export const LeftBarItem = (props) => {
             <h4>Thương hiệu </h4>
             <div className="price-range-wrap">
               <form>
-                
+
                 <div>
-                    <input
+                  <input
                     name="isGoing"
                     type="checkbox"
                     // checked={this.state.isGoing}
-                    checked = {checkBox1}
-                    onChange={() =>setcheckBox1(!checkBox1)}
-                     />
-                     <label style = {{fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal'}}>Dưới 50 ngàn</label>
+                    checked={checkBox1}
+                    onChange={() => setcheckBox1(!checkBox1)}
+                  />
+                  <label style={{ fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal' }}>Dưới 50 ngàn</label>
                 </div>
                 <div>
-                    <input
+                  <input
                     name="isGoing"
                     type="checkbox"
                     // checked={this.state.isGoing}
-                    checked = {checkBox2}
-                    onChange={() =>setcheckBox2(!checkBox2)}
-                     />
-                     <label style = {{fontSize: 16, marginLeft: 10, marginBottom: 5,  fontWeight: 'normal'}}>50 ngàn - 100 ngàn</label>
+                    checked={checkBox2}
+                    onChange={() => setcheckBox2(!checkBox2)}
+                  />
+                  <label style={{ fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal' }}>50 ngàn - 100 ngàn</label>
                 </div>
                 <div>
-                    <input
+                  <input
                     name="isGoing"
                     type="checkbox"
                     // checked={this.state.isGoing}
-                    checked = {checkBox3}
-                    onChange={() =>setcheckBox3(!checkBox3)}
-                     />
-                     <label style = {{fontSize: 16, marginLeft: 10, marginBottom: 5,  fontWeight: 'normal'}}>100 ngàn - 200 ngàn</label>
+                    checked={checkBox3}
+                    onChange={() => setcheckBox3(!checkBox3)}
+                  />
+                  <label style={{ fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal' }}>100 ngàn - 200 ngàn</label>
                 </div>
                 <div>
-                    <input
+                  <input
                     name="isGoing"
                     type="checkbox"
                     // checked={this.state.isGoing}
-                    checked = {checkBox4}
-                    onChange={() =>setcheckBox4(!checkBox4)}
-                     />
-                     <label style = {{fontSize: 16, marginLeft: 10, marginBottom: 5,  fontWeight: 'normal'}}>200 ngàn - 500 ngàn</label>
+                    checked={checkBox4}
+                    onChange={() => setcheckBox4(!checkBox4)}
+                  />
+                  <label style={{ fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal' }}>200 ngàn - 500 ngàn</label>
                 </div>
                 <div>
-                    <input
+                  <input
                     name="isGoing"
                     type="checkbox"
                     // checked={this.state.isGoing}
-                    checked = {checkBox5}
-                    onChange={() =>setcheckBox5(!checkBox5)}
-                     />
-                     <label style = {{fontSize: 16, marginLeft: 10, marginBottom: 5,  fontWeight: 'normal'}}>Trên 500 ngàn</label>
+                    checked={checkBox5}
+                    onChange={() => setcheckBox5(!checkBox5)}
+                  />
+                  <label style={{ fontSize: 16, marginLeft: 10, marginBottom: 5, fontWeight: 'normal' }}>Trên 500 ngàn</label>
                 </div>
-               
-         
+
+
               </form>
             </div>
           </div>
 
-       
 
-          
+
+
           {/* <div className="sidebar__item sidebar__item__color--option">
                     <h4>Colors</h4>
                     <div className="sidebar__item__color sidebar__item__color--white">

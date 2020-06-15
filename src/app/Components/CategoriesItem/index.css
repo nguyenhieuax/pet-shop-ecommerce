@@ -1,0 +1,6 @@
+.show :hover >  ul .listItem{
+    background-color: red;
+}
+ .listItem {
+     display: block;
+}

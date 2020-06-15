@@ -14,7 +14,7 @@ import HamsterShop from "./app/pages/HamsterShop";
 import CheckOut from './app/pages/CheckOut';
 import Blog from './app/pages/Blog'
 import CheckoutSuccess from './app/pages/CheckOut/success'
-import { LoginModal } from "./app/Components";
+import  Login from "./app/pages/Login";
 
 class App extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class App extends Component {
         
 
         <Route path="/cart" component={Cart} />
-        <Route path="/login" component={LoginModal} />
+        <Route path="/login" component={Login} />
         
         </ScrollToTop>
       </>

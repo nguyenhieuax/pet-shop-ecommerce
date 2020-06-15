@@ -5,7 +5,6 @@ import { SaleItem } from './SaleItem';
 import { Loader } from './Loader';
 import { CategoriesItem } from './CategoriesItem';
 import { LeftBarItem } from './LeftBarItem';
-import { LoginModal } from './LoginModal';
 import { Footer } from './Footer';
 import NotFoundPage from './NotFoundPage';
 import Input from './Input'
@@ -17,7 +16,6 @@ export {
     Loader,
     CategoriesItem,
     LeftBarItem,
-    LoginModal,
     Footer,
     NotFoundPage,
     Input

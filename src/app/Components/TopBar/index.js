@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 import { Switch, Route, Link } from "react-router-dom";
 import { icons } from '../../assets/icons'
-import { LoginModal } from "../LoginModal";
 import { useDispatch, useSelector } from "react-redux";
 import { selectors, actions } from "../../pages/services";
-import { Navbar } from 'react-bootstrap';
 
 export const TopBar = (props) => {
 
@@ -178,9 +176,9 @@ export const TopBar = (props) => {
                       <li onClick={onClickLabelBird} >
                         <Link to="/bird-shop">Chim</Link>
                       </li>
-                      <li onClick={onClickLabelHamster}>
+                      {/* <li onClick={onClickLabelHamster}>
                         <Link to="/hamster-shop">Hamster</Link>
-                      </li>
+                      </li> */}
                       <li onClick={onClickLabelFish}>
                         <Link to="/fish-shop">Cá cảnh</Link>
                       </li>

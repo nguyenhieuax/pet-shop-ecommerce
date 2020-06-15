@@ -1,9 +1,7 @@
 import axios from 'axios'
 
-// const baseURL = 'https://reactnative.dev'
-// const baseURL = 'https://5e9310d9c7393c0016de4492.mockapi.io/'
+// const baseURL = 'http://localhost:5000'
 const baseURL = 'https://all4petbackend.herokuapp.com/'
-// const baseURL = 'https://all4petbackend.herokuapp.com/product/bird?type=food&page=1'
 
 
 export const fetch = (method, path, params) => {
@@ -19,8 +17,6 @@ export const fetch = (method, path, params) => {
     }
 
     return new Promise((resolve, reject) => {
-
-
         axios({
             method: method,
             url: baseURL + path,

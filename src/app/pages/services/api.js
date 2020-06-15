@@ -35,6 +35,10 @@ const confirmCheckOut = (params) => {
     return fetch('post', 'confirmCheckout', params)
 }
 
+const login =(params) => {
+    return fetch('post', 'login', params)
+}
+
 export default {
     getListProduct,
     getTopProduct,
@@ -43,5 +47,6 @@ export default {
     showCart,
     getProductByName,
     getProductByNameAndType,
-    confirmCheckOut
+    confirmCheckOut,
+    login
 }

@@ -66,7 +66,7 @@ export const ProductItem = (props) => {
             </ul>
           </div>
           <div className="featured__item__text">
-            <h6 style={{ fontSize: 14, height: 45 }}>
+            <h6 style={{ fontSize: 14, height: 60 }}>
               <a href="#">{props.name}</a>
             </h6>
             <h5 style={{ color: 'red' }}>{`${FormatNumber(props.price)}đ`}</h5>
