@@ -3,3 +3,21 @@
 height: 7em;
 width: 20em;
 }
+
+.header__menu ul li a {
+    font-size: 14px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
+    padding: 5px 0;
+    display: block;}
+
+    .header__menu ul li a:hover {
+        color: '#f5f5f5';
+    }

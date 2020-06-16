@@ -7,28 +7,52 @@ import Axios from 'axios';
 
 
 const Login = (props) => {
+  console.log('props login ==================', props)
   const dispatch = useDispatch();
 
   const [username, setUsername] = useState('')
 
   const [password, setPassword] = useState('')
 
+  const textInput = React.createRef();
+
   const login = () => {
-    let params = {
-      userName: 'customer18',
-      password: 'customer'
+
+    if(username === '') {
+      setUsername(null);
     }
-    // dispatch(actions.login(params))
-    Axios.post('http://localhost:5000/login', {}, {
-      "Access-Control-Allow-Origin": "*",
-      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-    })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
+    if(password === '') {
+      setPassword(null);
+    }
+
+    let params = {
+      userName: username,
+      password: password
+    }
+
+    let onSuccess = (data) => {
+      localStorage.setItem('loginToken', data);
+      localStorage.setItem('username', username);
+      dispatch(actions.showCart())
+      localStorage.removeItem('ValueInLocalStorage3');
+      props.history.goBack();
+    }
+
+    // if( !username ) {
+    //   textInput.current.
+    // }
+   username && password && dispatch(actions.login(params, onSuccess))
+    // Axios.post('http://localhost:5000/login', {}, {
+    //   "Access-Control-Allow-Origin": "*",
+    //   'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
+    // })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   }
 
   return (
@@ -45,7 +69,8 @@ const Login = (props) => {
                 Đăng nhập
         </span>
               <div className="wrap-input100 validate-input" data-validate="Vui lòng nhập email dạng: ex@abc.xyz">
-                <input value={username} onChange={(e) => setUsername(e.target.value)} className="input100" type="text" name="username" placeholder="Tài khoản" />
+                <input ref={textInput} value={username} onChange={(e) => setUsername(e.target.value)} className="input100" type="text" name="username" placeholder="Tài khoản" />
+                {username === null && <span style= {{ marginLeft: 20,color: 'red'}} >Vui lòng nhập tài khoản</span>}
                 <span className="focus-input100" />
                 <span className="symbol-input100">
                   <i className="fa fa-envelope" aria-hidden="true" />
@@ -53,6 +78,7 @@ const Login = (props) => {
               </div>
               <div className="wrap-input100 validate-input" data-validate="Vui lòng nhập mật khẩu">
                 <input value={password} onChange={(e) => setPassword(e.target.value)} className="input100" type="password" name="pass" placeholder="Mật khẩu" />
+                {password === null && <span style= {{ marginLeft: 20,color: 'red'}} >Vui lòng nhập tài khoản</span>}
                 <span className="focus-input100" />
                 <span className="symbol-input100">
                   <i className="fa fa-lock" aria-hidden="true" />

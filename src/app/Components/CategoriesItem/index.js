@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Link, Route } from "react-router-dom";
 import { Navbar } from 'react-bootstrap';
 import { set } from "immutable";
+import './index.css'
+
 export const CategoriesItem = () => {
 
   const [listItemStyle, setListItemStyle] = useState({
@@ -21,14 +23,13 @@ export const CategoriesItem = () => {
   }
 
   return (
-    <Navbar style={{ backgroundColor: '#FFFFFF', paddingTop: 10, paddingBottom: -10, zIndex: 999 }} sticky="top">
+    <Navbar style={{ backgroundColor: '#FFFFFF', paddingTop: 10, paddingBottom: -10, zIndex: 999 }}  sticky="top">
 
       {/* <div>
       <section className="hero"> */}
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-
             <div className="col-lg-3">
               <div className="show">
                 <div onMouseEnter={() => setListItemStyle(ulStyle)}

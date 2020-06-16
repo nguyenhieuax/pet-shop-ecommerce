@@ -36,6 +36,7 @@ const confirmCheckOut = (params) => {
 }
 
 const login =(params) => {
+    console.log('login paramse-------', params)
     return fetch('post', 'login', params)
 }
 
