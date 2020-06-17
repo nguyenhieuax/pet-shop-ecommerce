@@ -29,7 +29,7 @@ const Cart = (props) => {
         let total = 0;
         let pay = 0;
         listItem && listItem.forEach(item => {
-            total += item.productDetails.price*item.quantity;
+            total += item.productEntity.price*item.quantity;
         });
         console.log('total amount ========', total, pay);
         setTotalAmount(total);
@@ -91,7 +91,7 @@ const Cart = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {listItem.length && listItem.map(item => renderCartItem(item.productDetails, item.quantity))}
+                        {listItem.length && listItem.map(item => renderCartItem(item.productEntity, item.quantity))}
                     </tbody>
                 </table>
             </div>

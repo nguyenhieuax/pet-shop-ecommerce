@@ -42,17 +42,17 @@ function ProductDetail(props) {
   const onAddToCart = () => {
     console.log('product detail ------------', productDetails)
     let buyItem = {
-      productDetails,
+      productEntity: productDetails,
       quantity
     };
 
     if(productDetails.url) {
-      let mergeListStorage = listStorageItem.map(product => product.productDetails.id === productDetails.id ?  {
-        productDetails: product.productDetails,
+      let mergeListStorage = listStorageItem.map(product => product.productEntity.id === productDetails.id ?  {
+        productEntity: product.productEntity,
         quantity: product.quantity+= Number(quantity)
       } : product) || [];
 
-      let itemExist  = listStorageItem.find(product=> product.productDetails.id === productDetails.id) || null;
+      let itemExist  = listStorageItem.find(product=> product.productEntity.id === productDetails.id) || null;
 
       let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
       localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));

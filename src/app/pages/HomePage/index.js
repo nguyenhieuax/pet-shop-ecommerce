@@ -35,14 +35,14 @@ class HomePage extends Component {
   addToCart = (item) => {
     const { listStorageItem } = this.state;
     console.log('onclick button add to cart ---------------')
-    let buyItem = { productDetails: item, quantity: 1 }
+    let buyItem = { productEntity: item, quantity: 1 }
 
-    let mergeListStorage = listStorageItem.map(product => product.productDetails.id === item.id ?  {
-      productDetails: product.productDetails,
+    let mergeListStorage = listStorageItem.map(product => product.productEntity.id === item.id ?  {
+      productEntity: product.productEntity,
       quantity: product.quantity+=1
     } : product) || [];
 
-    let itemExist  = listStorageItem.find(product=> product.productDetails.id === item.id) || null;
+    let itemExist  = listStorageItem.find(product=> product.productEntity.id === item.id) || null;
 
     let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
     console.log('storage item =================', _listStorageItem)
