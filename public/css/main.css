@@ -134,17 +134,17 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  font-family: Montserrat;
-  font-size: 13px;
+  font-family: Poppins-Regular, sans-serif;
+  font-size: 14px;
   line-height: 1.5;
   color: #999999;
 }
 
 .txt2 {
-  font-family: Montserrat;
-  font-size: 13px;
+  font-family: Poppins-Regular, sans-serif;
+  font-size: 14px;
   line-height: 1.5;
-  color: #666666;
+  color: #333333;
 }
 
 

@@ -40,6 +40,10 @@ const login =(params) => {
     return fetch('post', 'login', params)
 }
 
+const signUp = (params) => {
+    return fetch('post','register', params)
+}
+
 export default {
     getListProduct,
     getTopProduct,
@@ -49,5 +53,6 @@ export default {
     getProductByName,
     getProductByNameAndType,
     confirmCheckOut,
-    login
+    login,
+    signUp
 }
