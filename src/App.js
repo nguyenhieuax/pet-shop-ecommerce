@@ -15,6 +15,7 @@ import CheckOut from './app/pages/CheckOut';
 import Blog from './app/pages/Blog'
 import CheckoutSuccess from './app/pages/CheckOut/success'
 import  Login from "./app/pages/Login";
+import SearchResult from './app/pages/SearchResult';
 
 class App extends Component {
   constructor(props) {
@@ -44,10 +45,10 @@ class App extends Component {
         <Route path="/check-out" component={CheckOut} />
         <Route path="/blog" component={Blog} />
         <Route path = '/checkoutSuccess' component = {CheckoutSuccess} />
-        
-
         <Route path="/cart" component={Cart} />
         <Route path="/login" component={Login} />
+        <Route path="/search-result" component={SearchResult} />
+        
         
         </ScrollToTop>
       </>

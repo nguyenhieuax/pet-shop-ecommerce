@@ -19,7 +19,7 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    this.props.getListProduct();
+    // this.props.getListProduct();
     this.props.getTopProduct();
     // this.props.showCart({});
 
@@ -37,12 +37,12 @@ class HomePage extends Component {
     console.log('onclick button add to cart ---------------')
     let buyItem = { productEntity: item, quantity: 1 }
 
-    let mergeListStorage = listStorageItem.map(product => product.productEntity.id === item.id ?  {
+    let mergeListStorage = listStorageItem.map(product => product.productEntity.id === item.id ? {
       productEntity: product.productEntity,
-      quantity: product.quantity+=1
+      quantity: product.quantity += 1
     } : product) || [];
 
-    let itemExist  = listStorageItem.find(product=> product.productEntity.id === item.id) || null;
+    let itemExist = listStorageItem.find(product => product.productEntity.id === item.id) || null;
 
     let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
     console.log('storage item =================', _listStorageItem)
@@ -75,16 +75,16 @@ class HomePage extends Component {
     // console.log('dog product =========================>', dogProduct);
 
     return (
-      <> {
-        listProduct && listProduct.length ? <>   <TopBar history={history}
-        />
-          <CategoriesItem />
+      <>
+        <TopBar history={history} />
+        <CategoriesItem />
 
-          {/* Hero Section End */}
-          {/* Categories Section Begin */}
+        {/* Hero Section End */}
+        {/* Categories Section Begin */}
 
-          {/* Categories Section End */}
-          {/* Featured Section Begin */}
+        {/* Categories Section End */}
+        {/* Featured Section Begin */}
+        {listProduct && listProduct.length ? <>
           <div className="container">
 
             <div className="col-lg-12">
@@ -286,7 +286,7 @@ class HomePage extends Component {
           <>
             <Loader />
           </>
-      }
+        }
 
       </>
     );

@@ -594,7 +594,7 @@ ol {
 .hero__categories__all {
 	background: #57b846;
 	position: relative;
-	padding: 10px 100px 10px 40px;
+	padding: 10px 30px 10px 30px;
 	cursor: pointer;
 }
 
@@ -639,16 +639,17 @@ ol {
 }
 
 .hero__search {
-	overflow: hidden;
+	/* overflow: hidden; */
 	margin-bottom: 10px;
 }
 
 .hero__search__form {
-	width: 610px;
+	width: 910px;
 	height: 50px;
 	border: 1px solid #ebebeb;
 	position: relative;
 	float: left;
+	padding: 0;
 }
 
 .hero__search__form form .hero__search__categories {
@@ -2925,7 +2926,7 @@ ol {
 		margin-right: 45px;
 	}
 	.hero__search__form {
-		width: 490px;
+		width: 715px;
 	}
 	.hero__categories__all {
 		padding: 10px 25px 10px 20px;
@@ -2954,7 +2955,7 @@ ol {
 		margin-bottom: 30px;
 	}
 	.hero__search__form {
-		width: 485px;
+		width: 725px;
 	}
 	.categories__slider.owl-carousel .owl-nav button {
 		left: -20px;
@@ -3182,10 +3183,10 @@ ol {
 	.hero__search__form {
 		width: 100%;
 	}
-	.hero__search__form form input {
+	.hero__search__form  input {
 		width: 100%;
 	}
-	.hero__search__form form .hero__search__categories {
+	.hero__search__form  .hero__search__categories {
 		display: none;
 	}
 	.hero__search__phone {

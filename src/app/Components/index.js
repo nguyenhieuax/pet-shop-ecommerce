@@ -7,7 +7,8 @@ import { CategoriesItem } from './CategoriesItem';
 import { LeftBarItem } from './LeftBarItem';
 import { Footer } from './Footer';
 import NotFoundPage from './NotFoundPage';
-import Input from './Input'
+import Input from './Input';
+import Search from './Search';
 export {
     TopBar,
     ProductItem,
@@ -18,5 +19,6 @@ export {
     LeftBarItem,
     Footer,
     NotFoundPage,
-    Input
+    Input,
+    Search
 };
