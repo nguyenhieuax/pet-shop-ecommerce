@@ -23,17 +23,47 @@ const Cart = (props) => {
 
     useEffect(() => {
         getTotalAmount();
+        console.log('rerender--------------------------------------------')
     }, [listItem])
 
     const getTotalAmount = () => {
         let total = 0;
         let pay = 0;
         listItem && listItem.forEach(item => {
-            total += item.productEntity.price*item.quantity;
+            total += item.productEntity.price * item.quantity;
         });
         console.log('total amount ========', total, pay);
         setTotalAmount(total);
     }
+
+    const onAdd = (item, quantity) => {
+        console.log('onclick button add to cart ---------------')
+    
+        let mergeListStorage = listItem.map(product => product.productEntity.id === item.id && {
+          productEntity: product.productEntity,
+          quantity: product.quantity += 1
+        } ) || [];
+    
+        let _listStorageItem =  mergeListStorage;
+        console.log('list item after add-------------------',_listStorageItem )
+        localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
+        setListItem(_listStorageItem);
+      }
+
+      
+    const onMinus = (item) => {
+        console.log('onclick button add to cart ---------------')
+    
+        let mergeListStorage = listItem.map(product => product.productEntity.id === item.id && {
+          productEntity: product.productEntity,
+          quantity: product.quantity -= 1
+        } ) || [];
+    
+        let _listStorageItem =  mergeListStorage;
+        console.log('list item after add-------------------',_listStorageItem )
+        localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
+        setListItem(_listStorageItem);
+      }
 
     console.log('list item storage ======================', listItem);
     const renderCartItem = (item, quantity) => {
@@ -49,12 +79,15 @@ const Cart = (props) => {
                 <td className="shoping__cart__quantity">
                     <div className="quantity">
                         <div className="pro-qty">
-                            <input type="text" defaultValue={quantity}  disabled = {true}/>
+                            <button onClick ={() => onMinus(item, quantity)}><i className="fa fa-minus" aria-hidden="true"></i></button>
+                            <input type="text" value={quantity} />
+                            <button onClick ={() =>  onAdd(item,quantity)}><i className="fa fa-plus" aria-hidden="true"></i></button>
+
                         </div>
                     </div>
                 </td>
                 <td className="shoping__cart__total">
-                    {FormatNumber(item.price*quantity)}
+                    {FormatNumber(item.price * quantity)}
                 </td>
                 <td className="shoping__cart__item__close">
                     <span onClick={() => onRemoveCartItem(item.id)} className="icon_close" />
@@ -141,12 +174,12 @@ const Cart = (props) => {
                                             </ul>
                                             <div className="primary-btn checkout_btn">
                                                 <Link className=""
-                                                to={{
-                                                    pathname: "/check-out",
-                                                    // search: "?sort=name",
-                                                    // hash: "#the-hash",
-                                                    state: { totalAmount: totalAmount }
-                                                  }} >
+                                                    to={{
+                                                        pathname: "/check-out",
+                                                        // search: "?sort=name",
+                                                        // hash: "#the-hash",
+                                                        state: { totalAmount: totalAmount }
+                                                    }} >
                                                     <span style={{ color: '#ffffff' }}>
                                                         THANH TOÁN
                                         </span>

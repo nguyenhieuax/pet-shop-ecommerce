@@ -257,7 +257,7 @@ export const TopBar = (props) => {
               <ul>
                 <li style = {{marginRight: 30}}>
                   <a href="#">
-                    <img style={{ height: 30, width: 30 }} src={icons.heart}></img> <span>3</span>
+                    <img style={{ height: 30, width: 30 }} src={icons.heart}></img> 
                   </a>
                 </li>
                 <li>

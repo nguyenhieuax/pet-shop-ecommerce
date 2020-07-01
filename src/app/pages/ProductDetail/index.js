@@ -33,6 +33,23 @@ function ProductDetail(props) {
 
   const onBuy = () => {
     props.history.push({pathname:'/cart', state:  123});
+    let buyItem = {
+      productEntity: productDetails,
+      quantity
+    };
+
+    if(productDetails.url) {
+      let mergeListStorage = listStorageItem.map(product => product.productEntity.id === productDetails.id ?  {
+        productEntity: product.productEntity,
+        quantity: product.quantity+= Number(quantity)
+      } : product) || [];
+
+      let itemExist  = listStorageItem.find(product=> product.productEntity.id === productDetails.id) || null;
+
+      let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
+      localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
+      setListStorageItem(_listStorageItem);
+    }
   }
 
   const listValue = JSON.parse( localStorage.getItem('ValueInLocalStorage3')) || [] ;
@@ -64,7 +81,6 @@ function ProductDetail(props) {
 
   const [quantity, setQuantity] = useState(1);
 
-  console.assert('list cartt ============================>', quantity);
 
   return (
     <>
@@ -127,7 +143,7 @@ function ProductDetail(props) {
                     <i className="fa fa-star" />
                     <i className="fa fa-star" />
                     <i className="fa fa-star-half-o" />
-                    <span>(18 reviews)</span>
+                    <span>(2 đánh giá)</span>
                   </div>
                   <div className="product__details__price">{FormatNumber(productDetails.price)}</div>
                   <p>
@@ -149,18 +165,18 @@ function ProductDetail(props) {
                  
                   <ul>
                     <li>
-                      <b>Availability</b> <span>In Stock</span>
+                      <b>Tình trạng</b> <span>Còn hàng</span>
                     </li>
                     <li>
-                      <b>Shipping</b>
+                      <b>Hình thức giao hàng</b>
                       <span>
-                        01 day shipping. <samp>Free pickup today</samp>
+                        Giao hàng trong ngày,<samp> Miễn phí giao hàng vào thứ 3 hàng tuần</samp>
                       </span>
                     </li>
-                    <li>
+                    {/* <li>
                       <b>Weight</b> <span>0.5 kg</span>
-                    </li>
-                    <li>
+                    </li> */}
+                    {/* <li>
                       <b>Share on</b>
                       <div className="share">
                         <a href="#">
@@ -176,11 +192,11 @@ function ProductDetail(props) {
                           <i className="fa fa-pinterest" />
                         </a>
                       </div>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
-              <div className="col-lg-12">
+              {/* <div className="col-lg-12">
                 <div className="product__details__tab">
                   <ul className="nav nav-tabs" role="tablist">
                     <li className="nav-item">
@@ -313,13 +329,13 @@ function ProductDetail(props) {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
         {/* Product Details Section End */}
         {/* Related Product Section Begin */}
-        <section className="related-product">
+        {/* <section className="related-product">
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
@@ -459,7 +475,7 @@ function ProductDetail(props) {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         {/* Related Product Section End */}
         {/* Footer Section Begin */}
         <Footer />

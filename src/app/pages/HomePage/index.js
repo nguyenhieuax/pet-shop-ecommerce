@@ -1,39 +1,44 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./index.css";
 import { connect } from "react-redux";
 import { Switch, Route, Link } from "react-router-dom";
 import { selectors, actions } from "../services";
-import useWindowDimensions from '../../utils/useWindowDimensions'
 import { TopBar, ProductItem, CategoriesItem, Loader, Footer } from "../../Components";
-class HomePage extends Component {
+import { useDispatch, useSelector} from 'react-redux'
+import Modal from 'react-modal';
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      width: 0,
-      height: 0,
-      listStorageItem: JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || []
-    };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+const HomePage = (props) => {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     width: 0,
+  //     height: 0,
+  //   };
+  //   this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  // }
+
+  const StorageItem = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
+
+  const [listStorageItem, setListStorageItem] = useState(StorageItem)
+
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+
+ const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actions.getTopProduct());
+
+  }, [])
+
+
+  const updateWindowDimensions = () => {
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
   }
 
-  componentDidMount() {
-    // this.props.getListProduct();
-    this.props.getTopProduct();
-    // this.props.showCart({});
-
-    console.log('homepage props ====', this.props);
-
-  }
-
-
-  updateWindowDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
-  };
-
-  addToCart = (item) => {
-    const { listStorageItem } = this.state;
+  const addToCart = (item) => {
     console.log('onclick button add to cart ---------------')
     let buyItem = { productEntity: item, quantity: 1 }
 
@@ -45,28 +50,41 @@ class HomePage extends Component {
     let itemExist = listStorageItem.find(product => product.productEntity.id === item.id) || null;
 
     let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
-    console.log('storage item =================', _listStorageItem)
     localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
-    this.setState({ listStorageItem: _listStorageItem });
+    setListStorageItem(_listStorageItem);
   }
 
-  renderProductItem = (item) => {
-    const { history } = this.props;
+  // const renderModal = () => {
+  //   return (
+  //     <>
+  //       <Modal
+        
+  //       />
+  //     </>
+  //   )
+  // }
+
+  const renderProductItem = (item) => {
+    const { history } = props;
     return (
       <ProductItem
         url={`${item.url}`}
         name={item.name}
         price={item.price}
+        promotion = {item.promotion}
         id={item.id}
         history={history}
         key={`${item.id}`}
-        addToCart={() => this.addToCart(item)}
+        addToCart={() => addToCart(item)}
       />
     )
   }
 
-  render() {
-    const { listProduct, history, topProduct } = this.props;
+  const listProduct = useSelector(state => selectors.getListProduct(state));
+  const topProduct = useSelector(state => selectors.getTopProduct(state));
+
+
+    const { history } = props;
     const dogProduct = listProduct && listProduct.length ? listProduct[2].listProducts : [];
     const catProduct = listProduct && listProduct.length ? listProduct[1].listProducts : [];
     const topProductDog = topProduct && topProduct.length ? topProduct[0].listProducts : [];
@@ -94,14 +112,12 @@ class HomePage extends Component {
                 style={{ backgroundImage: "url:(img/hero/banner.jpg)" }}
               >
                 <div className="hero__text">
-                  <span>A PET FAVORITE PLACE</span>
+                  <span>ĐỊA ĐIỂM ƯA THÍCH CỦA NGƯỜI YÊU THÚ CƯNG</span>
                   <h2>
-                    Welcome to Our Pet Supply Shop <br />
+                  Chào mừng bạn đến với cửa hàng thú cưng All4pet <br />
                   </h2>
-                  <p>Free Pickup and Delivery Available</p>
-                  <a href="#" className="primary-btn">
-                    SHOP NOW
-                  </a>
+                  {/* <p>Miễn phí giao hàng toàn quốc</p> */}
+                 
                 </div>
               </div>
             </div>
@@ -127,7 +143,7 @@ class HomePage extends Component {
                 </div>
               </div>
               <div className="row featured__filter">
-                {topProductDog.map(item => this.renderProductItem(item))}
+                {topProductDog.map((item, index) => index < 4 ? renderProductItem(item) : null)}
 
               </div>
             </div>
@@ -154,7 +170,7 @@ class HomePage extends Component {
                 </div>
               </div>
               <div className="row featured__filter">
-                {dogProduct.length ? dogProduct.map((item, index) => index < 12 ? this.renderProductItem(item) : null) : null}
+                {dogProduct.length ? dogProduct.map((item, index) => index < 8 ? renderProductItem(item) : null) : null}
 
               </div>
             </div>
@@ -181,7 +197,7 @@ class HomePage extends Component {
                 </div>
               </div>
               <div className="row featured__filter">
-                {catProduct.length ? catProduct.map((item, index) => index < 12 ? this.renderProductItem(item) : null) : null}
+                {catProduct.length ? catProduct.map((item, index) => index < 8 ? renderProductItem(item) : null) : null}
 
 
               </div>
@@ -195,7 +211,7 @@ class HomePage extends Component {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="section-title from-blog__title">
-                    <h2>From The Blog</h2>
+                    <h2>Blog thú cưng</h2>
                   </div>
                 </div>
               </div>
@@ -203,25 +219,24 @@ class HomePage extends Component {
                 <div className="col-lg-4 col-md-4 col-sm-6">
                   <div className="blog__item">
                     <div className="blog__item__pic">
-                      <img alt="crop-product" src="img/blog/1crop.jpg" />
+                      <img alt="crop-product" style = {{height: 240 }} src="https://www.puppytip.com/wp-content/uploads/2017/10/how-to-get-your-dog-to-eat-dog-food-again.jpg" />
                     </div>
                     <div className="blog__item__text">
                       <ul>
                         <li>
-                          <i className="fa fa-calendar-o" /> May 4,2019
+                          <i className="fa fa-calendar-o" /> 28/06/2020
                       </li>
                         <li>
-                          <i className="fa fa-comment-o" /> 5
+                          <i className="fa fa-comment-o" /> 0
                       </li>
                       </ul>
                       <h5>
-                        <a href="#">
-                          Is there an easy way to feed my dog a raw diet?
-                      </a>
+                        <Link to ="/blog-one">
+                        Cẩm nang chọn thức ăn cho chó nhỏ khoa học nhất
+                      </Link>
                       </h5>
                       <p>
-                        Sed quia non numquam modi tempora indunt ut labore et
-                      dolore magnam aliquam quaerat{" "}
+                      Thức ăn cho chó nhỏ cần phải chọn mua thế nào cho hợp lý? Những giống chó nhỏ cần được chăm sóc và ăn theo chế độ dinh dưỡng đặc biệt để chúng có được sức khỏe tốt nhất
                       </p>
                     </div>
                   </div>
@@ -229,23 +244,22 @@ class HomePage extends Component {
                 <div className="col-lg-4 col-md-4 col-sm-6">
                   <div className="blog__item">
                     <div className="blog__item__pic">
-                      <img alt="crop-item" src="img/blog/4crop.jpg" />
+                      <img alt="crop-item" style = {{height: 240 }} src="https://hoiyeumeo.vn/public/upload/images/figopetinsurance.jpg" />
                     </div>
                     <div className="blog__item__text">
                       <ul>
                         <li>
-                          <i className="fa fa-calendar-o" /> May 4,2019
+                          <i className="fa fa-calendar-o" /> 29/06/2019
                       </li>
                         <li>
-                          <i className="fa fa-comment-o" /> 5
+                          <i className="fa fa-comment-o" /> 0
                       </li>
                       </ul>
                       <h5>
-                        <a href="#">How To Give Pets Their Medication</a>
+                        <Link to ='blog-two'>Vì sao mèo sợ nước?</Link>
                       </h5>
                       <p>
-                        Sed quia non numquam modi tempora indunt ut labore et
-                      dolore magnam aliquam quaerat{" "}
+                      Tại sao mèo sợ nước? Nghe qua đây có vẻ là một câu hỏi mà hiển nhiên tất cả chúng ta ai cũng đều có câu trả lời. Bản năng
                       </p>
                     </div>
                   </div>
@@ -253,23 +267,22 @@ class HomePage extends Component {
                 <div className="col-lg-4 col-md-4 col-sm-6">
                   <div className="blog__item">
                     <div className="blog__item__pic">
-                      <img alt="crop-item" src="img/blog/3crop.jpg" />
+                      <img alt="crop-item" style = {{height: 240 }} src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/people_foods_cats_can_eat_slideshow/thinkstock_rf_photo_of_cat_with_fish_plate.jpg" />
                     </div>
                     <div className="blog__item__text">
                       <ul>
                         <li>
-                          <i className="fa fa-calendar-o" /> May 4,2019
+                          <i className="fa fa-calendar-o" /> 27/06/2020
                       </li>
                         <li>
-                          <i className="fa fa-comment-o" /> 5
+                          <i className="fa fa-comment-o" /> 0
                       </li>
                       </ul>
                       <h5>
-                        <a href="#">How can I manage my dog's weight?</a>
+                        <Link to ='blog-three'>Cách làm pate cho mèo thật ngon tại nhà</Link>
                       </h5>
                       <p>
-                        Sed quia non numquam modi tempora indunt ut labore et
-                      dolore magnam aliquam quaerat{" "}
+                      Cách làm pate cho mèo sao cho ngon, hợp khẩu vị cho mèo như thế nào? Chắc hẳn khi bạn mới nuôi mèo, bạn luôn muốn dành thời gian nhiều để chăm sóc mèo cưng của mình
                       </p>
                     </div>
                   </div>
@@ -290,18 +303,18 @@ class HomePage extends Component {
 
       </>
     );
-  }
+  
 }
 
-const mapStateToProps = (state) => ({
-  listProduct: selectors.getListProduct(state),
-  topProduct: selectors.getTopProduct(state)
-});
+// const mapStateToProps = (state) => ({
+//   listProduct: selectors.getListProduct(state),
+//   topProduct: selectors.getTopProduct(state)
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  getListProduct: () => dispatch(actions.getListProduct()),
-  getTopProduct: () => dispatch(actions.getTopProduct()),
-  showCart: () => dispatch(actions.showCart())
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   getListProduct: () => dispatch(actions.getListProduct()),
+//   getTopProduct: () => dispatch(actions.getTopProduct()),
+//   showCart: () => dispatch(actions.showCart())
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default HomePage;

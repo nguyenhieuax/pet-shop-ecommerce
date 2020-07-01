@@ -16,7 +16,9 @@ export const ProductItem = (props) => {
   }, [])
 
   const setBackGround = (imgUrl) => {
-    return { backgroundImage: "url(" + imgUrl + ")" };
+    return { 
+      backgroundImage: "url(" + imgUrl + ")" 
+  };
   };
   // let history = useHistory()
   const onClickItem = (data) => {
@@ -45,7 +47,7 @@ export const ProductItem = (props) => {
           >
             <div onClick={() => onClickItem(props)}
               style={{ position: 'absolute', height: '75%', width: '100%' }}>
-
+            
             </div>
             <ul className="featured__item__pic__hover">
               {/* <li>
@@ -69,7 +71,11 @@ export const ProductItem = (props) => {
             <h6 style={{ fontSize: 14, height: 60 }}>
               <a href="#">{props.name}</a>
             </h6>
-            <h5 style={{ color: 'red' }}>{`${FormatNumber(props.price)}đ`}</h5>
+            <h5 style={{ color: 'red' }}>{`${FormatNumber(props.price)}đ`}
+            </h5>
+            <h6 style={{ color: '#555555',   textDecorationLine: "line-through", textDecorationStyle: "solid",    textDecorationColor: "#555555" }}>
+              {`${FormatNumber(props.price+(props.price*props.promotion*0.01))}đ`}
+            </h6>
           </div>
         </div>
       </div>

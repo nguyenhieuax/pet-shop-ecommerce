@@ -14,6 +14,10 @@ const CheckOut = (props) => {
     const [note, setNote] = useState('')
     const [email, setEmail] = useState('')
 
+    const checkData = () => {
+        return lastName && firstName && address && town && phoneNum && email;
+    }
+
     const dispatch = useDispatch();
 
     const listValue = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
@@ -214,7 +218,7 @@ const CheckOut = (props) => {
                                                 <span className="checkmark" />
                                             </label>
                                         </div>
-                                        <button onClick={confirmCheckOut} className="site-btn">ĐẶT HÀNG</button>
+                                        {checkData() ? <button onClick={confirmCheckOut} className="site-btn">ĐẶT HÀNG</button> : null}
                                     </div>
                                 </div>
                             </div>

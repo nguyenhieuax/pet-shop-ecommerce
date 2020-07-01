@@ -34,7 +34,7 @@ export const LeftBarItem = (props) => {
 
             </ul>
           </div>
-          <div className="sidebar__item">
+          {/* <div className="sidebar__item">
             <h4>Khoảng giá</h4>
             <div className="price-range-wrap">
               <form>
@@ -93,8 +93,8 @@ export const LeftBarItem = (props) => {
 
               </form>
             </div>
-          </div>
-          <div className="sidebar__item">
+          </div> */}
+          {/* <div className="sidebar__item">
             <h4>Thương hiệu </h4>
             <div className="price-range-wrap">
               <form>
@@ -153,7 +153,7 @@ export const LeftBarItem = (props) => {
 
               </form>
             </div>
-          </div>
+          </div> */}
 
 
 
@@ -197,7 +197,7 @@ export const LeftBarItem = (props) => {
                       </label>
                     </div>
                   </div> */}
-          <div className="sidebar__item">
+          {/* <div className="sidebar__item">
             <h4>Popular Size</h4>
             <div className="sidebar__item__size">
               <label htmlFor="large">
@@ -223,8 +223,8 @@ export const LeftBarItem = (props) => {
                         <input type="radio" id="tiny" />
               </label>
             </div>
-          </div>
-          <div className="sidebar__item">
+          </div> */}
+          {/* <div className="sidebar__item">
             <div className="latest-product__text">
               <h4>Latest Products</h4>
               <div className="latest-product__slider owl-carousel">
@@ -288,7 +288,7 @@ export const LeftBarItem = (props) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

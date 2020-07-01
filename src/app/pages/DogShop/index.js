@@ -9,24 +9,24 @@ const DogShop = (props) => {
   const dispatch = useDispatch()
   const [Name, setName] = useState();
   const [listData, setlistData] = useState([]);
+  const  type  = props.location.state? props.location.state.type :  0 ;
 
   useEffect(() => {
-    let { name, type } = props.location.state;
-    console.log('name and type =================', name, type)
+
     if( type === 0) {
-      dispatch(actions.getProductByName(name, (data) => {
+      dispatch(actions.getProductByName('dog', (data) => {
         setlistData(data[0].listProducts)
       }));
-      setName(name);
+      setName('dog');
     } else {
-      dispatch(actions.getProductByNameAndType({name, type}, (data) =>{
+      dispatch(actions.getProductByNameAndType({name: 'dog', type}, (data) =>{
         setlistData(data[0].listProducts)
 
       }));
-      setName(name);
+      setName('dog');
     }
 
-  }, [props.location.state.type, props.location.state.name])
+  }, [type])
 
   const listPriceData = [
     {
@@ -82,6 +82,7 @@ const DogShop = (props) => {
         url={`${item.url}`}
         name={item.name}
         price={item.price}
+        promotion= {item.promotion}
         id={item.id}
         history={history}
         key={`${item.id}`}
@@ -92,8 +93,11 @@ const DogShop = (props) => {
 
   const onClickType = (type) => {
     if( type === 0) {
-      let name = Name;
-      dispatch(actions.getProductByName(name));
+      let name = 'dog';
+      dispatch(actions.getProductByName(name, (data => {
+        setlistData(data[0].listProducts)
+
+      })));
     } else {
       dispatch(actions.getProductByNameAndType({name: Name, type}, (data) => {
         setlistData(data[0].listProducts)
@@ -142,7 +146,7 @@ const DogShop = (props) => {
                itemData = {listData}
               />
               <div className="col-lg-9 col-md-7">
-                <div className="product__discount">
+                {/* <div className="product__discount">
                   <div className="section-title product__discount__title">
                     <h2>Sale Off</h2>
                   </div>
@@ -152,7 +156,7 @@ const DogShop = (props) => {
                     <SaleItem />
                   </div>
 
-                </div>
+                </div> */}
                 <div className="filter__item">
                   <div className="row">
                     <div className="col-lg-4 col-md-5">
@@ -185,14 +189,14 @@ const DogShop = (props) => {
                   {listData.map(item => renderItem(item))}
 
                 </div>
-                <div className="product__pagination">
+                {/* <div className="product__pagination">
                   <a href="#">1</a>
                   <a href="#">2</a>
                   <a href="#">3</a>
                   <a href="#">
                     <i className="fa fa-long-arrow-right" />
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
