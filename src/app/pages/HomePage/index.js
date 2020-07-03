@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
 import LazyLoad from 'react-lazyload'
-=======
->>>>>>> webpack_config
+import { icons } from '../../assets/icons/index';
 
 import "./index.css";
 import { connect } from "react-redux";
@@ -88,6 +86,10 @@ const HomePage = (props) => {
   const topProduct = useSelector(state => selectors.getTopProduct(state));
 
 
+  const bannerStype = {
+    backgroundImage: `url:(${icons.banner})`,
+              // backgroundColor: 'red'
+  }
     const { history } = props;
     const dogProduct = listProduct && listProduct.length ? listProduct[2].listProducts : [];
     const catProduct = listProduct && listProduct.length ? listProduct[1].listProducts : [];
@@ -114,7 +116,6 @@ const HomePage = (props) => {
 
               <div
                 className="hero__item set-bg col-lg-12"
-                style={{ backgroundImage: "url:(img/hero/banner-min.png)" }}
               >
                 {/* <img src=''></img> */}
                 <div className="hero__text">
@@ -225,13 +226,9 @@ const HomePage = (props) => {
                 <div className="col-lg-4 col-md-4 col-sm-6">
                   <div className="blog__item">
                     <div className="blog__item__pic">
-<<<<<<< HEAD
                       <LazyLoad>
                       <img alt="crop-product" style = {{height: 240 }} src="https://www.puppytip.com/wp-content/uploads/2017/10/how-to-get-your-dog-to-eat-dog-food-again.jpg" />
                       </LazyLoad>
-=======
-                      <img alt="crop-product" style = {{height: 240 }} src="https://www.puppytip.com/wp-content/uploads/2017/10/how-to-get-your-dog-to-eat-dog-food-again.jpg" />
->>>>>>> webpack_config
                     </div>
                     <div className="blog__item__text">
                       <ul>
@@ -256,14 +253,10 @@ const HomePage = (props) => {
                 <div className="col-lg-4 col-md-4 col-sm-6">
                   <div className="blog__item">
                     <div className="blog__item__pic">
-<<<<<<< HEAD
                       <LazyLoad>
                       <img alt="crop-item" style = {{height: 240 }} src="https://hoiyeumeo.vn/public/upload/images/figopetinsurance.jpg" />
 
                       </LazyLoad>
-=======
-                      <img alt="crop-item" style = {{height: 240 }} src="https://hoiyeumeo.vn/public/upload/images/figopetinsurance.jpg" />
->>>>>>> webpack_config
                     </div>
                     <div className="blog__item__text">
                       <ul>
@@ -286,13 +279,9 @@ const HomePage = (props) => {
                 <div className="col-lg-4 col-md-4 col-sm-6">
                   <div className="blog__item">
                     <div className="blog__item__pic">
-<<<<<<< HEAD
                       <LazyLoad>
                       <img alt="crop-item" style = {{height: 240 }} src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/people_foods_cats_can_eat_slideshow/thinkstock_rf_photo_of_cat_with_fish_plate.jpg" />
                       </LazyLoad>
-=======
-                      <img alt="crop-item" style = {{height: 240 }} src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/people_foods_cats_can_eat_slideshow/thinkstock_rf_photo_of_cat_with_fish_plate.jpg" />
->>>>>>> webpack_config
                     </div>
                     <div className="blog__item__text">
                       <ul>

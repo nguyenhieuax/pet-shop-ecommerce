@@ -32,17 +32,12 @@ function ProductDetail(props) {
   const productDetails = useSelector(state => selectors.getProductDetail(state)) || {};
 
   const onBuy = () => {
-<<<<<<< HEAD
     props.history.push({ pathname: '/cart', state: 123 });
-=======
-    props.history.push({pathname:'/cart', state:  123});
->>>>>>> webpack_config
     let buyItem = {
       productEntity: productDetails,
       quantity
     };
 
-<<<<<<< HEAD
     if (productDetails.url) {
       let mergeListStorage = listStorageItem.map(product => product.productEntity.id === productDetails.id ? {
         productEntity: product.productEntity,
@@ -50,15 +45,6 @@ function ProductDetail(props) {
       } : product) || [];
 
       let itemExist = listStorageItem.find(product => product.productEntity.id === productDetails.id) || null;
-=======
-    if(productDetails.url) {
-      let mergeListStorage = listStorageItem.map(product => product.productEntity.id === productDetails.id ?  {
-        productEntity: product.productEntity,
-        quantity: product.quantity+= Number(quantity)
-      } : product) || [];
-
-      let itemExist  = listStorageItem.find(product=> product.productEntity.id === productDetails.id) || null;
->>>>>>> webpack_config
 
       let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
       localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
@@ -104,8 +90,6 @@ function ProductDetail(props) {
       {/* Header Section Begin */}
       <TopBar history={props.history} />
 
-
-      {productDetails ? <>
         <section className="product-details spad">
           <div className="container">
             <div className="row">
@@ -257,162 +241,17 @@ function ProductDetail(props) {
                      
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    
 
 
-                </div>
-              </div> */}
-            </div>
-          </div>
+              
         </section>
         {/* Product Details Section End */}
         {/* Related Product Section Begin */}
-        {/* <section className="related-product">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="section-title related__product__title">
-                  <h2>Related Product</h2>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-lg-3 col-md-4 col-sm-6">
-                <div className="product__item">
-                  <div
-                    className="product__item__pic set-bg"
-                    data-setbg="img/product/product-1.jpg"
-                  >
-                    <ul className="product__item__pic__hover">
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-heart" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-retweet" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-shopping-cart" />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="product__item__text">
-                    <h6>
-                      <a href="#">Crab Pool Security</a>
-                    </h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-4 col-sm-6">
-                <div className="product__item">
-                  <div
-                    className="product__item__pic set-bg"
-                    data-setbg="img/product/product-2.jpg"
-                  >
-                    <ul className="product__item__pic__hover">
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-heart" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-retweet" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-shopping-cart" />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="product__item__text">
-                    <h6>
-                      <a href="#">Crab Pool Security</a>
-                    </h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-4 col-sm-6">
-                <div className="product__item">
-                  <div
-                    className="product__item__pic set-bg"
-                    data-setbg="img/product/product-3.jpg"
-                  >
-                    <ul className="product__item__pic__hover">
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-heart" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-retweet" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-shopping-cart" />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="product__item__text">
-                    <h6>
-                      <a href="#">Crab Pool Security</a>
-                    </h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-4 col-sm-6">
-                <div className="product__item">
-                  <div
-                    className="product__item__pic set-bg"
-                    data-setbg="img/product/product-7.jpg"
-                  >
-                    <ul className="product__item__pic__hover">
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-heart" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-retweet" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-shopping-cart" />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="product__item__text">
-                    <h6>
-                      <a href="#">Crab Pool Security</a>
-                    </h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
+        
         {/* Related Product Section End */}
         {/* Footer Section Begin */}
         <Footer />
-      </> : <> <Loader /></>}
 
     </>
   );

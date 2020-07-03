@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { images } from '../../assets/images/';
+import { images } from '../../assets/images';
 import { TopBar, ProductItem, CategoriesItem, Loader, Footer } from "../../Components";
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
