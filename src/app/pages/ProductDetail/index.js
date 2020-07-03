@@ -32,9 +32,6 @@ function ProductDetail(props) {
   const productDetails = useSelector(state => selectors.getProductDetail(state)) || {};
 
   const onBuy = () => {
-<<<<<<< Updated upstream
-    props.history.push({pathname:'/cart', state:  123});
-=======
     props.history.push({ pathname: '/cart', state: 123 });
     let buyItem = {
       productEntity: productDetails,
@@ -53,7 +50,6 @@ function ProductDetail(props) {
       localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
       setListStorageItem(_listStorageItem);
     }
->>>>>>> Stashed changes
   }
 
   const listValue = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
