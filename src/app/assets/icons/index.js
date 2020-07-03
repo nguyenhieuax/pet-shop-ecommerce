@@ -8,6 +8,7 @@ import loading from './loading.gif';
 import addToCart from './addToCart.png';
 import emptyCart from './emptyCart.png';
 import check from './tick.png';
+import avartar from './avatar-01.jpg';
 
 const icons = {
     heart,
@@ -19,6 +20,7 @@ const icons = {
     loading,
     addToCart,
     emptyCart,
+    avartar,
     check
 }
 

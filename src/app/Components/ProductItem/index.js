@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import LazyLoad from 'react-lazyload'
+
 import "./index.css";
 import {
   Switch,
@@ -16,7 +18,13 @@ export const ProductItem = (props) => {
   }, [])
 
   const setBackGround = (imgUrl) => {
+<<<<<<< Updated upstream
     return { backgroundImage: "url(" + imgUrl + ")" };
+=======
+    return {
+      backgroundImage: "url(" + imgUrl + ")"
+    };
+>>>>>>> Stashed changes
   };
   // let history = useHistory()
   const onClickItem = (data) => {
@@ -30,21 +38,28 @@ export const ProductItem = (props) => {
 
   // const [listItemStorage, setListItemStorage] = useState(listValue)
 
- 
+
 
   return (
-    <Route >
+    <>
       <div
         className={props.size ? props.size : "col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"}
       // }
       >
         <div className="featured__item">
           <div
-            className="featured__item__pic set-bg"
-            style={setBackGround(props.url)}
+            className="featured__item__pic set-bg "
+          // style={setBackGround(props.url)}
           >
+
             <div onClick={() => onClickItem(props)}
               style={{ position: 'absolute', height: '75%', width: '100%' }}>
+<<<<<<< Updated upstream
+=======
+              <LazyLoad>
+                <img className='lazyload' src={props.url} />
+              </LazyLoad>
+>>>>>>> Stashed changes
 
             </div>
             <ul className="featured__item__pic__hover">
@@ -69,10 +84,18 @@ export const ProductItem = (props) => {
             <h6 style={{ fontSize: 14, height: 60 }}>
               <a href="#">{props.name}</a>
             </h6>
+<<<<<<< Updated upstream
             <h5 style={{ color: 'red' }}>{`${FormatNumber(props.price)}đ`}</h5>
+=======
+            <h5 style={{ color: 'red' }}>{`${FormatNumber(props.price)}đ`}
+            </h5>
+            <h6 style={{ color: '#555555', textDecorationLine: "line-through", textDecorationStyle: "solid", textDecorationColor: "#555555" }}>
+              {`${FormatNumber(props.price + (props.price * props.promotion * 0.01))}đ`}
+            </h6>
+>>>>>>> Stashed changes
           </div>
         </div>
       </div>
-    </Route>
+    </>
   );
 };

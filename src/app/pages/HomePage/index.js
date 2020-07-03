@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 import React, { Component } from "react";
+=======
+import React, { useEffect, useState } from "react";
+import LazyLoad from 'react-lazyload'
+>>>>>>> Stashed changes
 
 import "./index.css";
 import { connect } from "react-redux";
@@ -84,15 +89,17 @@ class HomePage extends Component {
 
         {/* Categories Section End */}
         {/* Featured Section Begin */}
-        {listProduct && listProduct.length ? <>
+        {/* {listProduct && listProduct.length ? */}
+         <>
           <div className="container">
 
             <div className="col-lg-12">
 
               <div
                 className="hero__item set-bg col-lg-12"
-                style={{ backgroundImage: "url:(img/hero/banner.jpg)" }}
+                style={{ backgroundImage: "url:(img/hero/banner-min.png)" }}
               >
+                {/* <img src=''></img> */}
                 <div className="hero__text">
                   <span>A PET FAVORITE PLACE</span>
                   <h2>
@@ -203,7 +210,13 @@ class HomePage extends Component {
                 <div className="col-lg-4 col-md-4 col-sm-6">
                   <div className="blog__item">
                     <div className="blog__item__pic">
+<<<<<<< Updated upstream
                       <img alt="crop-product" src="img/blog/1crop.jpg" />
+=======
+                      <LazyLoad>
+                      <img alt="crop-product" style = {{height: 240 }} src="https://www.puppytip.com/wp-content/uploads/2017/10/how-to-get-your-dog-to-eat-dog-food-again.jpg" />
+                      </LazyLoad>
+>>>>>>> Stashed changes
                     </div>
                     <div className="blog__item__text">
                       <ul>
@@ -229,7 +242,14 @@ class HomePage extends Component {
                 <div className="col-lg-4 col-md-4 col-sm-6">
                   <div className="blog__item">
                     <div className="blog__item__pic">
+<<<<<<< Updated upstream
                       <img alt="crop-item" src="img/blog/4crop.jpg" />
+=======
+                      <LazyLoad>
+                      <img alt="crop-item" style = {{height: 240 }} src="https://hoiyeumeo.vn/public/upload/images/figopetinsurance.jpg" />
+
+                      </LazyLoad>
+>>>>>>> Stashed changes
                     </div>
                     <div className="blog__item__text">
                       <ul>
@@ -253,7 +273,13 @@ class HomePage extends Component {
                 <div className="col-lg-4 col-md-4 col-sm-6">
                   <div className="blog__item">
                     <div className="blog__item__pic">
+<<<<<<< Updated upstream
                       <img alt="crop-item" src="img/blog/3crop.jpg" />
+=======
+                      <LazyLoad>
+                      <img alt="crop-item" style = {{height: 240 }} src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/people_foods_cats_can_eat_slideshow/thinkstock_rf_photo_of_cat_with_fish_plate.jpg" />
+                      </LazyLoad>
+>>>>>>> Stashed changes
                     </div>
                     <div className="blog__item__text">
                       <ul>
@@ -282,11 +308,11 @@ class HomePage extends Component {
 
           <Footer />
         </>
-          :
+          {/* :
           <>
             <Loader />
           </>
-        }
+        } */}
 
       </>
     );

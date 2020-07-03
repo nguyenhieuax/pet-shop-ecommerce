@@ -92,8 +92,11 @@ const HamsterShop = (props) => {
 
   const onClickType = (type) => {
     if( type === 0) {
-      let name = Name;
-      dispatch(actions.getProductByName(name));
+      let name = 'dog';
+      dispatch(actions.getProductByName(name, (data => {
+        setlistData(data[0].listProducts)
+
+      })));
     } else {
       dispatch(actions.getProductByNameAndType({name: Name, type}, (data) => {
         setlistData(data[0].listProducts)

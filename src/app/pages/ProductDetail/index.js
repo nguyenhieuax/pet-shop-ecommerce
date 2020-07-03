@@ -3,7 +3,7 @@ import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { selectors, actions } from "../services";
 import "./index.css";
-import { TopBar, CategoriesBar,  Loader, Footer } from '../../Components';
+import { TopBar, CategoriesBar, Loader, Footer } from '../../Components';
 import { Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { FormatNumber } from '../../utils/formatNumber'
@@ -32,10 +32,31 @@ function ProductDetail(props) {
   const productDetails = useSelector(state => selectors.getProductDetail(state)) || {};
 
   const onBuy = () => {
+<<<<<<< Updated upstream
     props.history.push({pathname:'/cart', state:  123});
+=======
+    props.history.push({ pathname: '/cart', state: 123 });
+    let buyItem = {
+      productEntity: productDetails,
+      quantity
+    };
+
+    if (productDetails.url) {
+      let mergeListStorage = listStorageItem.map(product => product.productEntity.id === productDetails.id ? {
+        productEntity: product.productEntity,
+        quantity: product.quantity += Number(quantity)
+      } : product) || [];
+
+      let itemExist = listStorageItem.find(product => product.productEntity.id === productDetails.id) || null;
+
+      let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
+      localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
+      setListStorageItem(_listStorageItem);
+    }
+>>>>>>> Stashed changes
   }
 
-  const listValue = JSON.parse( localStorage.getItem('ValueInLocalStorage3')) || [] ;
+  const listValue = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
 
   const [listStorageItem, setListStorageItem] = useState(listValue);
 
@@ -46,13 +67,13 @@ function ProductDetail(props) {
       quantity
     };
 
-    if(productDetails.url) {
-      let mergeListStorage = listStorageItem.map(product => product.productEntity.id === productDetails.id ?  {
+    if (productDetails.url) {
+      let mergeListStorage = listStorageItem.map(product => product.productEntity.id === productDetails.id ? {
         productEntity: product.productEntity,
-        quantity: product.quantity+= Number(quantity)
+        quantity: product.quantity += Number(quantity)
       } : product) || [];
 
-      let itemExist  = listStorageItem.find(product=> product.productEntity.id === productDetails.id) || null;
+      let itemExist = listStorageItem.find(product => product.productEntity.id === productDetails.id) || null;
 
       let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
       localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
@@ -72,7 +93,7 @@ function ProductDetail(props) {
 
       {/* Humberger End */}
       {/* Header Section Begin */}
-      <TopBar history = {props.history} />
+      <TopBar history={props.history} />
 
 
       {productDetails ? <>
@@ -91,7 +112,7 @@ function ProductDetail(props) {
                   <div>
 
                   </div>
-                  
+
 
                   {/* <div className="product__details__pic__slider owl-carousel"> */}
                   {/* <img
@@ -136,17 +157,17 @@ function ProductDetail(props) {
                   <div className="product__details__quantity">
                     <div className="quantity">
                       <div className="pro-qty">
-                        <input value = {quantity} onChange= {e => setQuantity(e.target.value)} />
+                        <input value={quantity} onChange={e => setQuantity(e.target.value)} />
                       </div>
                     </div>
                   </div>
-                  <Link onClick = {onBuy} className="primary-btn">
+                  <Link onClick={onBuy} className="primary-btn">
                     Mua ngay
                   </Link>
-                  <button onClick = {onAddToCart} href="#" className="heart-icon">
-                    <img style = {{height: 40, width: 40}} src = {icons.addToCart} />
+                  <button onClick={onAddToCart} href="#" className="heart-icon">
+                    <img style={{ height: 40, width: 40 }} src={icons.addToCart} />
                   </button>
-                 
+
                   <ul>
                     <li>
                       <b>Availability</b> <span>In Stock</span>
@@ -191,127 +212,46 @@ function ProductDetail(props) {
                         role="tab"
                         aria-selected="true"
                       >
-                        Description
+                        Khách hàng nhận xét
                       </a>
                     </li>
-                    <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        data-toggle="tab"
-                        href="#tabs-2"
-                        role="tab"
-                        aria-selected="false"
-                      >
-                        Information
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        data-toggle="tab"
-                        href="#tabs-3"
-                        role="tab"
-                        aria-selected="false"
-                      >
-                        Reviews <span>(1)</span>
-                      </a>
-                    </li>
+
                   </ul>
-                  <div className="tab-content">
-                    <div
-                      className="tab-pane active"
-                      id="tabs-1"
-                      role="tabpanel"
-                    >
-                      <div className="product__details__tab__desc">
-                        <h6>Products Infomation</h6>
-                        <p>
-                          Vestibulum ac diam sit amet quam vehicula elementum
-                          sed sit amet dui. Pellentesque in ipsum id orci porta
-                          dapibus. Proin eget tortor risus. Vivamus suscipit
-                          tortor eget felis porttitor volutpat. Vestibulum ac
-                          diam sit amet quam vehicula elementum sed sit amet
-                          dui. Donec rutrum congue leo eget malesuada. Vivamus
-                          suscipit tortor eget felis porttitor volutpat.
-                          Curabitur arcu erat, accumsan id imperdiet et,
-                          porttitor at sem. Praesent sapien massa, convallis a
-                          pellentesque nec, egestas non nisi. Vestibulum ac diam
-                          sit amet quam vehicula elementum sed sit amet dui.
-                          Vestibulum ante ipsum primis in faucibus orci luctus
-                          et ultrices posuere cubilia Curae; Donec velit neque,
-                          auctor sit amet aliquam vel, ullamcorper sit amet
-                          ligula. Proin eget tortor risus.
-                        </p>
-                        <p>
-                          Praesent sapien massa, convallis a pellentesque nec,
-                          egestas non nisi. Lorem ipsum dolor sit amet,
-                          consectetur adipiscing elit. Mauris blandit aliquet
-                          elit, eget tincidunt nibh pulvinar a. Cras ultricies
-                          ligula sed magna dictum porta. Cras ultricies ligula
-                          sed magna dictum porta. Sed porttitor lectus nibh.
-                          Mauris blandit aliquet elit, eget tincidunt nibh
-                          pulvinar a. Vestibulum ac diam sit amet quam vehicula
-                          elementum sed sit amet dui. Sed porttitor lectus nibh.
-                          Vestibulum ac diam sit amet quam vehicula elementum
-                          sed sit amet dui. Proin eget tortor risus.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="tab-pane" id="tabs-2" role="tabpanel">
-                      <div className="product__details__tab__desc">
-                        <h6>Products Infomation</h6>
-                        <p>
-                          Vestibulum ac diam sit amet quam vehicula elementum
-                          sed sit amet dui. Pellentesque in ipsum id orci porta
-                          dapibus. Proin eget tortor risus. Vivamus suscipit
-                          tortor eget felis porttitor volutpat. Vestibulum ac
-                          diam sit amet quam vehicula elementum sed sit amet
-                          dui. Donec rutrum congue leo eget malesuada. Vivamus
-                          suscipit tortor eget felis porttitor volutpat.
-                          Curabitur arcu erat, accumsan id imperdiet et,
-                          porttitor at sem. Praesent sapien massa, convallis a
-                          pellentesque nec, egestas non nisi. Vestibulum ac diam
-                          sit amet quam vehicula elementum sed sit amet dui.
-                          Vestibulum ante ipsum primis in faucibus orci luctus
-                          et ultrices posuere cubilia Curae; Donec velit neque,
-                          auctor sit amet aliquam vel, ullamcorper sit amet
-                          ligula. Proin eget tortor risus.
-                        </p>
-                        <p>
-                          Praesent sapien massa, convallis a pellentesque nec,
-                          egestas non nisi. Lorem ipsum dolor sit amet,
-                          consectetur adipiscing elit. Mauris blandit aliquet
-                          elit, eget tincidunt nibh pulvinar a. Cras ultricies
-                          ligula sed magna dictum porta. Cras ultricies ligula
-                          sed magna dictum porta. Sed porttitor lectus nibh.
-                          Mauris blandit aliquet elit, eget tincidunt nibh
-                          pulvinar a.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="tab-pane" id="tabs-3" role="tabpanel">
-                      <div className="product__details__tab__desc">
-                        <h6>Products Infomation</h6>
-                        <p>
-                          Vestibulum ac diam sit amet quam vehicula elementum
-                          sed sit amet dui. Pellentesque in ipsum id orci porta
-                          dapibus. Proin eget tortor risus. Vivamus suscipit
-                          tortor eget felis porttitor volutpat. Vestibulum ac
-                          diam sit amet quam vehicula elementum sed sit amet
-                          dui. Donec rutrum congue leo eget malesuada. Vivamus
-                          suscipit tortor eget felis porttitor volutpat.
-                          Curabitur arcu erat, accumsan id imperdiet et,
-                          porttitor at sem. Praesent sapien massa, convallis a
-                          pellentesque nec, egestas non nisi. Vestibulum ac diam
-                          sit amet quam vehicula elementum sed sit amet dui.
-                          Vestibulum ante ipsum primis in faucibus orci luctus
-                          et ultrices posuere cubilia Curae; Donec velit neque,
-                          auctor sit amet aliquam vel, ullamcorper sit amet
-                          ligula. Proin eget tortor risus.
-                        </p>
+
+                  <div className="tab-pane fade" id="reviews" role="tabpanel">
+                    <div className="row">
+                      <div className="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                        <div className="p-b-30 m-lr-15-sm">
+                          {/* Review */}
+                          <div className="">
+                            <div className="">
+                              <img src="images/avatar-01.jpg" alt="AVATAR" />
+                            </div>
+                            <div className="size-207">
+                              <div className="flex-w flex-sb-m p-b-17">
+                                <span className="mtext-107 cl2 p-r-20">
+                                  Ariana Grande
+                             </span>
+                                <span className="fs-18 cl11">
+                                  <i className="zmdi zmdi-star" />
+                                  <i className="zmdi zmdi-star" />
+                                  <i className="zmdi zmdi-star" />
+                                  <i className="zmdi zmdi-star" />
+                                  <i className="zmdi zmdi-star-half" />
+                                </span>
+                              </div>
+                              <p className="stext-102 cl6">
+                                Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
+                          </p>
+                            </div>
+                          </div>
+                     
+                        </div>
                       </div>
                     </div>
                   </div>
+
+
                 </div>
               </div>
             </div>
