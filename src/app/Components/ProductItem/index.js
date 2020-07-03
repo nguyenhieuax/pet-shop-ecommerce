@@ -18,9 +18,15 @@ export const ProductItem = (props) => {
   }, [])
 
   const setBackGround = (imgUrl) => {
+<<<<<<< HEAD
     return {
       backgroundImage: "url(" + imgUrl + ")"
     };
+=======
+    return { 
+      backgroundImage: "url(" + imgUrl + ")" 
+  };
+>>>>>>> webpack_config
   };
   // let history = useHistory()
   const onClickItem = (data) => {
@@ -50,10 +56,14 @@ export const ProductItem = (props) => {
 
             <div onClick={() => onClickItem(props)}
               style={{ position: 'absolute', height: '75%', width: '100%' }}>
+<<<<<<< HEAD
               <LazyLoad>
                 <img className='lazyload' src={props.url} />
               </LazyLoad>
 
+=======
+            
+>>>>>>> webpack_config
             </div>
             <ul className="featured__item__pic__hover">
               {/* <li>
@@ -79,8 +89,13 @@ export const ProductItem = (props) => {
             </h6>
             <h5 style={{ color: 'red' }}>{`${FormatNumber(props.price)}đ`}
             </h5>
+<<<<<<< HEAD
             <h6 style={{ color: '#555555', textDecorationLine: "line-through", textDecorationStyle: "solid", textDecorationColor: "#555555" }}>
               {`${FormatNumber(props.price + (props.price * props.promotion * 0.01))}đ`}
+=======
+            <h6 style={{ color: '#555555',   textDecorationLine: "line-through", textDecorationStyle: "solid",    textDecorationColor: "#555555" }}>
+              {`${FormatNumber(props.price+(props.price*props.promotion*0.01))}đ`}
+>>>>>>> webpack_config
             </h6>
           </div>
         </div>
