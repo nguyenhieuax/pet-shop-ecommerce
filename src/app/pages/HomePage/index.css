@@ -1,5 +1,5 @@
 .hero__item{
-    background-image: url('/img/banner-min.png');
+    background-image: url('/img/banner-min.webp');
 
 }
 .logo-4pet{
@@ -9,9 +9,5 @@
 }
 .categories {
     height: 270px;
-}
-.categories__item {
-    background-image: url('/img/categories/cat-1.jpg');
-
 }
 
