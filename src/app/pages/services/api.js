@@ -18,8 +18,8 @@ const addToCart = (params) => {
     return fetch('get', `cart/add?product=${params}`)
 }
 
-const showCart = () => {
-    return fetch('get','cart/showCart')
+const showCart = (params) => {
+    return fetch('get','cart/showCart',params)
 }
 
 const getProductByName = (params) => {

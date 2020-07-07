@@ -12,16 +12,16 @@ export const fetch = (method, path, params) => {
     if (!params) {
         params = {}
     }
-    let config = {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdXN0b21lcjE4IiwiaWF0IjoxNTk0MDIyNzY1LCJleHAiOjE1OTQwNzY3NjV9.i0EkG3BOZ3S5fpMV6a6c3pcqTvYV9xwTMNYzodzxoJgBTrqfIsR9xj8AidhUKMrSFgEmGA9ap_CXkL__DGqERw'
+    let configShowCart = {
+        Authorization: `Bearer ${params}`
     }
 
     return new Promise((resolve, reject) => {
         axios({
             method: method,
             url: baseURL + path,
-            headers: path ==='showCart' ? config : null,
-            data: params,
+            headers: path ==='cart/showCart' ? configShowCart : null,
+            data:  path ==='cart/showCart' ? null: params,
         })
             .then(response => {
                 console.log('data in axios ==============', response)

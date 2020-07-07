@@ -32,7 +32,7 @@ const Cart = (props) => {
     useEffect(() => {
         getTotalAmount();
         console.log('rerender--------------------------------------------');
-        dispatch(actions.showCart());
+        dispatch(actions.showCart(token));
 
     
     }, [listItem])
