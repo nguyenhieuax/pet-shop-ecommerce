@@ -13,14 +13,14 @@ export const fetch = (method, path, params) => {
         params = {}
     }
     let config = {
-    //   'content-type': 'application/x-www-form-urlencoded',
+        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdXN0b21lcjE4IiwiaWF0IjoxNTk0MDIyNzY1LCJleHAiOjE1OTQwNzY3NjV9.i0EkG3BOZ3S5fpMV6a6c3pcqTvYV9xwTMNYzodzxoJgBTrqfIsR9xj8AidhUKMrSFgEmGA9ap_CXkL__DGqERw'
     }
 
     return new Promise((resolve, reject) => {
         axios({
             method: method,
             url: baseURL + path,
-            // headers: config,
+            headers: path ==='showCart' ? config : null,
             data: params,
         })
             .then(response => {

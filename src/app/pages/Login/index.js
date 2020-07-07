@@ -45,7 +45,7 @@ const Login = (props) => {
 
     let onSuccess = (data) => {
       if (data[0]) {
-        localStorage.setItem('loginToken', data);
+        localStorage.setItem('loginToken', data[1]);
         localStorage.setItem('username', username);
         dispatch(actions.showCart())
         localStorage.removeItem('ValueInLocalStorage3');

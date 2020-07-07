@@ -10,6 +10,7 @@ import emptyCart from './emptyCart.png';
 import check from './tick.png';
 import avartar from './avatar-01.jpg';
 import banner from './banner-min.png';
+import bo from './bo.jpg'
 
 const icons = {
     heart,
@@ -23,7 +24,8 @@ const icons = {
     emptyCart,
     avartar,
     check,
-    banner
+    banner,
+    bo
 }
 
 export { icons }

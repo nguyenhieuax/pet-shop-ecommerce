@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { Switch, Route, Link } from "react-router-dom";
 
 import { TopBar, Footer, NotFoundPage } from '../../Components'
 import { icons } from '../../assets/icons';
 import { useSelector } from 'react-redux';
 import { actions, selectors } from '../services';
+import { FormatNumber } from '../../utils/formatNumber';
 
 const CheckoutSuccess = (props) => {
 
@@ -14,7 +16,7 @@ const CheckoutSuccess = (props) => {
     return (
         <>
             {billDetails && billDetails.billCode ?
-                <div>
+                <div className='col-lg-12 col-md-12'>
                     <TopBar />
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'space-around', marginTop: 30, marginBottom: 30 }}>
                         <div>
@@ -81,9 +83,14 @@ const CheckoutSuccess = (props) => {
                                 Số tiền thanh toán:
                             </div>
                             <div style={{ flex: 1, fontSize: 15, paddingLeft: 10, fontWeight: 'bold' }} >
-                                {billDetails.totalMoney}
+                                {FormatNumber(billDetails.totalMoney)}
                             </div>
                         </div>
+
+                        <div style = {{justifyContent: 'center', alignItems: 'center'}}>
+                            <Link style={{ marginTop: 30 }} className="site-btn">Về trang chủ</Link>
+                        </div>
+
                     </div>
 
 

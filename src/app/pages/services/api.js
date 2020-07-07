@@ -26,6 +26,10 @@ const getProductByName = (params) => {
     return fetch('get',`product?category=${params}` )
 }
 
+const getRelateProduct = (params) => {
+    return fetch('get',`relateProduct?type=${params}` )
+}
+
 const getProductByNameAndType = ({name, type}) => {
     console.log('name and type ------', name, type)
     return fetch('get', `product/${name}?type=${type}&page=1`)
@@ -53,6 +57,7 @@ export default {
     getProductByName,
     getProductByNameAndType,
     confirmCheckOut,
+    getRelateProduct,
     login,
     signUp
 }

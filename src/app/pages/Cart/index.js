@@ -3,9 +3,17 @@ import { TopBar, CategoriesBar, CategoriesItem, Loader, Footer } from '../../Com
 import { Switch, Route, Link } from "react-router-dom";
 import { FormatNumber } from '../../utils/formatNumber'
 import { icons } from "../../assets/icons";
+import { useDispatch, useSelector} from 'react-redux';
+import { selectors, actions } from "../services";
 
 const Cart = (props) => {
+
+    const dispatch = useDispatch();
+
     const listValue = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
+    const token = localStorage.getItem('loginToken') || '';
+
+    console.log('token item --------------------------', token)
 
     console.log('list value in storage =================', listValue);
     const [listItem, setListItem] = useState(listValue);
@@ -23,7 +31,10 @@ const Cart = (props) => {
 
     useEffect(() => {
         getTotalAmount();
-        console.log('rerender--------------------------------------------')
+        console.log('rerender--------------------------------------------');
+        dispatch(actions.showCart());
+
+    
     }, [listItem])
 
     const getTotalAmount = () => {

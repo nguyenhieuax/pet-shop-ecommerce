@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { TopBar, CategoriesBar, CategoriesItem, Loader, Footer, Input } from '../../Components';
 import { useDispatch } from 'react-redux';
 import { actions, selectors } from '../services';
-import { FormatNumber } from '../../utils/formatNumber'
+import { FormatNumber } from '../../utils/formatNumber';
+import PaypalExpressBtn from 'react-paypal-express-checkout';
+
 
 
 const CheckOut = (props) => {
@@ -13,6 +15,7 @@ const CheckOut = (props) => {
     const [phoneNum, setPhoneNum] = useState('')
     const [note, setNote] = useState('')
     const [email, setEmail] = useState('')
+    const [paymentMethod, setPaymentMethod] = useState('COD')
 
     const checkData = () => {
         return lastName && firstName && address && town && phoneNum && email;
@@ -22,11 +25,20 @@ const CheckOut = (props) => {
 
     const listValue = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
 
+    const client = {
+        sandbox:    'AQHpr33Cwp5MkBAVSQjdexa1QKkAUIECXep0ZsE412krVgIjmLVogWMInlaEDJlnQG-WeqDCuERaknj6',
+        production: 'AQHpr33Cwp5MkBAVSQjdexa1QKkAUIECXep0ZsE412krVgIjmLVogWMInlaEDJlnQG-WeqDCuERaknj6',
+    }
+
+    
+
     const confirmCheckOut = () => {
+
+
 
         let params = {
             "address": address,
-            "paymentMethod": "PAYPAL",
+            "paymentMethod": paymentMethod,
             "receiver": lastName + ' ' + firstName,
             "note": note,
             "email": email,
@@ -81,6 +93,11 @@ const CheckOut = (props) => {
     const [listItem, setListItem] = useState(listValue);
     const [totalAmount, setTotalAmount] = useState(0);
 
+    const convertToUsd = totalAmount/23000;
+
+    const _convertToUsd =Math.round(convertToUsd * 100) / 100;
+
+    console.log('convert to usd ------------------================',_convertToUsd );
 
     useEffect(() => {
         getTotalAmount();
@@ -96,7 +113,11 @@ const CheckOut = (props) => {
         setTotalAmount(total);
     }
 
+    const onSuccessPaypal = () => {
+        console.log('success paypalll------------');
 
+        confirmCheckOut();
+    }
 
 
     return (
@@ -207,18 +228,21 @@ const CheckOut = (props) => {
                                         <div className="checkout__input__checkbox">
                                             <label htmlFor="payment">
                                                 Ship COD
-                  <input type="checkbox" id="payment" />
+                  <input type="checkbox" onChange={() => setPaymentMethod('COD')} checked={paymentMethod === 'COD' ? true : false} id="payment" />
                                                 <span className="checkmark" />
                                             </label>
                                         </div>
                                         <div className="checkout__input__checkbox">
                                             <label htmlFor="paypal">
-                                                Thanh toán bằng momo
-                  <input type="checkbox" id="paypal" />
+                                                Thanh toán bằng PAYPAL
+                  <input type="checkbox" onChange={() => setPaymentMethod('PAYPAL')} checked={paymentMethod !== 'COD' ? true : false} id="paypal" />
                                                 <span className="checkmark" />
                                             </label>
                                         </div>
-                                        {checkData() ? <button onClick={confirmCheckOut} className="site-btn">ĐẶT HÀNG</button> : null}
+                                        {checkData() && paymentMethod === 'COD' ? <button onClick={confirmCheckOut} className="site-btn">ĐẶT HÀNG</button> : null}
+
+                                        { checkData() && paymentMethod === 'PAYPAL' ? <PaypalExpressBtn client={client} currency={'USD'} onSuccess={onSuccessPaypal} total={_convertToUsd} /> : null}
+
                                     </div>
                                 </div>
                             </div>
