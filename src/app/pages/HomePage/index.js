@@ -9,6 +9,8 @@ import { selectors, actions } from "../services";
 import { TopBar, ProductItem, CategoriesItem, Loader, Footer } from "../../Components";
 import { useDispatch, useSelector} from 'react-redux'
 import Modal from 'react-modal';
+import useWindowDimensions from '../../utils/useWindowDimensions';
+
 
 const HomePage = (props) => {
   // constructor(props) {
@@ -20,12 +22,15 @@ const HomePage = (props) => {
   //   this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   // }
 
+  const { height, width } = useWindowDimensions();
+  console.log('height width of window ===============================', height, width)
+
   const StorageItem = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
 
   const [listStorageItem, setListStorageItem] = useState(StorageItem)
 
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+  // const [width, setWidth] = useState(0);
+  // const [height, setHeight] = useState(0);
 
  const dispatch = useDispatch();
 
@@ -34,11 +39,6 @@ const HomePage = (props) => {
 
   }, [])
 
-
-  const updateWindowDimensions = () => {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
-  }
 
   const addToCart = (item) => {
     console.log('onclick button add to cart ---------------')
@@ -54,6 +54,8 @@ const HomePage = (props) => {
     let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
     localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
     setListStorageItem(_listStorageItem);
+
+    dispatch(actions.addToCart(item.id))
   }
 
   // const renderModal = () => {
@@ -116,6 +118,10 @@ const HomePage = (props) => {
 
               <div
                 className="hero__item set-bg col-lg-12"
+                style = {
+
+                  width > 550 ? {backgroundImage: `url(${'/img/banner-min.webp'})`} : {backgroundImage: `url(${'/img/small_banner2.jpg'})`}
+                }
               >
                 {/* <img src=''></img> */}
                 <div className="hero__text">

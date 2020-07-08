@@ -2,7 +2,10 @@ import axios from 'axios'
 
 // const baseURL = 'http://localhost:5000'
 const baseURL = 'https://all4petbackend.herokuapp.com/'
+// const baseURL = 'http://all4pet-env-2.eba-vdzteyuu.us-east-2.elasticbeanstalk.com/'
 
+
+const token = localStorage.getItem('loginToken') || '';
 
 export const fetch = (method, path, params) => {
     console.log('axios params-----------------', params);
@@ -13,14 +16,14 @@ export const fetch = (method, path, params) => {
         params = {}
     }
     let configShowCart = {
-        Authorization: `Bearer ${params}`
+        Authorization: `Bearer ${token}`
     }
 
     return new Promise((resolve, reject) => {
         axios({
             method: method,
             url: baseURL + path,
-            headers: path ==='cart/showCart' ? configShowCart : null,
+            headers: path ==='cart/showCart' || path.includes('cart/add') ? configShowCart : null,
             data:  path ==='cart/showCart' ? null: params,
         })
             .then(response => {

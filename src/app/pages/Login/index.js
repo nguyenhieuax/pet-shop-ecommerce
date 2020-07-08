@@ -47,7 +47,6 @@ const Login = (props) => {
       if (data[0]) {
         localStorage.setItem('loginToken', data[1]);
         localStorage.setItem('username', username);
-        dispatch(actions.showCart())
         localStorage.removeItem('ValueInLocalStorage3');
         props.history.goBack();
       }
@@ -216,7 +215,7 @@ const Login = (props) => {
           console.log('handle close ==========>')
           setsignUpSuccess(false);
           setSignUp(0);
-          setUsername('');
+          // setUsername('');
           setPassword('');
           setConfirmPass('');
           setEmail('');

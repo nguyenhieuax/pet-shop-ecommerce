@@ -84,7 +84,7 @@ export const TopBar = (props) => {
           <i style={{ color: '#57b846' }} className="fa fa-user" /> {usernameInStorage}
         </Link>
         <ul style={ showLoginBar ? ulLoginStyle : {display: 'none'}}>
-          <li style={liLoginStyle} >
+          {/* <li style={liLoginStyle} >
             <Link>
               Tài khoản của tôi
             </Link>
@@ -93,7 +93,7 @@ export const TopBar = (props) => {
             <Link>
               Thông báo
             </Link>
-          </li>
+          </li> */}
           <li style={liLoginStyle}>
             <Link>
               Đơn hàng của tôi

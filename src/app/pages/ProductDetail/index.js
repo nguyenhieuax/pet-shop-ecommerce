@@ -90,9 +90,7 @@ function ProductDetail(props) {
       setListStorageItem(_listStorageItem);
     }
   }
-
-
-
+  
   const [quantity, setQuantity] = useState(1);
 
   const renderItem = (item) => {

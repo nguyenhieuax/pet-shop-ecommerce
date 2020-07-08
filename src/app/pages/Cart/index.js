@@ -3,7 +3,7 @@ import { TopBar, CategoriesBar, CategoriesItem, Loader, Footer } from '../../Com
 import { Switch, Route, Link } from "react-router-dom";
 import { FormatNumber } from '../../utils/formatNumber'
 import { icons } from "../../assets/icons";
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectors, actions } from "../services";
 
 const Cart = (props) => {
@@ -22,8 +22,9 @@ const Cart = (props) => {
     const [payAmount, setPayAmount] = useState(0)
 
     const onRemoveCartItem = async (id) => {
-        let itemIndex = await listItem.findIndex(item => item.id === id);
+        let itemIndex = await listItem.findIndex(item => item.productEntity.id === id);
         let tempArr = [...listItem];
+        console.log('index of item remove-------------------------------', itemIndex)
         tempArr.splice(itemIndex, 1);
         localStorage.setItem('ValueInLocalStorage3', JSON.stringify(tempArr));
         setListItem(tempArr);
@@ -32,9 +33,7 @@ const Cart = (props) => {
     useEffect(() => {
         getTotalAmount();
         console.log('rerender--------------------------------------------');
-        dispatch(actions.showCart(token));
-
-    
+        token && dispatch(actions.showCart(token));
     }, [listItem])
 
     const getTotalAmount = () => {
@@ -49,32 +48,35 @@ const Cart = (props) => {
 
     const onAdd = (item, quantity) => {
         console.log('onclick button add to cart ---------------')
-    
-        let mergeListStorage = listItem.map(product => product.productEntity.id === item.id && {
-          productEntity: product.productEntity,
-          quantity: product.quantity += 1
-        } ) || [];
-    
-        let _listStorageItem =  mergeListStorage;
-        console.log('list item after add-------------------',_listStorageItem )
-        localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
-        setListItem(_listStorageItem);
-      }
+        let mergeListStorage = listItem.map(product => product.productEntity.id === item.id ? {
+            productEntity: product.productEntity,
+            quantity: product.quantity += 1
+        } : product) || [];
 
-      
-    const onMinus = (item) => {
-        console.log('onclick button add to cart ---------------')
-    
-        let mergeListStorage = listItem.map(product => product.productEntity.id === item.id && {
-          productEntity: product.productEntity,
-          quantity: product.quantity -= 1
-        } ) || [];
-    
-        let _listStorageItem =  mergeListStorage;
-        console.log('list item after add-------------------',_listStorageItem )
+        let _listStorageItem = mergeListStorage;
+        console.log('list item after add-------------------', _listStorageItem)
         localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
         setListItem(_listStorageItem);
-      }
+    }
+
+
+    const onMinus = (item, quantity) => {
+        console.log('onclick button add to cart ---------------')
+        if (quantity === 1) {
+            console.log('id to remove ===========================', item.id)
+            onRemoveCartItem(item.id);
+            return;
+        }
+        let mergeListStorage = listItem.map(product => product.productEntity.id === item.id ? {
+            productEntity: product.productEntity,
+            quantity: product.quantity -= 1
+        } : product) || [];
+
+        let _listStorageItem = mergeListStorage;
+        console.log('list item after add-------------------', _listStorageItem)
+        localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
+        setListItem(_listStorageItem);
+    }
 
     console.log('list item storage ======================', listItem);
     const renderCartItem = (item, quantity) => {
@@ -90,9 +92,9 @@ const Cart = (props) => {
                 <td className="shoping__cart__quantity">
                     <div className="quantity">
                         <div className="pro-qty">
-                            <button onClick ={() => onMinus(item, quantity)}><i className="fa fa-minus" aria-hidden="true"></i></button>
+                            <button onClick={() => onMinus(item, quantity)}><i className="fa fa-minus" aria-hidden="true"></i></button>
                             <input type="text" value={quantity} />
-                            <button onClick ={() =>  onAdd(item,quantity)}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                            <button onClick={() => onAdd(item, quantity)}><i className="fa fa-plus" aria-hidden="true"></i></button>
 
                         </div>
                     </div>
@@ -100,9 +102,9 @@ const Cart = (props) => {
                 <td className="shoping__cart__total">
                     {FormatNumber(item.price * quantity)}
                 </td>
-                <td className="shoping__cart__item__close">
-                    <span onClick={() => onRemoveCartItem(item.id)} className="icon_close" />
-                </td>
+                <div onClick={() => onRemoveCartItem(item.id)} className="shoping__cart__item__close">
+                    <i className="fa fa-window-close" aria-hidden="true"></i>
+                </div>
             </tr>
         )
     }
