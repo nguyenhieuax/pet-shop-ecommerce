@@ -10,7 +10,9 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom";
-import { FormatNumber } from '../../utils/formatNumber'
+import { FormatNumber } from '../../utils/formatNumber';
+import SignUpSuccess from './signUpSuccess';
+
 
 export const ProductItem = (props) => {
 
@@ -34,6 +36,7 @@ export const ProductItem = (props) => {
 
   // const [listItemStorage, setListItemStorage] = useState(listValue)
 
+  const [signUpSuccess, setsignUpSuccess] = useState(false)
 
 
   return (
@@ -42,6 +45,13 @@ export const ProductItem = (props) => {
         className={props.size ? props.size : "col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"}
       // }
       >
+              <SignUpSuccess
+                showModal={signUpSuccess}
+                handleClose={() => {
+                  setsignUpSuccess(false);
+                }}
+              />
+
         <div className="featured__item">
           <div
             className="featured__item__pic set-bg "
@@ -66,7 +76,7 @@ export const ProductItem = (props) => {
                   <i className="fa fa-retweet" />
                 </a>
               </li> */}
-              <li>
+              <li onClick = {() => setsignUpSuccess(true)}>
                 <button style={{ zIndex: 10 }} onClick={props.addToCart} href="#">
                   <i style={{ fontSize: 25 }} className="fa fa-cart-plus" />
                 </button>

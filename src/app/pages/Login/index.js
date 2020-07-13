@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectors, actions } from "../services";
 import SignUpSuccess from './signUpSuccess';
+import GoogleLogin from 'react-google-login';
 
 const Login = (props) => {
   console.log('props login ==================', props)
@@ -132,6 +133,15 @@ const Login = (props) => {
                     <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true" />
             </button>
           </div>
+
+          <GoogleLogin
+          clientId="421173231134-1a8dogsgjfdku96c0lkqjugrv2e9sphg.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={()=> console.log('login success -----------')}
+          onFailure={() => console.log('login failed ----------')}
+          // cookiePolicy={'single_host_origin'}
+        />,
+
         </div>
 
       </>

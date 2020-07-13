@@ -55,7 +55,7 @@ const HomePage = (props) => {
     localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
     setListStorageItem(_listStorageItem);
 
-    dispatch(actions.addToCart(item.id))
+    // dispatch(actions.addToCart(item.id))
   }
 
   // const renderModal = () => {

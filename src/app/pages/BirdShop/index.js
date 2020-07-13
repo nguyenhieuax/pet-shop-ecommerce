@@ -75,6 +75,28 @@ const BirdShop = (props) => {
     },
   ]
 
+  const StorageItem = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
+
+  const [listStorageItem, setListStorageItem] = useState(StorageItem)
+
+  const addToCart = (item) => {
+    console.log('onclick button add to cart ---------------')
+    let buyItem = { productEntity: item, quantity: 1 }
+
+    let mergeListStorage = listStorageItem.map(product => product.productEntity.id === item.id ? {
+      productEntity: product.productEntity,
+      quantity: product.quantity += 1
+    } : product) || [];
+
+    let itemExist = listStorageItem.find(product => product.productEntity.id === item.id) || null;
+
+    let _listStorageItem = itemExist === null ? listStorageItem.concat(buyItem) : mergeListStorage;
+    localStorage.setItem('ValueInLocalStorage3', JSON.stringify(_listStorageItem));
+    setListStorageItem(_listStorageItem);
+
+    // dispatch(actions.addToCart(item.id))
+  }
+
 
   const renderItem = (item) => {
     const { history } = props;
@@ -87,6 +109,8 @@ const BirdShop = (props) => {
         id={item.id}
         history={history}
         key={`${item.id}`}
+        addToCart={() => addToCart(item)}
+
         size="col-lg-3 col-md-6 col-sm-6 mix oranges fresh-meat"
       />
     )

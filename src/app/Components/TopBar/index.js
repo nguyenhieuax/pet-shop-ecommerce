@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 import { Switch, Route, Link } from "react-router-dom";
+import { ProductItem, CategoriesItem, Loader, Footer } from "../../Components";
 import { icons } from '../../assets/icons'
 import { useDispatch, useSelector } from "react-redux";
 import { selectors, actions } from "../../pages/services";
 
 export const TopBar = (props) => {
+
+  useEffect(() => {
+  }, [props.data])
 
   const onClickLabelDog = () => {
     props.history.push({ pathname: "/dog-shop", state: { name: 'dog', type: 0 } });
@@ -44,6 +48,12 @@ export const TopBar = (props) => {
 
 
   const listValue = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
+
+  const [listStorageItem, setListStorageItem] = useState(listValue);
+
+  useEffect(() => {
+    console.log('list value intop bar------------------------------', listValue.length)
+  }, [listValue])
 
   const username = localStorage.getItem('username') || '';
 
@@ -255,11 +265,11 @@ export const TopBar = (props) => {
           <div className="col-lg-3">
             <div className="header__cart">
               <ul>
-                <li style = {{marginRight: 30}}>
+                {/* <li style = {{marginRight: 30}}>
                   <a href="#">
                     <img style={{ height: 30, width: 30 }} src={icons.heart}></img> 
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <Link to='/cart' >
                     <img style={{ height: 30, width: 30 }} src={icons.cart}></img> <span>{listValue.length}</span>
