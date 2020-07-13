@@ -736,16 +736,18 @@ ol {
 .hero__item {
 	height: 431px;
 	display: flex;
-	align-items: center;
+	/* align-items: center; */
 	padding-left: 75px;
 }
 
 .hero__text span {
-	font-size: 14px;
+	font-size: 18px;
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 4px;
 	color: #57b846;
+	padding-top: 100px;
+	position: absolute;
 }
 
 .hero__text h2 {

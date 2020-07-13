@@ -23,7 +23,7 @@ export const fetch = (method, path, params) => {
         axios({
             method: method,
             url: baseURL + path,
-            headers: path ==='cart/showCart' || path.includes('cart/add') ? configShowCart : null,
+            headers: path ==='cart/showCart' || path ==='user/showProfile' || path.includes('cart/add') ? configShowCart : null,
             data:  path ==='cart/showCart' ? null: params,
         })
             .then(response => {

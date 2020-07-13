@@ -6,7 +6,7 @@ export default function Blog(props) {
     return (
         <div>
             <TopBar history={props.history} />
-            <CategoriesItem />
+            <CategoriesItem history ={props.history} />
 
             <section className="blog spad">
                 <div className="container">

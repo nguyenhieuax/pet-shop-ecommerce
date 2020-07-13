@@ -94,12 +94,12 @@ export const TopBar = (props) => {
           <i style={{ color: '#57b846' }} className="fa fa-user" /> {usernameInStorage}
         </Link>
         <ul style={ showLoginBar ? ulLoginStyle : {display: 'none'}}>
-          {/* <li style={liLoginStyle} >
-            <Link>
+          <li style={liLoginStyle} >
+            <Link to ='/user-info'>
               Tài khoản của tôi
             </Link>
           </li>
-          <li style={liLoginStyle}>
+          {/* <li style={liLoginStyle}>
             <Link>
               Thông báo
             </Link>
@@ -129,7 +129,7 @@ export const TopBar = (props) => {
                   <li>
                     <i className="fa fa-envelope" /> all4pet@xyz.com
                     </li>
-                  <li>Miễn phí giao hàng cho đơn hàng trên 500,000vnđ</li>
+                  <li>Miễn phí giao hàng cho đơn hàng trong tháng 7</li>
                 </ul>
               </div>
             </div>

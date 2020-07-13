@@ -18,8 +18,8 @@ const addToCart = (params) => {
     return fetch('post', `cart/add?product=${params}`)
 }
 
-const showCart = (params) => {
-    return fetch('get','cart/showCart',params)
+const showCart = () => {
+    return fetch('get','cart/showCart')
 }
 
 const getProductByName = (params) => {
@@ -43,9 +43,16 @@ const login =(params) => {
     console.log('login paramse-------', params)
     return fetch('post', 'login', params)
 }
+const updateInfo =(params) => {
+    return fetch('post', 'user/editProfile', params)
+}
 
 const signUp = (params) => {
     return fetch('post','register', params)
+}
+
+const showProfile = () => {
+    return fetch('get', 'user/showProfile')
 }
 
 export default {
@@ -59,5 +66,7 @@ export default {
     confirmCheckOut,
     getRelateProduct,
     login,
-    signUp
+    signUp,
+    showProfile,
+    updateInfo
 }

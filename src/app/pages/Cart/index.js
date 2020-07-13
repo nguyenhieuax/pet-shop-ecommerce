@@ -33,7 +33,7 @@ const Cart = (props) => {
     useEffect(() => {
         getTotalAmount();
         console.log('rerender--------------------------------------------');
-        token && dispatch(actions.showCart(token));
+        token && dispatch(actions.showCart());
     }, [listItem])
 
     const getTotalAmount = () => {
@@ -147,7 +147,7 @@ const Cart = (props) => {
     return (
         <>
             <TopBar history={props.history} />
-            <CategoriesItem />
+            <CategoriesItem history ={props.history} />
             <section className="shoping-cart spad">
                 <div className="container">
                     <div iv className="row">
@@ -157,11 +157,11 @@ const Cart = (props) => {
                     </div>
                     <div className="row">
                         <div className="col-lg-12">
-                            <div className="shoping__cart__btns">
+                            {/* <div className="shoping__cart__btns">
                                 <Link className="primary-btn cart-btn" to="/">TIẾP TỤC MUA SẮM</Link>
                                 <a href="#" className="primary-btn cart-btn cart-btn-right"><span className="icon_loading" />
                                 Cập nhật giỏ hàng</a>
-                            </div>
+                            </div> */}
                         </div>
                         {
                             listItem.length !== 0 ?

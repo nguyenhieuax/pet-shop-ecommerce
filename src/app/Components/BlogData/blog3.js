@@ -2,12 +2,12 @@ import React from 'react';
 import { Switch, Route, Link } from "react-router-dom";
 import { SaleItem, ProductItem, CategoriesItem, TopBar, LeftBarItem, Footer } from '../index';
 
-const Blog3 = () => {
+const Blog3 = (props) => {
 
     return (
         <>
             <TopBar />
-            <CategoriesItem />
+            <CategoriesItem history ={props.history} />
             <div>
                 {/* Hello world */}
 

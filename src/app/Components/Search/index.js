@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import removeAccents from '../../utils/removeAccents'
 import slugify from 'slugify'
 export default function Search(props) {
@@ -6,6 +6,10 @@ export default function Search(props) {
     const inputRef = useRef(null);
 
     const [searchedData, setSearchedData] = useState([])
+
+    useEffect(() => {
+      
+    }, [searchedData])
 
     const showSuggestSearch = async (value) => {
 
@@ -39,7 +43,7 @@ export default function Search(props) {
               <span className="arrow_carrot-down" />
             </div> */}
                 <input ref = {inputRef} id="inputSearch" style={{ flex: 1, marginBottom: 8, marginLeft: 10, fontSize: 15 }} onChange={e => showSuggestSearch(e.target.value)} type="text" placeholder="Bạn cần mua gì?" />
-                <div style={{ paddingBottom: 15 }} className='site-btn' >
+                <div style={{ paddingBottom: 15 }} onClick = {props.onClickSearch} className='site-btn' >
                     TÌM KIẾM
              </div>
                 {/* {searchedData.length ? searchedData.map(item => <> <div style={{ zIndex: 1199, color: 'white', fontWeight: 'bold' }}>

@@ -10,6 +10,9 @@ import { FormatNumber } from '../../utils/formatNumber';
 const CheckoutSuccess = (props) => {
 
 
+    const onBackHome = () => {
+        props.history.push({pathname: '/'})
+    }
     const billDetails = useSelector(state => selectors.confirmCheckOut(state))
     console.log('billDetails ------------', billDetails);
 
@@ -87,8 +90,8 @@ const CheckoutSuccess = (props) => {
                             </div>
                         </div>
 
-                        <div style = {{justifyContent: 'center', alignItems: 'center'}}>
-                            <Link style={{ marginTop: 30 }} className="site-btn">Về trang chủ</Link>
+                        <div style = {{justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+                        <button style = {{marginTop: 30, marginBottom: 30}} onClick={onBackHome}  className="site-btn">Về trang chủ</button>
                         </div>
 
                     </div>

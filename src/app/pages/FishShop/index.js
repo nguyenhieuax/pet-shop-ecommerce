@@ -133,7 +133,7 @@ const FishShop = (props) => {
   return (
     <>
       <TopBar history={props.history} />
-      <CategoriesItem
+      <CategoriesItem history ={props.history}
 
 
       />

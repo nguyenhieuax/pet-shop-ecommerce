@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Search from '../Search'
 import { selectors, actions } from "../../pages/services";
 
-export const CategoriesItem = () => {
+export const CategoriesItem = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     console.log('getting listproduct =====================')
@@ -49,65 +49,71 @@ export const CategoriesItem = () => {
       '#ffffff', position: 'absolute', top: 50, width: '82%', border: '1px solid #E5E5E5'
   }
 
-  const divLiStyle = {marginTop: 5, marginBottom: 5, borderBottomWidth: 1,}
+  const divLiStyle = { marginTop: 5, marginBottom: 5, borderBottomWidth: 1, }
 
 
   return (
     <Navbar style={{ backgroundColor: '#FFFFFF', paddingTop: 10, paddingBottom: -10, zIndex: 999 }} sticky="top">
 
       {/* <section className="hero"> */}
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-3 col-md-12 col-sm-12">
-            <div className="showaaa">
-              <div onMouseEnter={() => setListItemStyle(ulStyle)}
-                onMouseLeave={() => setListItemStyle({ display: 'none' })}
-                className="hero__categories__all"
-              >
-                <i className="fa fa-bars" />
-                <span >Danh mục</span>
+      <div className='col-lg-12'>
+
+        <div style={{}} className="container">
+          <div className="row">
+            <div className="col-lg-3 col-md-12 col-sm-12">
+              <div className="showaaa">
+                <div onMouseEnter={() => setListItemStyle(ulStyle)}
+                  onMouseLeave={() => setListItemStyle({ display: 'none' })}
+                  className="hero__categories__all"
+                >
+                  <i className="fa fa-bars" />
+                  <span >Danh mục</span>
+                </div>
+                <ul
+                  onMouseEnter={() => setListItemStyle(ulStyle)}
+                  onMouseLeave={() => setListItemStyle({ display: 'none' })}
+                  style={listItemStyle} className="listItem">
+                  <li style={liStyle}><Link to={{ pathname: "/dog-shop", state: { name: 'dog', type: 0 } }} >Shop cho chó</Link></li>
+                  <li style={liStyle}><Link to={{ pathname: "/cat-shop", state: { name: 'cat', type: 0 } }} >Shop cho mèo</Link></li>
+                  <li style={liStyle}><Link to={{ pathname: "/fish-shop", state: { name: 'fish', type: 0 } }} >Shop cho cá</Link></li>
+                  <li style={liStyle}><Link to={{ pathname: "/bird-shop", state: { name: 'bird', type: 0 } }} >Shop cho chim</Link></li>
+                  {/* <li style={liStyle}><Link to={{ pathname: "/hamster-shop", state: { name: 'hamster', type: 0 } }} >Shop cho hamster</Link></li> */}
+                </ul>
               </div>
-              <ul
-                onMouseEnter={() => setListItemStyle(ulStyle)}
-                onMouseLeave={() => setListItemStyle({ display: 'none' })}
-                style={listItemStyle} className="listItem">
-                <li style={liStyle}><Link to={{ pathname: "/dog-shop", state: { name: 'dog', type: 0 } }} >Shop cho chó</Link></li>
-                <li style={liStyle}><Link to={{ pathname: "/cat-shop", state: { name: 'cat', type: 0 } }} >Shop cho mèo</Link></li>
-                <li style={liStyle}><Link to={{ pathname: "/fish-shop", state: { name: 'fish', type: 0 } }} >Shop cho cá</Link></li>
-                <li style={liStyle}><Link to={{ pathname: "/bird-shop", state: { name: 'bird', type: 0 } }} >Shop cho chim</Link></li>
-                {/* <li style={liStyle}><Link to={{ pathname: "/hamster-shop", state: { name: 'hamster', type: 0 } }} >Shop cho hamster</Link></li> */}
-              </ul>
             </div>
-          </div>
-          <div className="hero__search col-lg-9 col-md-12 col-sm-12">
+            <div className="hero__search col-lg-9 col-md-12 col-sm-12">
 
-            <div className='search_bar'>
-              <div className="hero__search__form col-12">
-                <Search
-                  data={transformListProduct()}
-                  searchedData={data => setSearchedData(data)}
-                  inputWidth={width => setInputWidth(width)}
-                />
+              <div className='search_bar'>
+                <div className="hero__search__form col-12">
+                  <Search
+                    data={transformListProduct()}
+                    searchedData={data => setSearchedData(data)}
+                    inputWidth={width => setInputWidth(width)}
+                    onClickSearch = {() => {
+                      console.log('click search ----------', searchedData)
+                      props.history.push({pathname: '/search-result', state: searchedData})
+                    }}
+                  />
+                </div>
+
+                <ul
+                  style={searchedData.length ? searchedStyle : null}
+                >
+                  {searchedData.length ? searchedData.map((item, index) => index < 12 ?
+                    <div style={divLiStyle} key={item[0]}>
+                      <Link to={{
+                        pathname: '/search-result',
+                        state: searchedData
+                      }} style={liStyle}>{item[1]}</Link>
+                    </div> : null) : null}
+
+                </ul>
+
               </div>
 
-              <ul
-                style={searchedData.length ? searchedStyle: null}
-              >
-                {searchedData.length ? searchedData.map((item, index) => index <12 ?
-                <div style = {divLiStyle}  key ={item[0]}>
-                  <Link to = {{
-                    pathname: '/search-result',
-                    state: searchedData
-                  }} style={liStyle}>{item[1]}</Link>
-                </div> : null) : null}
-
-              </ul>
-
-            </div>
 
 
-
-            {/* <div className="hero__search__phone col-lg-3">
+              {/* <div className="hero__search__phone col-lg-3">
                 <div className="hero__search__phone__icon">
                   <i className="fa fa-phone" />
                 </div>
@@ -116,9 +122,11 @@ export const CategoriesItem = () => {
                   <span>Hỗ trợ 24/7</span>
                 </div>
               </div> */}
+            </div>
           </div>
         </div>
       </div>
+
       {/* </section> */}
     </Navbar >
 

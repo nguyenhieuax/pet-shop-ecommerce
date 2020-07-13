@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link,useLocation  } from "react-router-dom";
 import { SaleItem, ProductItem, CategoriesItem, TopBar, LeftBarItem, Footer } from '../../Components';
 import { useDispatch, useSelector } from 'react-redux'
 import { selectors, actions } from "../services";
 
 
 const SearchResult = (props) => {
+  // const location = useLocation();
+
+  // console.log('location ======================', location.state)
   const dispatch = useDispatch()
   const [Name, setName] = useState();
   const [listData, setlistData] = useState([]);
 
+  console.log('props-----------------', props)
 
-  const [searchedData, setSearchedData] = useState(props.location.state || [])
+  const searchDataProps = props.location.state;
+
+  // const [searchedData, setSearchedData] = useState(searchDataProps)
+  console.log('searched data in search result page ', searchDataProps);
+
+  useEffect(() => {
+  }, [ props.location.state])
 
 
   // useEffect(() => {
@@ -108,7 +118,7 @@ const SearchResult = (props) => {
   return (
     <>
       <TopBar history={props.history} />
-      <CategoriesItem
+      <CategoriesItem history ={props.history}
 
 
       />
@@ -173,7 +183,7 @@ const SearchResult = (props) => {
                     <div className="col-lg-4 col-md-4">
                       <div className="filter__found">
                         <h6>
-                           Tìm thấy <span> {searchedData.length >= 12 ? 12: searchedData.length } </span> sản phẩm
+                           Tìm thấy <span> {searchDataProps.length >= 12 ? 12: searchDataProps.length } </span> sản phẩm
                         </h6>
                       </div>
                     </div>
@@ -188,7 +198,7 @@ const SearchResult = (props) => {
                 <div className="row">
                   {/* filter__item */}
 
-                  {searchedData.map((item, index ) => index< 12 ? renderItem(item[2]) : null)}
+                  {searchDataProps.map((item, index ) => index< 12 ? renderItem(item[2]) : null)}
 
                 </div>
                 <div className="product__pagination">
