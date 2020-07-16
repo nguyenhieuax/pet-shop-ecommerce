@@ -104,11 +104,11 @@ export const TopBar = (props) => {
               Thông báo
             </Link>
           </li> */}
-          <li style={liLoginStyle}>
+          {/* <li style={liLoginStyle}>
             <Link to='order-product'>
               Đơn hàng của tôi
             </Link>
-          </li>
+          </li> */}
           <li  onClick = {logOut}  style={liLoginStyle}>
             <Link >
               Đăng xuất
