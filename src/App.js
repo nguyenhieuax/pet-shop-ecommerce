@@ -32,6 +32,8 @@ const CheckoutSuccess = lazy(() => import('./app/pages/CheckOut/success'));
 const Login = lazy(() => import('./app/pages/Login'));
 const SearchResult = lazy(() => import('./app/pages/SearchResult'));
 const UserInfo = lazy(() => import('./app/pages/UserInfo/userInfo'));
+const OrderProduct = lazy(() => import('./app/pages/UserInfo/orderProduct'));
+const Brand = lazy(() => import('./app/pages/Brand'));
 
 
 class App extends Component {
@@ -57,6 +59,8 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/search-result" component={SearchResult} />
               <Route path="/user-info" component={UserInfo} />
+              <Route path="/order-product" component={OrderProduct} />
+              <Route path="/brand" component={Brand} />
               <Route path="/blog-one" component={Blog1} />
               <Route path="/blog-two" component={Blog2} />
               <Route path="/blog-three" component={Blog3} />

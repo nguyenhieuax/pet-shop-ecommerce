@@ -105,7 +105,7 @@ export const TopBar = (props) => {
             </Link>
           </li> */}
           <li style={liLoginStyle}>
-            <Link>
+            <Link to='order-product'>
               Đơn hàng của tôi
             </Link>
           </li>
@@ -189,16 +189,16 @@ export const TopBar = (props) => {
                   <Link to="/">Nhãn Hiệu</Link>
                   <ul className="header__menu__dropdown">
                     <li>
-                      <Link to="/product-detail">8in1</Link>
+                      <Link to={{pathname: '/brand', state: 'Love Animal'}}>Love Animal</Link>
                     </li>
                     <li>
-                      <a href="./shoping-cart.html">Bayer </a>
+                      <Link  to={{pathname: '/brand', state: 'Mlem Mlem'}}>Mlem Mlem</Link>
                     </li>
                     <li>
-                      <a href="./checkout.html">Davis</a>
+                      <Link  to={{pathname: '/brand', state: 'Yuumi'}}>Yuumi</Link>
                     </li>
                     <li>
-                      <a href="./blog-details.html">Nutrition</a>
+                      <Link  to={{pathname: '/brand', state: 'Petie'}}>Petie</Link>
                     </li>
                   </ul>
                 </li>

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { actions, selectors } from '../services';
 import { FormatNumber } from '../../utils/formatNumber';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
+import moment from 'moment';
 
 
 
@@ -22,12 +23,13 @@ const UserInfo = (props) => {
 
     useEffect(() => {
         token && dispatch(actions.showProfile(null, (data) => {
+            // console.log('data showprofile', data)
             setName(data.name);
             setAddress(data.address);
             setPhoneNum(data.phoneNumber);
             setEmail(data.userEntity.email);
-            setUserId(data.userEntity.id.toString());
-            setBirthday(data.birthday)
+            setUserId(data.userEntity.id);
+            setBirthday(data.birthday);
 
         }))
     }, [])
@@ -43,7 +45,7 @@ const UserInfo = (props) => {
             address: address,
             phoneNumber: phoneNum,
             userId: userId,
-            birthday: birthDay
+            birthday: Date.parse(birthDay)
         }
 
         dispatch(actions.updateInfo(params, () => {
@@ -52,6 +54,7 @@ const UserInfo = (props) => {
     }
 
 
+    console.log('birth day ====================', birthDay.substring(0,10))
 
 
     return (
@@ -128,7 +131,7 @@ const UserInfo = (props) => {
                                     </div> */}
                                     <div className="checkout__input">
                                         <p>Ngày sinh<span>*</span></p>
-                                        <input type="date" style={{ color: 'black' }} value={birthDay} onChange={e => setBirthday(Date.parse(e.target.value).toString())} placeholder="Ghi chú " />
+                                        <input type="date" style={{ color: 'black' }} value={birthDay.substring(0,10)} onChange={e => setBirthday(e.target.value)} placeholder="Ghi chú " />
                                     </div>
 
                                     <div style={{ marginBottom: 30, marginTop: 30 }}>

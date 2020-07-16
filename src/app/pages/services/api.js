@@ -50,6 +50,9 @@ const updateInfo =(params) => {
 const signUp = (params) => {
     return fetch('post','register', params)
 }
+const showOrderList = (params) => {
+    return fetch('get',`user/showListOrder?email=${params}`)
+}
 
 const showProfile = () => {
     return fetch('get', 'user/showProfile')
@@ -68,5 +71,6 @@ export default {
     login,
     signUp,
     showProfile,
-    updateInfo
+    updateInfo,
+    showOrderList
 }

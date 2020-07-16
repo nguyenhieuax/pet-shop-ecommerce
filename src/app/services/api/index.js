@@ -15,7 +15,7 @@ export const fetch = (method, path, params) => {
     if (!params) {
         params = {}
     }
-    let configShowCart = {
+    let configHeader = {
         Authorization: `Bearer ${token}`
     }
 
@@ -23,7 +23,7 @@ export const fetch = (method, path, params) => {
         axios({
             method: method,
             url: baseURL + path,
-            headers: path ==='cart/showCart' || path ==='user/showProfile' || path.includes('cart/add') ? configShowCart : null,
+            headers: path ==='cart/showCart' || path ==='user/showProfile' || path.includes('cart/add') || path.includes('user/showListOrder') ? configHeader : null,
             data:  path ==='cart/showCart' ? null: params,
         })
             .then(response => {

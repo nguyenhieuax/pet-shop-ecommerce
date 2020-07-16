@@ -173,10 +173,9 @@ const SearchResult = (props) => {
                   <div className="row">
                     <div className="col-lg-4 col-md-5">
                       <div className="filter__sort">
-                        <span>Sort By</span>
+                        <span>Sắp xếp</span>
                         <select>
-                          <option value={0}>Default</option>
-                          <option value={0}>Default</option>
+                          <option value={0}>Mặc định</option>
                         </select>
                       </div>
                     </div>

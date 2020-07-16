@@ -13,26 +13,15 @@ import useWindowDimensions from '../../utils/useWindowDimensions';
 
 
 const HomePage = (props) => {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     width: 0,
-  //     height: 0,
-  //   };
-  //   this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-  // }
+
 
   const { height, width } = useWindowDimensions();
-  console.log('height width of window ===============================', height, width)
 
   const token = localStorage.getItem('loginToken');
 
   const StorageItem = JSON.parse(localStorage.getItem('ValueInLocalStorage3')) || [];
 
   const [listStorageItem, setListStorageItem] = useState(StorageItem)
-
-  // const [width, setWidth] = useState(0);
-  // const [height, setHeight] = useState(0);
 
   const dispatch = useDispatch();
 
@@ -43,7 +32,6 @@ const HomePage = (props) => {
 
 
   const addToCart = (item) => {
-    console.log('onclick button add to cart ---------------')
     let buyItem = { productEntity: item, quantity: 1 }
 
     let mergeListStorage = listStorageItem.map(product => product.productEntity.id === item.id ? {
@@ -60,15 +48,6 @@ const HomePage = (props) => {
     token && dispatch(actions.addToCart(item.id))
   }
 
-  // const renderModal = () => {
-  //   return (
-  //     <>
-  //       <Modal
-
-  //       />
-  //     </>
-  //   )
-  // }
 
   const renderProductItem = (item) => {
     const { history } = props;
@@ -86,21 +65,19 @@ const HomePage = (props) => {
     )
   }
 
-  const listProduct = useSelector(state => selectors.getListProduct(state));
-  const topProduct = useSelector(state => selectors.getTopProduct(state));
+  const listProduct = useSelector(state => selectors.getListProduct(state)) || [] ;
+  const topProduct = useSelector(state => selectors.getTopProduct(state)) || [];
 
 
-  const bannerStype = {
-    backgroundImage: `url:(${icons.banner})`,
-    // backgroundColor: 'red'
-  }
+ 
   const { history } = props;
-  const dogProduct = listProduct && listProduct.length ? listProduct[2].listProducts : [];
-  const catProduct = listProduct && listProduct.length ? listProduct[1].listProducts : [];
+  const dogProduct = listProduct.filter(item => item.categoryName ==='dog');
+  const catProduct = listProduct.filter(item => item.categoryName ==='cat');
   const topProductDog = topProduct && topProduct.length ? topProduct[0].listProducts : [];
-  const topProductCat = topProduct && topProduct.length ? topProduct[1].listProducts : [];
+  // const topProductCat = topProduct && topProduct.length ? topProduct[1].listProducts : [];
 
-  // console.log('dog product =========================>', dogProduct);
+  const _dogProduct = dogProduct[0] ? dogProduct[0].listProducts : [];
+  const _catProduct = catProduct[0] ? catProduct[0].listProducts : [];
 
   return (
     <>
@@ -144,17 +121,7 @@ const HomePage = (props) => {
                 <div className="section-title">
                   <h2>Sản phẩm nổi bật</h2>
                 </div>
-                {/* <div className="featured__controls">
-                  <ul>
-                    <li className="active" data-filter="*">
-                      All
-                    </li>
-                    <li data-filter=".oranges">Dogs</li>
-                    <li data-filter=".fresh-meat">Cats</li>
-                    <li data-filter=".vegetables">Birds</li>
-                    <li data-filter=".fastfood">Fishs</li>
-                  </ul>
-                </div> */}
+              
               </div>
             </div>
             <div className="row featured__filter">
@@ -171,21 +138,11 @@ const HomePage = (props) => {
                 <div className="section-title">
                   <h2>Sản phẩm cho chó</h2>
                 </div>
-                {/* <div className="featured__controls">
-                  <ul>
-                    <li className="active" data-filter="*">
-                      All
-                    </li>
-                    <li data-filter=".oranges">Dogs</li>
-                    <li data-filter=".fresh-meat">Cats</li>
-                    <li data-filter=".vegetables">Birds</li>
-                    <li data-filter=".fastfood">Fishs</li>
-                  </ul>
-                </div> */}
+          
               </div>
             </div>
             <div className="row featured__filter">
-              {dogProduct.length ? dogProduct.map((item, index) => index < 8 ? renderProductItem(item) : null) : null}
+              {dogProduct.length ? _dogProduct.map((item, index) => index < 8 ? renderProductItem(item) : null) : null}
 
             </div>
           </div>
@@ -198,21 +155,11 @@ const HomePage = (props) => {
                 <div className="section-title">
                   <h2>Sản phẩm cho mèo</h2>
                 </div>
-                {/* <div className="featured__controls">
-                  <ul>
-                    <li className="active" data-filter="*">
-                      All
-                    </li>
-                    <li data-filter=".oranges">Dogs</li>
-                    <li data-filter=".fresh-meat">Cats</li>
-                    <li data-filter=".vegetables">Birds</li>
-                    <li data-filter=".fastfood">Fishs</li>
-                  </ul>
-                </div> */}
+                
               </div>
             </div>
             <div className="row featured__filter">
-              {catProduct.length ? catProduct.map((item, index) => index < 8 ? renderProductItem(item) : null) : null}
+              {catProduct.length ? _catProduct.map((item, index) => index < 8 ? renderProductItem(item) : null) : null}
 
 
             </div>
@@ -317,26 +264,11 @@ const HomePage = (props) => {
 
         <Footer />
       </>
-      {/* :
-          <>
-            <Loader />
-          </>
-        } */}
-
+     
     </>
   );
 
 }
 
-// const mapStateToProps = (state) => ({
-//   listProduct: selectors.getListProduct(state),
-//   topProduct: selectors.getTopProduct(state)
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   getListProduct: () => dispatch(actions.getListProduct()),
-//   getTopProduct: () => dispatch(actions.getTopProduct()),
-//   showCart: () => dispatch(actions.showCart())
-// });
 
 export default HomePage;

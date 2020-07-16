@@ -5,28 +5,34 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectors, actions } from "../services";
 
 
-const HamsterShop = (props) => {
+const Brand = (props) => {
   const dispatch = useDispatch()
+
+  // const selector = useSelector();
+
+  const allItem = useSelector(state => selectors.getListProduct(state)) || [];
+
+  const  brand  = props.location.state? props.location.state :  '' ;
+
+  console.log('all item ===========================', allItem)
+
+  const dogProduct = allItem.filter(item => item.categoryName ==='dog');
+  const catProduct = allItem.filter(item => item.categoryName ==='cat');
+
+
+  const _dogProduct = dogProduct[0] ? dogProduct[0].listProducts : [];
+  const _catProduct = catProduct[0] ? catProduct[0].listProducts : [];
+  console.log('dog and cat produc t------------', _dogProduct, _catProduct, brand)
+
+  const filterDogItem = _dogProduct.filter(item=> item.brand ===brand) || [];
+  const filterCatItem = _catProduct.filter(item=> item.brand ===brand) || [];
+
+  console.log('filter dog and cat --------------', filterDogItem, filterCatItem)
+
+
   const [Name, setName] = useState();
-  const [listData, setlistData] = useState([]);
 
-  useEffect(() => {
-    let { name, type } = props.location.state;
-    console.log('name and type =================', name, type)
-    if( type === 0) {
-      dispatch(actions.getProductByName(name, (data) => {
-        setlistData(data[0].listProducts)
-      }));
-      setName(name);
-    } else {
-      dispatch(actions.getProductByNameAndType({name, type}, (data) =>{
-        setlistData(data[0].listProducts)
 
-      }));
-      setName(name);
-    }
-
-  }, [props.location.state.type, props.location.state.name])
 
   const listPriceData = [
     {
@@ -103,29 +109,29 @@ const HamsterShop = (props) => {
         url={`${item.url}`}
         name={item.name}
         price={item.price}
+        promotion= {item.promotion}
         id={item.id}
         history={history}
         key={`${item.id}`}
         addToCart={() => addToCart(item)}
-
         size="col-lg-3 col-md-6 col-sm-6 mix oranges fresh-meat"
       />
     )
   }
 
-  const onClickType = (type) => {
-    if( type === 0) {
-      let name = 'dog';
-      dispatch(actions.getProductByName(name, (data => {
-        setlistData(data[0].listProducts)
+  // const onClickType = (type) => {
+  //   if( type === 0) {
+  //     let name = 'dog';
+  //     dispatch(actions.getProductByName(name, (data => {
+  //       setlistData(data[0].listProducts)
 
-      })));
-    } else {
-      dispatch(actions.getProductByNameAndType({name: Name, type}, (data) => {
-        setlistData(data[0].listProducts)
-      }));
-    }
-  }
+  //     })));
+  //   } else {
+  //     dispatch(actions.getProductByNameAndType({name: Name, type}, (data) => {
+  //       setlistData(data[0].listProducts)
+  //     }));
+  //   }
+  // }
 
   return (
     <>
@@ -162,13 +168,13 @@ const HamsterShop = (props) => {
           <div className="container">
             <div className="row">
               <LeftBarItem
-               onClickType={onClickType}
+              //  onClickType={onClickType}
                listPrice = {listPriceData}
                listBrand = {listBrandData}
-               itemData = {listData}
+              //  itemData = {listData}
               />
               <div className="col-lg-9 col-md-7">
-                <div className="product__discount">
+                {/* <div className="product__discount">
                   <div className="section-title product__discount__title">
                     <h2>Sale Off</h2>
                   </div>
@@ -178,7 +184,7 @@ const HamsterShop = (props) => {
                     <SaleItem />
                   </div>
 
-                </div>
+                </div> */}
                 <div className="filter__item">
                   <div className="row">
                     <div className="col-lg-4 col-md-5">
@@ -192,7 +198,7 @@ const HamsterShop = (props) => {
                     <div className="col-lg-4 col-md-4">
                       <div className="filter__found">
                         <h6>
-                        Tìm thấy <span> {listData.length } </span> sản phẩm
+                           Tìm thấy <span> {filterDogItem.length + filterCatItem.length } </span> sản phẩm
                         </h6>
                       </div>
                     </div>
@@ -207,17 +213,18 @@ const HamsterShop = (props) => {
                 <div className="row">
                   {/* filter__item */}
 
-                  {listData.map(item => renderItem(item))}
+                  {filterDogItem.map(item => renderItem(item))}
+                  {filterCatItem.map(item => renderItem(item))}
 
                 </div>
-                <div className="product__pagination">
+                {/* <div className="product__pagination">
                   <a href="#">1</a>
                   <a href="#">2</a>
                   <a href="#">3</a>
                   <a href="#">
                     <i className="fa fa-long-arrow-right" />
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -230,4 +237,4 @@ const HamsterShop = (props) => {
   );
 };
 
-export default HamsterShop;
+export default Brand;
