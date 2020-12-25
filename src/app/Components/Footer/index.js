@@ -22,13 +22,15 @@ export const Footer = () => {
           </div>
           <div className="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
             <div className="footer__widget">
-              <h6>Đồ án môn học</h6>
-              <div style={{ fontSize: 16 }}>Thương mại điện tử và triển khai ứng dụng</div>
-              <div style={{ fontSize: 16 }}>
-                Giảng viên: Trần Tuấn Dũng
+              <h6>Danh sách cửa hàng</h6>
+              <div style={{ fontSize: 16 }}>Hà Nội: Số 123, quận Cầu Giấy</div>
+              <div style={{ fontSize: 16 }}>Đà Nẵng: Số 456, quận Sơn Trà
                     </div>
               <div style={{ fontSize: 16 }}>
-                Đề tài: Websites bán vật dụng cho thú cưng
+                TPHCM: Số 789, Quận 1
+                    </div>
+              <div style={{ fontSize: 16 }}>
+                Giao hàng miễn phí trong vòng 15km
                     </div>
 
               {/* <div className="fb-page"

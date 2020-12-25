@@ -129,7 +129,7 @@ export const TopBar = (props) => {
                   <li>
                     <i className="fa fa-envelope" /> all4pet@xyz.com
                     </li>
-                  <li>Miễn phí giao hàng cho đơn hàng trong tháng 7</li>
+                  <li>Miễn phí giao hàng nội thành TPHCM</li>
                 </ul>
               </div>
             </div>
